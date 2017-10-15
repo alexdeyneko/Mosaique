@@ -13,6 +13,7 @@ namespace wpfMozaiq.ViewModel
 {
     class NewProjectViewModel : ViewModelBase
     {
+        /*
         private string _filenameMosaicPack;
         public string FilenameMosaicPack
         {
@@ -80,5 +81,6 @@ namespace wpfMozaiq.ViewModel
                 }
             }));
         }
+        */
     }
 }
