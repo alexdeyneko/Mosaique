@@ -13,7 +13,7 @@ namespace wpfMozaiq.ViewModel
 {
     class MainViewModel : ViewModelBase
     {
-        /*
+        
         private ICommand _exit;
         public ICommand Exit
         {
@@ -32,6 +32,6 @@ namespace wpfMozaiq.ViewModel
                 newProjectView.Show();
             }));
         }
-        */
+        
     }
 }
