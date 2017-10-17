@@ -8,8 +8,6 @@ namespace wpfMozaiq.Models
 {
     class Matrix
     {
-        public int CountColumns { set; get; } // количество столбцов
-        public int CountLines { set; get; } // количество строк
-        public double GapWidth { set; get; } // ширина зазора в мм
+        public List<Mozaic> mozaics;
     }
 }

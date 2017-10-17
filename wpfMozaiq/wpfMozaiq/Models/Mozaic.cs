@@ -14,11 +14,9 @@ namespace wpfMozaiq.Models
         {
             Picture = new Bitmap(path + "\\" + name);
             Name = name;
-
         }
 
         public string Name { set; get; }
-
 
     }
 }
