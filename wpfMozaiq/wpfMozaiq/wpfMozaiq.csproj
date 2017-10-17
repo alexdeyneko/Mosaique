@@ -93,10 +93,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Catalog.cs" />
-    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ICalculateAvrRGB.cs" />
     <Compile Include="Models\Matrix.cs" />
     <Compile Include="Models\Mozaic.cs" />
     <Compile Include="Models\MosaicPanel.cs" />
+    <Compile Include="Models\OriginalImage.cs" />
+    <Compile Include="Models\PixelsBlock.cs" />
+    <Compile Include="Models\RGB.cs" />
     <Compile Include="Veiw\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
