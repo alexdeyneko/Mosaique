@@ -9,7 +9,7 @@ namespace wpfMozaiq.Models
 {
     public class Catalog
     {
-        private IList<Mozaic> Mozaics;
+        public IList<Mozaic> Mozaics;
         public int MozaicRealSize;
         public string ParentName;
         public string Name;

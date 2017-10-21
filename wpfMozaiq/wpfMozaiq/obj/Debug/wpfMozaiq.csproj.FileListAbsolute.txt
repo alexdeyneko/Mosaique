@@ -111,3 +111,12 @@ D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.csproj.GenerateResour
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.csproj.CoreCompileInputs.cache
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.exe
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.pdb
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CatalogView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\SourceImageView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\TechDocView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\UserGuideView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CatalogView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\SourceImageView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\TechDocView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\UserGuideView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.csproj.CoreCompileInputs.cache

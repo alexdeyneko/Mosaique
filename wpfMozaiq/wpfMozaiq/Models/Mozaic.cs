@@ -7,16 +7,19 @@ using System.Drawing;
 
 namespace wpfMozaiq.Models
 {
-    class Mozaic : PixelsBlock
+    public class Mozaic : PixelsBlock
     {
 
         public Mozaic(string name, string path)
         {
             Picture = new Bitmap(path + "\\" + name);
             Name = name;
+
         }
 
+
         public string Name { set; get; }
+
 
     }
 }

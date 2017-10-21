@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace wpfMozaiq.Models
 {
-    class Matrix
+    public class Matrix
     {
         public List<Mozaic> mozaics;
     }

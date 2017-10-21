@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\
 wpfMozaiq
 none
 false
 DEBUG;TRACE
-D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml
-21423628921
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml
+62043753951
 
-161846932835
-75978407101
-Veiw\MainView.xaml;Veiw\NewProjectView.xaml;
+28804833904
+75-1304728695
+Veiw\CatalogView.xaml;Veiw\MainView.xaml;Veiw\NewProjectView.xaml;Veiw\SourceImageView.xaml;Veiw\TechDocView.xaml;Veiw\UserGuideView.xaml;
 
 False
 
