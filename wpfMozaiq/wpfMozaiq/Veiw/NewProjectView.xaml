@@ -234,8 +234,8 @@
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="35,70,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,70,80,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Столбцы" />
         <ListBox
@@ -243,8 +243,8 @@
             Grid.Column="0"
             Width="58"
             Height="35"
-            Margin="35,100,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,100,80,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
@@ -254,8 +254,8 @@
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="0,70,35,0"
-            HorizontalAlignment="Right"
+            Margin="80,70,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Строки" />
         <ListBox
@@ -263,8 +263,8 @@
             Grid.Column="0"
             Width="58"
             Height="35"
-            Margin="0,100,35,0"
-            HorizontalAlignment="Right"
+            Margin="80,100,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
