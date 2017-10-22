@@ -8,175 +8,233 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Параметры мозайки"
-    Width="Auto"
-    Height="Auto"
-    d:DesignHeight="510.5"
-    d:DesignWidth="471"
+    Width="510"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
+    ResizeMode="NoResize"
+    SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
+
+    <!--  SizeToContent="WidthAndHeight"  -->
+
+
+    <controls:MetroWindow.FlowDirection>
+        LeftToRight
+    </controls:MetroWindow.FlowDirection>
     <Window.DataContext>
         <viewModel:NewProjectViewModel />
     </Window.DataContext>
-    <Grid ShowGridLines="True">
+
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="250" />
         </Grid.ColumnDefinitions>
 
         <!--  0-0  -->
+        <Border
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="5,40,5,80"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+
+
         <Label
-            x:Name="label"
             Grid.Row="0"
             Grid.Column="0"
             Margin="10,10,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Каталог" />
+            Content="Каталог"
+            FontSize="16" />
         <Label
-            x:Name="label1"
             Grid.Row="0"
             Grid.Column="0"
             Height="26"
-            Margin="24,36,0,0"
+            Margin="35,60,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Выбрать файл" />
-        <TextBox
-            x:Name="textBox"
-            Grid.Row="0"
-            Grid.Column="0"
-            Width="103"
-            Height="0"
-            Margin="30,62,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            IsReadOnly="True"
-            Text="{Binding FilenameMosaicPack}"
-            TextWrapping="NoWrap" />
+            Content="Выбрать файл каталога" />
         <Button
-            x:Name="button"
             Grid.Row="0"
             Grid.Column="0"
-            Margin="143,62,0,10"
-            HorizontalAlignment="Left"
+            Margin="0,60,25,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Command="{Binding ChoiseFileMosaicPack}"
             Content="{iconPacks:PackIcon {x:Static iconPacks:PackIconMaterialKind.FileFind},
                                          Width=13,
                                          Height=13}" />
-        <Label
-            x:Name="label2"
-            Grid.Row="0"
-            Grid.Column="0"
-            Height="26"
-            Margin="24,88,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Выбрать картинку" />
         <TextBox
-            x:Name="textBox2"
             Grid.Row="0"
             Grid.Column="0"
-            Width="103"
-            Height="0"
-            Margin="30,114,0,0"
+            Width="191"
+            Height="25"
+            Margin="35,95,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             IsReadOnly="True"
-            Text="{Binding FilenameImage}"
+            Text="{Binding FilenameMosaicPack}"
             TextWrapping="NoWrap" />
-        <Button
-            x:Name="button2"
+
+        <Border
             Grid.Row="0"
             Grid.Column="0"
-            Margin="143,114,0,10"
+            Margin="5,155,5,-35"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="10,125,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Изображение"
+            FontSize="16" />
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Height="26"
+            Margin="35,175,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Выбрать картинку" />
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="181,175,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Command="{Binding ChoiseFileImage}"
             Content="{iconPacks:PackIcon {x:Static iconPacks:PackIconMaterialKind.FileFind},
                                          Width=13,
                                          Height=13}" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Width="191"
+            Height="25"
+            Margin="35,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            IsReadOnly="True"
+            Text="{Binding FilenameImage}"
+            TextWrapping="NoWrap" />
+
+
+
         <!--  0-1  -->
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="5,40,5,-100"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+        <Border
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="15,50,15,40"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1"
+            CornerRadius="3" />
         <Label
-            x:Name="labelComPic"
             Grid.Row="0"
             Grid.Column="1"
             Margin="10,10,0,0"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Коммьютерная картинка" />
-        <Label
-            x:Name="labelGapMatr"
-            Grid.Row="0"
-            Grid.Column="1"
-            Margin="23,36,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Зазор между матрицами" />
+            Content="Компьютерная картинка"
+            FontSize="16" />
         <Label
             Grid.Row="0"
             Grid.Column="1"
-            Height="26"
-            Margin="25,63,0,0"
+            Margin="15,50,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Ширина в пикселях"
-            RenderTransformOrigin="-0.079,0.462" />
+            Content="Зазор между матрицами"
+            FontSize="13" />
         <Label
             Grid.Row="0"
             Grid.Column="1"
-            Margin="23,92,0,0"
+            Height="35"
+            Margin="35,90,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Ширина в пикселях" />
+        <ListBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="55"
+            Height="35"
+            Margin="0,90,25,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <ListBoxItem Content="2" />
+            <ListBoxItem Content="3" />
+            <ListBoxItem Content="1" />
+        </ListBox>
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Height="35"
+            Margin="35,130,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Цвет" />
         <ListBox
             Grid.Row="0"
             Grid.Column="1"
-            Width="102"
-            Height="29"
-            Margin="99,92,0,0"
-            HorizontalAlignment="Left"
+            Width="110"
+            Height="35"
+            Margin="0,130,25,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
-        </ListBox>
-        <ListBox
-            Grid.Row="0"
-            Grid.Column="1"
-            Width="58"
-            Height="30"
-            Margin="157,63,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-            <ListBoxItem Content="1" />
         </ListBox>
 
+
         <!--  1-0  -->
+
         <Label
-            x:Name="labelMatrix"
             Grid.Row="1"
             Grid.Column="0"
-            Margin="10,10,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,30,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Матрица" />
+            Content="Матрица"
+            FontSize="16" />
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="5,60,5,-10"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+
         <Label
-            x:Name="labelColumns"
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="24,36,0,0"
+            Margin="35,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Столбцы" />
@@ -184,32 +242,29 @@
             Grid.Row="1"
             Grid.Column="0"
             Width="58"
-            Height="30"
-            Margin="24,67,0,0"
+            Height="35"
+            Margin="35,100,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
         </ListBox>
-
         <Label
-            x:Name="labelRows"
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="160,31,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,70,35,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Content="Строки"
-            RenderTransformOrigin="0.49,0.5" />
+            Content="Строки" />
         <ListBox
             Grid.Row="1"
             Grid.Column="0"
             Width="58"
-            Height="30"
-            Margin="160,62,0,0"
-            HorizontalAlignment="Left"
+            Height="35"
+            Margin="0,100,35,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
@@ -218,7 +273,7 @@
         <Label
             Grid.Row="1"
             Grid.Column="0"
-            Margin="30,97,0,0"
+            Margin="35,155,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ширина зазора в мм" />
@@ -226,37 +281,56 @@
             Grid.Row="1"
             Grid.Column="0"
             Width="58"
-            Height="30"
-            Margin="160,102,0,0"
-            HorizontalAlignment="Left"
+            Height="35"
+            Margin="0,155,35,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
         </ListBox>
 
-        <!--  1-1  -->
-        <Label
-            x:Name="labelGapTile"
+        <!--  1-1 Зазор между плитками  -->
+        <Border
             Grid.Row="1"
             Grid.Column="1"
-            Margin="23,10,0,0"
+            Margin="15,-35,15,110"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1"
+            CornerRadius="3" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="15,-30,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Зазор между плитками" />
+            Content="Зазор между плитками"
+            FontSize="13" />
         <Label
             Grid.Row="1"
             Grid.Column="1"
             Height="26"
-            Margin="10,36,0,0"
+            Margin="35,0,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Ширина в пикселях"
-            RenderTransformOrigin="-0.079,0.462" />
+            Content="Ширина в пикселях" />
+        <ListBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="58"
+            Height="35"
+            Margin="0,0,25,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <ListBoxItem Content="1" />
+            <ListBoxItem Content="2" />
+            <ListBoxItem Content="3" />
+        </ListBox>
         <Label
             Grid.Row="1"
             Grid.Column="1"
-            Margin="23,68,0,0"
+            Margin="35,40,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Цвет" />
@@ -264,21 +338,66 @@
             Grid.Row="1"
             Grid.Column="1"
             Width="102"
-            Height="29"
-            Margin="99,68,0,0"
-            HorizontalAlignment="Left"
+            Height="35"
+            Margin="0,40,25,0"
+            HorizontalAlignment="Right"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
         </ListBox>
+
+        <!--  1-1 ЖЕЛАЕМЫЕ РАЗМЕРЫ  -->
+        <Border
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5,130,5,-10"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="10,100,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Желаемые размеры"
+            FontSize="16" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,130,80,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Ширина, см" />
         <ListBox
             Grid.Row="1"
             Grid.Column="1"
             Width="58"
-            Height="30"
-            Margin="143,36,0,0"
-            HorizontalAlignment="Left"
+            Height="35"
+            Margin="0,160,80,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top">
+            <ListBoxItem Content="1" />
+            <ListBoxItem Content="2" />
+            <ListBoxItem Content="3" />
+        </ListBox>
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="80,130,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Высота, см" />
+        <ListBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="58"
+            Height="35"
+            Margin="80,160,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
@@ -287,150 +406,111 @@
 
 
         <!--  2-0  -->
-        <Label
-            x:Name="labelDecired"
+        <Border
             Grid.Row="2"
             Grid.Column="0"
-            Margin="10,10,0,0"
+            Margin="5,40,-245,-10"
+            Padding="8"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="2"
+            CornerRadius="3" />
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Content="Реальные "
+            FontSize="16" />
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="47,40,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Желаемые размеры" />
+            Content="Столбцы" />
         <Label
             Grid.Row="2"
             Grid.Column="0"
-            Margin="24,41,0,0"
+            Margin="30,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ширина, см" />
-        <ListBox
+        <TextBox
             Grid.Row="2"
-            Grid.Column="0"
-            Width="58"
-            Height="30"
-            Margin="119,41,0,0"
+            Width="92"
+            Height="26"
+            Margin="111,40,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
+        <TextBox
+            Grid.Row="2"
+            Width="91"
+            Height="26"
+            Margin="112,70,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
 
         <!--  2-1  -->
         <Label
             Grid.Row="2"
             Grid.Column="1"
-            Margin="24,41,0,0"
+            Margin="0,10,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Content="Высота, см" />
-        <ListBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Width="58"
-            Height="30"
-            Margin="119,41,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
-
-
-        <!--  3-0  -->
-        <Label
-            x:Name="labelReal"
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="10,10,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Реальные размеры" />
-        <Label
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="47,36,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Столбцы" />
-        <Label
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="30,62,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Ширина, см" />
-        <TextBox
-            Grid.Row="3"
-            Width="92"
-            Height="21"
-            Margin="117,41,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
-        <TextBox
-            Grid.Row="3"
-            Width="91"
-            Height="21"
-            Margin="117,67,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
+            Content="размеры "
+            FontSize="16" />
 
         <!--  3-1  -->
         <Label
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
-            Margin="44,36,0,0"
+            Margin="47,40,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Строки" />
-        <Label
-            Grid.Row="3"
+        <TextBox
+            Grid.Row="2"
             Grid.Column="1"
-            Margin="24,62,0,0"
+            Width="93"
+            Height="26"
+            Margin="110,40,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Text=""
+            TextWrapping="Wrap" />
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="27,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Высота, см" />
+
         <TextBox
-            Grid.Row="3"
+            Grid.Row="2"
             Grid.Column="1"
             Width="93"
-            Height="21"
-            Margin="108,36,0,0"
+            Height="26"
+            Margin="110,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Text="TextBox"
-            TextWrapping="Wrap" />
-        <TextBox
-            Grid.Row="3"
-            Grid.Column="1"
-            Width="93"
-            Height="21"
-            Margin="108,62,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="TextBox"
+            Text=""
             TextWrapping="Wrap" />
 
         <!--  4-1  -->
         <StackPanel
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Button Margin="0,0,0,5" Padding="5">OK</Button>
-            <Button Margin="5,0,5,5" Padding="5">Cancel</Button>
+            <Button Margin="5,15,5,5" Padding="5">OK</Button>
+            <Button Margin="5,15,5,5" Padding="5">Cancel</Button>
         </StackPanel>
-
-
-
-
-
-
-
 
     </Grid>
 </controls:MetroWindow>
