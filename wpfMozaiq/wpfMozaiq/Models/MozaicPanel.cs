@@ -8,24 +8,42 @@ namespace wpfMozaiq.Models
 {
     public class MozaicPanel
     {
-        public IList<Mozaic> MozaicList;
+
         public OriginalImage Image { set; get; } // источник картинки
 
+        public Catalog Cat { set; get; } //каталог мозаик
 
+        public PixelsBlock[,] Grid;
 
-        public MozaicPanel()
+        public MozaicPanel(OriginalImage image, Catalog catalog, double desiredWidth,
+            int matrixLines, int matrixColumns, double desiredMozaicGap,
+            double computerMozaicGap, double computerMatrixGap)
         {
-            MozaicList = new List<Mozaic>();
+            Image = image;
+            Cat = catalog;
+            DesiredWidth = desiredWidth;
+            DesiredHeight = (int)(Image.Picture.Height * DesiredWidth / Image.Picture.Width);
+            MatrixLines = matrixLines;
+            MatrixColumns = matrixColumns;
+            DesiredMozaicGap = desiredMozaicGap;
+            ComputerMozaicGap = ComputerMozaicGap;
+            ComputerMatrixGap = computerMatrixGap;
 
         }
+
         //матрица
         public int MatrixLines { get; set; } //высота матрицы, в мозаиках
         public int MatrixColumns { get; set; } //ширина матрицы, в мозаиках
-        public double DesiredMozaicGap { set; get; } // ширина зазора между мозаиками в матрице, см
+        public double DesiredMozaicGap { set; get; } // ширина зазора между мозаиками в матрице, мм
 
         //желаемые размеры
         public double DesiredWidth { set; get; }   //желаемая ширина, см
-        public double DesiredHeight { set; get; } //желаем высота, см
+        public double DesiredHeight
+        {
+
+            set;
+            get;
+        } //желаем высота, см
 
 
         //компьютерное изображение

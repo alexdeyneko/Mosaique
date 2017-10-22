@@ -120,3 +120,7 @@ C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\TechDocView.baml
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\UserGuideView.baml
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.csproj.CoreCompileInputs.cache
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignColors.dll
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.xml

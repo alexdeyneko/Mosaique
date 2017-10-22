@@ -64,7 +64,7 @@ namespace wpfMozaiq.Models.Services
             }
             g.Dispose();
 
-            newMap.Save("C:\\Users\\Алексей\\Desktop\\тестирую2.bmp");
+            newMap.Save("C:\\Users\\Алексей\\Desktop\\тестирую" + new Random().Next() + ".bmp");
         }
 
 

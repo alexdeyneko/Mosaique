@@ -11,63 +11,61 @@ namespace wpfMozaiq.Models.Services
 {
     public class MatrixGridService : ICreateImageGrid
     {
-        public OriginalImage Image;
+
         public int MozaicSize;
         public MozaicPanel Panno;
-        public PixelsBlock[,] Grid;
 
-        public MatrixGridService(OriginalImage image, int size, MozaicPanel panno)
+        public MatrixGridService(int size, MozaicPanel panno)
         {
-            Image = image;
+
             MozaicSize = size;
             Panno = panno;
 
 
         }
 
-        public int CalculateImageHeight()   //высота изображения в пикселях
+        public int CalculateOptimalHeight()   //оптимальная высота изображения в блоках
         {
-            return Convert.ToInt32(Math.Truncate(Panno.DesiredHeight * 10 / (MozaicSize + Panno.DesiredMozaicGap)));
+            int height = (int)(Panno.DesiredHeight * 10 / (MozaicSize + Panno.DesiredMozaicGap));//максимум блоков
+
+            int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
+
+            for (; (double)Panno.Image.Picture.Height / height - pixelHeight > 0.1;) //подбираем оптимальную высоту
+            {
+
+                pixelHeight = Panno.Image.Picture.Height / height;
+                height--;
+
+            }
+            return height;
         }
-        public int CalculateImageWidth()    //ширина изображения в пикселях
+
+        public int CalculateOptimalWidth()    //оптимальная ширина изображения в блоках
         {
-            return Convert.ToInt32(Math.Truncate(
-                    Panno.DesiredWidth * 10 / (MozaicSize + Panno.DesiredMozaicGap)));
+            int width = (int)(
+            Panno.DesiredWidth * 10 / (MozaicSize + Panno.DesiredMozaicGap));
+            int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
+            for (; (double)Panno.Image.Picture.Width / width - pixelWidth > 0.1;)//подбираем оптимальную ширину
+            {
+                pixelWidth = Panno.Image.Picture.Width / width;
+                width--;
+
+            }
+            return width;
         }
 
         public void CreateImageGrid()
         {
-            int height = CalculateImageHeight();        //кол-во блоков в высоту
-            int width = CalculateImageWidth();          //кол-во блоков в ширину
-            int pixelHeight = Image.Picture.Height / height;   //высота одного блока в пикселях
-            int pixelWidth = Image.Picture.Width / width;      //ширина одного блока в пикселях
-            Grid = new PixelsBlock[width, height];
+            int height = CalculateOptimalHeight();        //кол-во блоков в высоту
+            int width = CalculateOptimalWidth();          //кол-во блоков в ширину
+            int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
+            int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
 
-            /*
-            for (int i = 0; i < width; i++)
-             {
-                 for (int j = 0; j < height; j++)
-                 {
 
-                     PixelsBlock block = new PixelsBlock();
-                     block.Picture = Image.Picture.Clone(new Rectangle
+            Panno.Grid = new PixelsBlock[width, height];
+            SetRealHight(height);
+            SetRealWidth(width);
 
-                         (i* pixelWidth, 
-                                    j* pixelHeight, 
-                        pixelWidth, pixelHeight), 
-
-                        Image.Picture.PixelFormat);
-
-                    block.CalculateAvrColors();
-                    
-                    Grid[i, j] = block;
-
-                    
-              
-                }
-
-            }
-            */
             for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < height; j++)
@@ -83,14 +81,14 @@ namespace wpfMozaiq.Models.Services
                     Bitmap bmp = new Bitmap(section.Width, section.Height);
                     using (Graphics g = Graphics.FromImage(bmp))
                     {
-                        g.DrawImage(Image.Picture, 0, 0, section, GraphicsUnit.Pixel);
+                        g.DrawImage(Panno.Image.Picture, 0, 0, section, GraphicsUnit.Pixel);
                     }
 
                     block.Picture = bmp;
 
                     block.CalculateAvrColors();
 
-                    Grid[i, j] = block;
+                    Panno.Grid[i, j] = block;
 
 
 
@@ -98,6 +96,16 @@ namespace wpfMozaiq.Models.Services
 
             }
 
+
+        }
+
+        public void SetRealWidth(int width)
+        {
+            Panno.RealWidth = width * (Panno.DesiredMozaicGap + MozaicSize) / 10;
+        }
+        public void SetRealHight(int height)
+        {
+            Panno.RealHeight = height * (Panno.DesiredMozaicGap + MozaicSize) / 10;
         }
     }
 }

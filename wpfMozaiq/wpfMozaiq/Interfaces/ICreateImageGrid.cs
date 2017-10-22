@@ -8,8 +8,8 @@ namespace wpfMozaiq.Interfaces
 {
     interface ICreateImageGrid
     {
-        int CalculateImageWidth();
-        int CalculateImageHeight();
+        int CalculateOptimalWidth();
+        int CalculateOptimalHeight();
         void CreateImageGrid();
     }
 }
