@@ -43,7 +43,7 @@
             Grid.Column="0"
             Margin="5,40,5,80"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
 
@@ -91,7 +91,7 @@
             Grid.Column="0"
             Margin="5,155,5,-35"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
 
@@ -142,7 +142,7 @@
             Grid.Column="1"
             Margin="5,40,5,-100"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
         <Border
@@ -150,7 +150,7 @@
             Grid.Column="1"
             Margin="15,50,15,40"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             CornerRadius="3" />
         <Label
@@ -226,7 +226,7 @@
             Grid.Column="0"
             Margin="5,60,5,-10"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
 
@@ -296,14 +296,14 @@
             Grid.Column="1"
             Margin="15,-35,15,110"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             CornerRadius="3" />
         <Label
             Grid.Row="1"
             Grid.Column="1"
-            Margin="0,-30,0,0"
-            HorizontalAlignment="Center"
+            Margin="15,-30,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Зазор между плитками"
             FontSize="13" />
@@ -353,7 +353,7 @@
             Grid.Column="1"
             Margin="5,130,5,-10"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
         <Label
@@ -411,7 +411,7 @@
             Grid.Column="0"
             Margin="5,40,-245,-10"
             Padding="8"
-            BorderBrush="Purple"
+            BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
         <Label
