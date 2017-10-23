@@ -9,11 +9,23 @@
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Параметры мозайки"
     Width="510"
+    Background="{StaticResource MaterialDesignPaper}"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
+    FontFamily="{StaticResource MaterialDesignFont}"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
+
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBlock.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+
 
     <!--  SizeToContent="WidthAndHeight"  -->
 
@@ -41,12 +53,11 @@
         <Border
             Grid.Row="0"
             Grid.Column="0"
-            Margin="5,40,5,80"
+            Margin="5,40,5,75"
             Padding="8"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="2"
             CornerRadius="3" />
-
 
         <Label
             Grid.Row="0"
@@ -148,7 +159,7 @@
         <Border
             Grid.Row="0"
             Grid.Column="1"
-            Margin="15,50,15,40"
+            Margin="15,50,15,35"
             Padding="8"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
@@ -184,7 +195,9 @@
             Height="35"
             Margin="0,90,25,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
             <ListBoxItem Content="1" />
@@ -204,7 +217,9 @@
             Height="35"
             Margin="0,130,25,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -234,8 +249,8 @@
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="35,70,0,0"
-            HorizontalAlignment="Left"
+            Margin="0,70,80,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Столбцы" />
         <ListBox
@@ -243,9 +258,11 @@
             Grid.Column="0"
             Width="58"
             Height="35"
-            Margin="35,100,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
+            Margin="0,100,80,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -254,8 +271,8 @@
             Grid.Row="1"
             Grid.Column="0"
             Height="26"
-            Margin="0,70,35,0"
-            HorizontalAlignment="Right"
+            Margin="80,70,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Строки" />
         <ListBox
@@ -263,9 +280,11 @@
             Grid.Column="0"
             Width="58"
             Height="35"
-            Margin="0,100,35,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            Margin="80,100,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -284,7 +303,9 @@
             Height="35"
             Margin="0,155,35,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -294,7 +315,7 @@
         <Border
             Grid.Row="1"
             Grid.Column="1"
-            Margin="15,-35,15,110"
+            Margin="15,-30,15,110"
             Padding="8"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
@@ -322,7 +343,9 @@
             Height="35"
             Margin="0,0,25,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -341,7 +364,9 @@
             Height="35"
             Margin="0,40,25,0"
             HorizontalAlignment="Right"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -378,7 +403,9 @@
             Height="35"
             Margin="0,160,80,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -398,7 +425,9 @@
             Height="35"
             Margin="80,160,0,0"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top">
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
             <ListBoxItem Content="1" />
             <ListBoxItem Content="2" />
             <ListBoxItem Content="3" />
@@ -443,6 +472,7 @@
             Margin="111,40,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            IsReadOnly="True"
             Text=""
             TextWrapping="Wrap" />
         <TextBox
@@ -452,6 +482,7 @@
             Margin="112,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            IsReadOnly="True"
             Text=""
             TextWrapping="Wrap" />
 
@@ -481,6 +512,7 @@
             Margin="110,40,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            IsReadOnly="True"
             Text=""
             TextWrapping="Wrap" />
         <Label
@@ -499,6 +531,7 @@
             Margin="110,70,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
+            IsReadOnly="True"
             Text=""
             TextWrapping="Wrap" />
 
