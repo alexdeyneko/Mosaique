@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Мозаика"
-    Width="600"
-    Height="450"
+    Width="900"
+    Height="650"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
     mc:Ignorable="d">
@@ -52,10 +52,20 @@
 
         <ToolBarTray Width="auto" DockPanel.Dock="Top">
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+
+                <Button ToolBar.OverflowMode="Never" ToolTip="Открыть">
+                    <materialDesign:PackIcon Kind="OpenInApp" />
+                </Button>
+
+                <Button ToolBar.OverflowMode="Never" ToolTip="Сохранить">
+                    <materialDesign:PackIcon Kind="ContentSave" />
+                </Button>
+                <Separator />
+
                 <Button ToolBar.OverflowMode="Never" ToolTip="Обновить">
                     <materialDesign:PackIcon Kind="Refresh" />
                 </Button>
-                <Separator />
+
                 <Button ToolBar.OverflowMode="Never" ToolTip="Параметры">
                     <materialDesign:PackIcon Kind="Settings" />
                 </Button>
@@ -71,11 +81,11 @@
                 <Button ToolBar.OverflowMode="Never" ToolTip="Каталог">
                     <materialDesign:PackIcon Kind="Palette" />
                 </Button>
-                <Separator />
+
                 <Button ToolBar.OverflowMode="Never" ToolTip="Техническое задание">
                     <materialDesign:PackIcon Kind="Grid" />
                 </Button>
-                <Separator />
+
                 <Button ToolBar.OverflowMode="Never" ToolTip="Источник">
                     <materialDesign:PackIcon Kind="Image" />
                 </Button>
@@ -83,6 +93,50 @@
 
 
         </ToolBarTray>
+
+
+
+        <materialDesign:DrawerHost
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="2"
+            DockPanel.Dock="Right">
+
+            <materialDesign:DrawerHost.RightDrawerContent>
+                <StackPanel
+                    Width="250"
+                    Height="500"
+                    Margin="5">
+                    <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
+                    <ListView Name="lstw" Margin="5">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Название" />
+                                    <GridViewColumn Header="Изображение" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}"
+                        Style="{DynamicResource MaterialDesignFlatButton}">
+                        Закрыть
+                    </Button>
+                </StackPanel>
+            </materialDesign:DrawerHost.RightDrawerContent>
+
+            <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Right}">
+                <materialDesign:PackIcon Kind="ArrowLeft" />
+            </Button>
+
+        </materialDesign:DrawerHost>
+
+
 
 
 
