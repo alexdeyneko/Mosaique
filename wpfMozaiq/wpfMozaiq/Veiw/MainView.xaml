@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Мозаика"
-    Width="900"
-    Height="650"
+    Width="750"
+    Height="550"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
     mc:Ignorable="d">
@@ -19,75 +19,50 @@
 
     <DockPanel>
 
-        <Menu
-            Width="auto"
-            Height="auto"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            DockPanel.Dock="Top"
-            FontSize="14">
-            <MenuItem Header="Файл">
-                <MenuItem Command="{Binding ShowNewProjectView}" Header="Создать" />
-                <MenuItem Header="Открыть" />
-                <MenuItem Header="Сохранить" />
-                <MenuItem Command="{Binding Exit}" Header="Выход" />
-            </MenuItem>
-            <MenuItem Header="Правка">
-                <MenuItem Header="Обновить" />
-                <MenuItem Header="Параметры" />
-            </MenuItem>
-            <MenuItem Header="Вид">
-                <MenuItem Header="Увеличить" />
-                <MenuItem Header="Уменьшить" />
-                <MenuItem Header="Выбрать масштаб" />
-            </MenuItem>
-            <MenuItem Header="Инструменты">
-                <MenuItem Header="Каталог" />
-                <MenuItem Header="Техническое задание" />
-                <MenuItem Header="Источник" />
-            </MenuItem>
-            <MenuItem Header="Справка" />
-        </Menu>
-
-
         <ToolBarTray Width="auto" DockPanel.Dock="Top">
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Открыть">
+                <Button
+                    Command="{Binding ShowNewProjectView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Открыть">
                     <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
-
-                <Button ToolBar.OverflowMode="Never" ToolTip="Сохранить">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Сохранить">
                     <materialDesign:PackIcon Kind="ContentSave" />
                 </Button>
+
                 <Separator />
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Обновить">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
                     <materialDesign:PackIcon Kind="Refresh" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Параметры">
-                    <materialDesign:PackIcon Kind="Settings" />
-                </Button>
                 <Separator />
-                <Button ToolBar.OverflowMode="Never" ToolTip="Увеличить масштаб">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Увеличить масштаб">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Уменьшить масштаб">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Уменьшить масштаб">
                     <materialDesign:PackIcon Kind="Minus" />
                 </Button>
                 <Separator />
-                <Button ToolBar.OverflowMode="Never" ToolTip="Каталог">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Каталог">
                     <materialDesign:PackIcon Kind="Palette" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Техническое задание">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Техническое задание">
                     <materialDesign:PackIcon Kind="Grid" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="Never" ToolTip="Источник">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Источник">
                     <materialDesign:PackIcon Kind="Image" />
+                </Button>
+
+                <Separator />
+
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Справка">
+                    <materialDesign:PackIcon Kind="Help" />
                 </Button>
             </ToolBar>
 
