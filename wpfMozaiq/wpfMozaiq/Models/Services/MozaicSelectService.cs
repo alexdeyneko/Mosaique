@@ -52,28 +52,6 @@ namespace wpfMozaiq.Models.Services
             return bestChoice;
         }
 
-        //временно тут
-        public void GeneratePicture()
-        {
-            int width = Panno.Grid[0, 0].Picture.Width;
-            int height = Panno.Grid[0, 0].Picture.Height;
-            Bitmap newMap = new Bitmap(Panno.Grid.GetLength(0) * width, Panno.Grid.GetLength(1) * height);
-            Graphics g = Graphics.FromImage(newMap);
-
-            for (int i = 0; i < Panno.Grid.GetLength(0); i++)
-            {
-                for (int j = 0; j < Panno.Grid.GetLength(1); j++)
-                {
-                    g.DrawImage(Panno.Grid[i, j].Picture, i * width, j * height, width, height); //просто посмотреть
-
-
-                }
-
-            }
-            g.Dispose();
-
-            newMap.Save("C:\\Users\\Алексей\\Desktop\\тестирую" + new Random().Next() + ".bmp");
-        }
 
 
 

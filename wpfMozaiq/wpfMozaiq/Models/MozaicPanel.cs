@@ -20,7 +20,7 @@ namespace wpfMozaiq.Models
 
         public MozaicPanel(OriginalImage image, Catalog catalog, double desiredWidth,
             int matrixLines, int matrixColumns, double desiredMozaicGap,
-            double computerMozaicGap, double computerMatrixGap)
+            int computerMozaicGap, int computerMatrixGap)
         {
             Image = image;
             Catalog = catalog;
@@ -29,7 +29,7 @@ namespace wpfMozaiq.Models
             MatrixLines = matrixLines;
             MatrixColumns = matrixColumns;
             DesiredMozaicGap = desiredMozaicGap;
-            ComputerMozaicGap = ComputerMozaicGap;
+            ComputerMozaicGap = computerMozaicGap;
             ComputerMatrixGap = computerMatrixGap;
 
 
@@ -51,9 +51,9 @@ namespace wpfMozaiq.Models
 
 
         //компьютерное изображение
-        public double ComputerMozaicGap { set; get; } // ширина зазора между ячейками (в пикс)
+        public int ComputerMozaicGap { set; get; } // ширина зазора между ячейками (в пикс)
         //цвет между мозаиками
-        public double ComputerMatrixGap { set; get; } // ширина зазора между матрицами (в пикс)
+        public int ComputerMatrixGap { set; get; } // ширина зазора между матрицами (в пикс)
         //цвет между матрицами
 
 

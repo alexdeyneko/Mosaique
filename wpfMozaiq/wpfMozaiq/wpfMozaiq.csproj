@@ -108,6 +108,7 @@
     <Compile Include="Models\OriginalImage.cs" />
     <Compile Include="Models\PixelsBlock.cs" />
     <Compile Include="Models\RGB.cs" />
+    <Compile Include="Models\Services\DrawService.cs" />
     <Compile Include="Models\Services\MatrixGridService.cs" />
     <Compile Include="Models\Services\MatrixSeparateService.cs" />
     <Compile Include="Models\Services\MozaicSelectService.cs" />

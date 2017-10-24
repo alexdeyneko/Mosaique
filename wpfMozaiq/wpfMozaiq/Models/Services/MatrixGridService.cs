@@ -25,10 +25,10 @@ namespace wpfMozaiq.Models.Services
         public int CalculateOptimalHeight()   //оптимальная высота изображения в блоках
         {
             int height = (int)(Panno.DesiredHeight * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));//максимум блоков
-
+            double tmp = Panno.DesiredHeight * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap);
             int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
 
-            for (; (double)Panno.Image.Picture.Height / height - pixelHeight > 0.1;) //подбираем оптимальную высоту
+            for (; (double)Panno.Image.Picture.Height / height - pixelHeight > 0.5;) //подбираем оптимальную высоту
             {
 
                 pixelHeight = Panno.Image.Picture.Height / height;
@@ -44,7 +44,7 @@ namespace wpfMozaiq.Models.Services
             int width = (int)(
             Panno.DesiredWidth * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));
             int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
-            for (; (double)Panno.Image.Picture.Width / width - pixelWidth > 0.1;)//подбираем оптимальную ширину
+            for (; (double)Panno.Image.Picture.Width / width - pixelWidth > 0.5;)//подбираем оптимальную ширину
             {
                 pixelWidth = Panno.Image.Picture.Width / width;
                 width--;
