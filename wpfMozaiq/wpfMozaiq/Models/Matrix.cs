@@ -8,6 +8,13 @@ namespace wpfMozaiq.Models
 {
     public class Matrix
     {
-        public List<Mozaic> mozaics;
+        public int[,] mozaics;
+        public Matrix(int x, int y)
+        {
+            mozaics = new int[x, y];
+        }
+
+        //public int X { get; set; }
+        //public int Y { get; set; }
     }
 }

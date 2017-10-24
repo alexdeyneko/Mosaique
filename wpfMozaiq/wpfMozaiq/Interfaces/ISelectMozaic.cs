@@ -9,7 +9,7 @@ namespace wpfMozaiq.Interfaces
 {
     interface ISelectMozaic
     {
-        Mozaic[,] GenerateForGrid(Catalog catalog, PixelsBlock[,] grid);
+        void GenerateForGrid();
         Mozaic GenerateForOne(Catalog catalog, PixelsBlock block);
     }
 }

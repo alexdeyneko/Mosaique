@@ -11,16 +11,19 @@ namespace wpfMozaiq.Models
 
         public OriginalImage Image { set; get; } // источник картинки
 
-        public Catalog Cat { set; get; } //каталог мозаик
+        public Catalog Catalog { set; get; } //каталог мозаик
 
-        public PixelsBlock[,] Grid;
+        public Mozaic[,] Grid;
+
+
+        public Matrix[,] Matrixes;
 
         public MozaicPanel(OriginalImage image, Catalog catalog, double desiredWidth,
             int matrixLines, int matrixColumns, double desiredMozaicGap,
             double computerMozaicGap, double computerMatrixGap)
         {
             Image = image;
-            Cat = catalog;
+            Catalog = catalog;
             DesiredWidth = desiredWidth;
             DesiredHeight = (int)(Image.Picture.Height * DesiredWidth / Image.Picture.Width);
             MatrixLines = matrixLines;
@@ -28,6 +31,7 @@ namespace wpfMozaiq.Models
             DesiredMozaicGap = desiredMozaicGap;
             ComputerMozaicGap = ComputerMozaicGap;
             ComputerMatrixGap = computerMatrixGap;
+
 
         }
 

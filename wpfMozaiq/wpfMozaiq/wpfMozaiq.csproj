@@ -109,7 +109,9 @@
     <Compile Include="Models\PixelsBlock.cs" />
     <Compile Include="Models\RGB.cs" />
     <Compile Include="Models\Services\MatrixGridService.cs" />
+    <Compile Include="Models\Services\MatrixSeparateService.cs" />
     <Compile Include="Models\Services\MozaicSelectService.cs" />
+    <Compile Include="Models\Services\TechDocGenerateService.cs" />
     <Compile Include="Veiw\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>

@@ -9,27 +9,33 @@ namespace wpfMozaiq.Models.Services
 {
     public class MozaicSelectService : ISelectMozaic
     {
-        public Mozaic[,] GenerateForGrid(Catalog catalog, PixelsBlock[,] grid)
-        {
-            Mozaic[,] mozaicGrid = new Mozaic[grid.GetLength(0), grid.GetLength(1)];
 
-            for (int i = 0; i < grid.GetLength(0); i++)
+        public MozaicPanel Panno { get; set; }
+        public MozaicSelectService(MozaicPanel panno)
+        {
+            Panno = panno;
+        }
+        public void GenerateForGrid()
+        {
+            Mozaic[,] mozaicGrid = new Mozaic[Panno.Grid.GetLength(0), Panno.Grid.GetLength(1)];
+
+            for (int i = 0; i < Panno.Grid.GetLength(0); i++)
             {
-                for (int j = 0; j < grid.GetLength(1); j++)
+                for (int j = 0; j < Panno.Grid.GetLength(1); j++)
                 {
 
-                    mozaicGrid[i, j] = GenerateForOne(catalog, grid[i, j]);
-
+                    mozaicGrid[i, j] = GenerateForOne(Panno.Catalog, Panno.Grid[i, j]);
+                    Panno.Catalog.Mozaics.Where(n => n == mozaicGrid[i, j]).First().CountInPanno++;
                 }
 
 
             }
-            return mozaicGrid;
+            Panno.Grid = mozaicGrid;
         }
         public Mozaic GenerateForOne(Catalog catalog, PixelsBlock block)
         {
             double maxDelta = 255;
-            Mozaic bestChoice = new Mozaic(catalog.Mozaics.First().Name, catalog.CatalogPath);//первая мозаика в каталоге по умолчанию
+            Mozaic bestChoice = new Mozaic(catalog.Mozaics.First().Name, catalog.Mozaics.First().SubCatalog, catalog.CatalogPath);//первая мозаика в каталоге по умолчанию
             foreach (var thing in catalog.Mozaics)
             {
                 double delta = Math.Sqrt(Math.Pow(block.AverageColors.Red - thing.AverageColors.Red, 2) +
@@ -47,16 +53,18 @@ namespace wpfMozaiq.Models.Services
         }
 
         //временно тут
-        public void GeneratePicture(Mozaic[,] grid)
+        public void GeneratePicture()
         {
-            Bitmap newMap = new Bitmap(grid.GetLength(0) * grid[0, 0].Picture.Width, grid.GetLength(1) * grid[0, 0].Picture.Height);
+            int width = Panno.Grid[0, 0].Picture.Width;
+            int height = Panno.Grid[0, 0].Picture.Height;
+            Bitmap newMap = new Bitmap(Panno.Grid.GetLength(0) * width, Panno.Grid.GetLength(1) * height);
             Graphics g = Graphics.FromImage(newMap);
 
-            for (int i = 0; i < grid.GetLength(0); i++)
+            for (int i = 0; i < Panno.Grid.GetLength(0); i++)
             {
-                for (int j = 0; j < grid.GetLength(1); j++)
+                for (int j = 0; j < Panno.Grid.GetLength(1); j++)
                 {
-                    g.DrawImage(grid[i, j].Picture, i * 40, j * 40, 40, 40); //просто посмотреть
+                    g.DrawImage(Panno.Grid[i, j].Picture, i * width, j * height, width, height); //просто посмотреть
 
 
                 }

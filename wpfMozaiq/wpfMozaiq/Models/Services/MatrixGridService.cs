@@ -12,21 +12,19 @@ namespace wpfMozaiq.Models.Services
     public class MatrixGridService : ICreateImageGrid
     {
 
-        public int MozaicSize;
+
         public MozaicPanel Panno;
 
-        public MatrixGridService(int size, MozaicPanel panno)
+        public MatrixGridService(MozaicPanel panno)
         {
 
-            MozaicSize = size;
             Panno = panno;
-
 
         }
 
         public int CalculateOptimalHeight()   //оптимальная высота изображения в блоках
         {
-            int height = (int)(Panno.DesiredHeight * 10 / (MozaicSize + Panno.DesiredMozaicGap));//максимум блоков
+            int height = (int)(Panno.DesiredHeight * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));//максимум блоков
 
             int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
 
@@ -37,13 +35,14 @@ namespace wpfMozaiq.Models.Services
                 height--;
 
             }
+            Panno.CountLines = height;
             return height;
         }
 
         public int CalculateOptimalWidth()    //оптимальная ширина изображения в блоках
         {
             int width = (int)(
-            Panno.DesiredWidth * 10 / (MozaicSize + Panno.DesiredMozaicGap));
+            Panno.DesiredWidth * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));
             int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
             for (; (double)Panno.Image.Picture.Width / width - pixelWidth > 0.1;)//подбираем оптимальную ширину
             {
@@ -51,6 +50,8 @@ namespace wpfMozaiq.Models.Services
                 width--;
 
             }
+            Panno.CountColumns = width;
+
             return width;
         }
 
@@ -62,7 +63,7 @@ namespace wpfMozaiq.Models.Services
             int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
 
 
-            Panno.Grid = new PixelsBlock[width, height];
+            Panno.Grid = new Mozaic[width, height];
             SetRealHight(height);
             SetRealWidth(width);
 
@@ -70,7 +71,7 @@ namespace wpfMozaiq.Models.Services
             {
                 for (int j = 0; j < height; j++)
                 {
-                    PixelsBlock block = new PixelsBlock();
+                    Mozaic block = new Mozaic();
                     Rectangle section = new Rectangle(i *
                         pixelWidth, j * pixelHeight,
                           pixelWidth,
@@ -83,6 +84,7 @@ namespace wpfMozaiq.Models.Services
                     {
                         g.DrawImage(Panno.Image.Picture, 0, 0, section, GraphicsUnit.Pixel);
                     }
+
 
                     block.Picture = bmp;
 
@@ -101,11 +103,11 @@ namespace wpfMozaiq.Models.Services
 
         public void SetRealWidth(int width)
         {
-            Panno.RealWidth = width * (Panno.DesiredMozaicGap + MozaicSize) / 10;
+            Panno.RealWidth = width * (Panno.DesiredMozaicGap + Panno.Catalog.MozaicRealSize) / 10;
         }
         public void SetRealHight(int height)
         {
-            Panno.RealHeight = height * (Panno.DesiredMozaicGap + MozaicSize) / 10;
+            Panno.RealHeight = height * (Panno.DesiredMozaicGap + Panno.Catalog.MozaicRealSize) / 10;
         }
     }
 }

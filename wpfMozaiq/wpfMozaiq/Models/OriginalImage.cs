@@ -14,9 +14,15 @@ namespace wpfMozaiq.Models
         {
             if (System.IO.File.Exists(fullPath) && (Path.GetExtension(fullPath) == ".bmp"))
 
+            {
                 Picture = new Bitmap(fullPath);
+                SourcePath = fullPath;
+            }
+
         }
         public Bitmap Picture { get; set; }
+        public string SourcePath { get; set; }
+
 
     }
 }

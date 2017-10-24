@@ -10,16 +10,21 @@ namespace wpfMozaiq.Models
     public class Mozaic : PixelsBlock
     {
 
-        public Mozaic(string name, string path)
+        public Mozaic(string name, string subCatalog, string pathToSubCatalog)
         {
-            Picture = new Bitmap(path + "\\" + name);
+            Picture = new Bitmap(pathToSubCatalog + "\\" + subCatalog + "\\" + name);
             Name = name;
+            SubCatalog = subCatalog;
+            CountInPanno = 0;
 
         }
 
-
+        public Mozaic()
+        {
+        }
         public string Name { set; get; }
-
-
+        public string SubCatalog { set; get; }
+        public int RatingId { set; get; }
+        public int CountInPanno { set; get; }
     }
 }

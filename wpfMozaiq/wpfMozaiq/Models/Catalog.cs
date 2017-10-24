@@ -11,30 +11,29 @@ namespace wpfMozaiq.Models
     {
         public IList<Mozaic> Mozaics;
         public int MozaicRealSize;
-        public string ParentName;
         public string Name;
         public string CatalogPath;
 
 
-        public Catalog(string parentName, int size, string name)
+        public Catalog(string name, int size)
         {
-            ParentName = parentName;
+
             Name = name;
             MozaicRealSize = size;
             CatalogPath =
 
                Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
             +
-                "\\Catalog\\" + ParentName + "_" + MozaicRealSize + "\\" + Name;
+                "\\Catalog\\" + Name + "_" + MozaicRealSize;
             MozaicRealSize = size;
             Mozaics = new List<Mozaic>();
             this.ImportCatalog();
         }
-        public void EnableMozaic(string name)
+        public void EnableMozaic(string name, string subCatalog)
         {
             try
             {
-                Mozaic temp = new Mozaic(name, CatalogPath);
+                Mozaic temp = new Mozaic(name, subCatalog, CatalogPath);
                 temp.CalculateAvrColors();
                 Mozaics.Add(temp);
             }
@@ -45,20 +44,25 @@ namespace wpfMozaiq.Models
 
             try
             {
-                foreach (var item in Directory.GetFiles(CatalogPath, "*.bmp"))
+                foreach (var directory in Directory.GetDirectories(CatalogPath))
                 {
-                    this.EnableMozaic(Path.GetFileName(item));
+                    foreach (var file in Directory.GetFiles(directory))
+                    {
+
+                        this.EnableMozaic(Path.GetFileName(file), Path.GetFileName(directory));
+                    }
+
 
                 }
             }
             catch { }
         }
-        public void DisableMozaic(string name)
+        public void DisableMozaic(string name, string subCatalog)
         {
             try
             {
                 Mozaics.Remove(Mozaics
-                    .Where(n => n.Name == name)
+                    .Where(n => n.Name == name).Where(n => n.SubCatalog == subCatalog)
                     .First());
             }
             catch { }
