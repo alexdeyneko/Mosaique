@@ -11,14 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace wpfMozaiq.Veiw
 {
     /// <summary>
     /// Логика взаимодействия для UserGuideView.xaml
     /// </summary>
-    public partial class UserGuideView : Window
-    {
+    public partial class UserGuideView : MetroWindow
+	{
         public UserGuideView()
         {
             InitializeComponent();

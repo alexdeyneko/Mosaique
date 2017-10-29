@@ -32,6 +32,46 @@ namespace wpfMozaiq.ViewModel
                 newProjectView.Show();
             }));
         }
-        
-    }
+
+	    private ICommand _showCatalogView;
+	    public ICommand ShowCatalogView
+		{
+		    get => _showCatalogView ?? (_showCatalogView = new RelayCommand(() =>
+		    {
+				CatalogView catalogView = new CatalogView();
+				catalogView.Show();
+		    }));
+	    }
+
+	    private ICommand _showSourceImageView;
+	    public ICommand ShowSourceImageView
+		{
+		    get => _showSourceImageView ?? (_showSourceImageView = new RelayCommand(() =>
+		    {
+				SourceImageView sourceImageView= new SourceImageView();
+				sourceImageView.Show();
+		    }));
+	    }
+
+	    private ICommand _showTechDocView;
+	    public ICommand ShowTechDocView
+		{
+		    get => _showTechDocView ?? (_showTechDocView = new RelayCommand(() =>
+		    {
+				TechDocView techDocView = new TechDocView();
+				techDocView.Show();
+		    }));
+	    }
+
+	    private ICommand _showUserGuideView;
+	    public ICommand ShowUserGuideView
+		{
+		    get => _showUserGuideView ?? (_showUserGuideView = new RelayCommand(() =>
+		    {
+				UserGuideView userGuideView = new UserGuideView();
+				userGuideView.Show();
+		    }));
+	    }
+
+	}
 }

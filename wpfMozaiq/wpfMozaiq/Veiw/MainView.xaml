@@ -25,7 +25,10 @@
                 <Button
                     Command="{Binding ShowNewProjectView}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Открыть">
+                    ToolTip="Новый">
+                    <materialDesign:PackIcon Kind="ContentPaste" />
+                </Button>
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Открыть">
                     <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
                 <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Сохранить">
@@ -47,21 +50,33 @@
                     <materialDesign:PackIcon Kind="Minus" />
                 </Button>
                 <Separator />
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Каталог">
+                <Button
+                    Command="{Binding ShowCatalogView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Каталог">
                     <materialDesign:PackIcon Kind="Palette" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Техническое задание">
+                <Button
+                    Command="{Binding ShowTechDocView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Техническое задание">
                     <materialDesign:PackIcon Kind="Grid" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Источник">
+                <Button
+                    Command="{Binding ShowSourceImageView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Источник">
                     <materialDesign:PackIcon Kind="Image" />
                 </Button>
 
                 <Separator />
 
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Справка">
+                <Button
+                    Command="{Binding ShowUserGuideView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Справка">
                     <materialDesign:PackIcon Kind="Help" />
                 </Button>
             </ToolBar>

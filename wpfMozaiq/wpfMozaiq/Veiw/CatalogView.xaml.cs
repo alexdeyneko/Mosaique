@@ -11,14 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace wpfMozaiq.Veiw
 {
     /// <summary>
     /// Логика взаимодействия для CatalogView.xaml
     /// </summary>
-    public partial class CatalogView : Window
-    {
+    public partial class CatalogView : MetroWindow
+	{
         public CatalogView()
         {
             InitializeComponent();

@@ -11,14 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 
 namespace wpfMozaiq.Veiw
 {
     /// <summary>
     /// Логика взаимодействия для TechDocView.xaml
     /// </summary>
-    public partial class TechDocView : Window
-    {
+    public partial class TechDocView : MetroWindow
+	{
         public TechDocView()
         {
             InitializeComponent();
