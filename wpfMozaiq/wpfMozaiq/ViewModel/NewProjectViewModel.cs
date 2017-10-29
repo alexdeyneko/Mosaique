@@ -8,13 +8,17 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Forms;
+using wpfMozaiq.Models;
 
 namespace wpfMozaiq.ViewModel
 {
     class NewProjectViewModel : ViewModelBase
     {
-        
-        private string _filenameMosaicPack;
+	    private Catalog catalog;
+		private OriginalImage originalImage;
+
+
+		private string _filenameMosaicPack;
         public string FilenameMosaicPack
         {
             set
@@ -43,22 +47,19 @@ namespace wpfMozaiq.ViewModel
         {
             get => _choiseFileMosaicPack ?? (_choiseFileMosaicPack = new RelayCommand(() =>
             {
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-                dlg.FileName = "Document"; // Default file name
-                dlg.DefaultExt = ".lst"; // Default file extension
-                dlg.Filter = "(.lst)|*.lst"; // Filter files by extension
+	            FolderBrowserDialog FBD = new FolderBrowserDialog();
+	            FBD.ShowNewFolderButton = false;
+	            if (FBD.ShowDialog() == DialogResult.OK)
+	            {
+		            FilenameMosaicPack = FBD.SelectedPath;
+		            string[] split = FilenameMosaicPack.Split(new Char[] { '\\', '_'});
+					catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1]));
+					
 
-                // Show open file dialog box
-                Nullable<bool> result = dlg.ShowDialog();
-
-                // Process open file dialog box results
-                if (result == true)
-                {
-                    // Open document
-                    FilenameMosaicPack = dlg.FileName;
-                }
-            }));
+	            }
+			}));
         }
+
 
         private ICommand _choiseFileImage;
         public ICommand ChoiseFileImage
@@ -78,6 +79,7 @@ namespace wpfMozaiq.ViewModel
                 {
                     // Open document
                     FilenameImage = dlg.FileName;
+					originalImage = new OriginalImage(FilenameImage);
                 }
             }));
         }

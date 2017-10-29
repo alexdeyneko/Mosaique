@@ -144,6 +144,20 @@
             IsReadOnly="True"
             Text="{Binding FilenameImage}"
             TextWrapping="NoWrap" />
+        <ListBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="110"
+            Height="35"
+            Margin="0,130,25,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1">
+            <ListBoxItem Content="1" />
+            <ListBoxItem Content="2" />
+            <ListBoxItem Content="3" />
+        </ListBox>
 
 
 

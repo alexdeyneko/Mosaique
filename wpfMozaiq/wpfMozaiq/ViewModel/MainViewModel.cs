@@ -7,22 +7,17 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
+using wpfMozaiq.Models;
 using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
     class MainViewModel : ViewModelBase
     {
-        
-        private ICommand _exit;
-        public ICommand Exit
-        {
-            get => _exit ?? (_exit = new RelayCommand(() =>
-            {
-                Environment.Exit(0);
-            }));
-        }
-
+		public Catalog catalog;
+	    public OriginalImage originalImage;
+		
         private ICommand _showNewProjectView;
         public ICommand ShowNewProjectView
         {
