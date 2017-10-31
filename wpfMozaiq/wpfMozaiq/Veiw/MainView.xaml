@@ -94,21 +94,12 @@
             DockPanel.Dock="Right">
 
             <materialDesign:DrawerHost.RightDrawerContent>
+
                 <StackPanel
                     Width="250"
                     Height="500"
                     Margin="5">
                     <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
-                    <ListView Name="lstw" Margin="5">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Название" />
-                                    <GridViewColumn Header="Изображение" />
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
                     <Button
                         Margin="4"
                         HorizontalAlignment="Center"
@@ -117,6 +108,32 @@
                         Style="{DynamicResource MaterialDesignFlatButton}">
                         Закрыть
                     </Button>
+
+                    <ListView
+                        Name="lstw"
+                        Margin="5"
+                        ItemsSource="{Binding MozaicsList}">
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding SubCatalog}" Header="Подкаталог" />
+                                    <!--                                   <GridViewColumn
+                                        DisplayMemberBinding="{Binding Picture}"
+                                        Header="Изображение" />-->
+                                    <!--                                    <GridViewColumn Header="Изображение">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                ~1~  здесь можно ставить все что угодно  @1@
+                                                <Image Source="{Binding FilenameImage}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>-->
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </StackPanel>
             </materialDesign:DrawerHost.RightDrawerContent>
 
@@ -125,7 +142,6 @@
             </Button>
 
         </materialDesign:DrawerHost>
-
 
 
 

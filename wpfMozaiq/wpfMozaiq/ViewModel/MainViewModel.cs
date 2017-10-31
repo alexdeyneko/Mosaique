@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,60 @@ using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
-    class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
 		public Catalog catalog;
 	    public OriginalImage originalImage;
-		
+
+
+	    public string namefilesource = "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1";
+
+		private string _filenameImage;
+	    public string FilenameImage
+	    {
+		    set
+		    {
+			    _filenameImage = "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1";
+			    RaisePropertyChanged(() => FilenameImage);
+
+		    }
+		    get { return "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1"; }
+	    }
+
+		public ObservableCollection<Mozaic> MozaicsList { get; set; } 
+
+
+		public MainViewModel()
+		{
+			MozaicsList = new ObservableCollection<Mozaic>();
+
+
+			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
+		    {
+			    catalog = newCatalog;
+			    ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
+
+			    foreach (var VARIABLE in temp)
+			    {
+					MozaicsList.Add(VARIABLE);
+				}
+
+			    ;
+				int i = 0;
+		    });
+
+		    Messenger.Default.Register<OriginalImage>(this, (newOriginalImage) =>
+		    {
+			    originalImage = newOriginalImage;
+			});
+
+		    Messenger.Default.Register<NotificationMessage>(this, (message) =>
+		    {
+
+			});
+		}
+
+
         private ICommand _showNewProjectView;
         public ICommand ShowNewProjectView
         {
@@ -68,5 +118,9 @@ namespace wpfMozaiq.ViewModel
 		    }));
 	    }
 
+	    private void GenerateteListViewMosaic()
+	    {
+		    
+	    }
 	}
 }

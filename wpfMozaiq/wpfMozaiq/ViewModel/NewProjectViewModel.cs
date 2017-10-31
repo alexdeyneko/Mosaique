@@ -8,6 +8,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows.Forms;
+using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 
 namespace wpfMozaiq.ViewModel
@@ -52,11 +53,10 @@ namespace wpfMozaiq.ViewModel
 	            if (FBD.ShowDialog() == DialogResult.OK)
 	            {
 		            FilenameMosaicPack = FBD.SelectedPath;
-		            string[] split = FilenameMosaicPack.Split(new Char[] { '\\', '_'});
-					catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1]));
-					
-
-	            }
+		            string[] split = FilenameMosaicPack.Split(new Char[] { '\\', '_' });
+		            catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1]));
+		            Messenger.Default.Send(catalog);
+				}
 			}));
         }
 
@@ -79,10 +79,28 @@ namespace wpfMozaiq.ViewModel
                 {
                     // Open document
                     FilenameImage = dlg.FileName;
-					originalImage = new OriginalImage(FilenameImage);
-                }
+	                originalImage = new OriginalImage(FilenameImage);
+	                Messenger.Default.Send(originalImage);
+				}
             }));
         }
-        
-    }
+
+
+		private ICommand _okCommand;
+	    public ICommand OkCommand
+	    {
+		    get => _okCommand ?? (_okCommand = new RelayCommand(() =>
+		    {
+				//Messenger.Default.Send(new NotificationMessage("gotovo"));
+			}));
+		}
+
+	    private ICommand _cancelCommand;
+	    public ICommand CancelCommand
+	    {
+			get => _choiseFileImage ?? (_choiseFileImage = new RelayCommand(() =>
+			{
+			}));
+		}
+	}
 }
