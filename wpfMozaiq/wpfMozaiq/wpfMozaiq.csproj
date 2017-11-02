@@ -101,6 +101,7 @@
     <Compile Include="Interfaces\ICalculateAvrRGB.cs" />
     <Compile Include="Interfaces\ICreateImageGrid.cs" />
     <Compile Include="Interfaces\ISelectMozaic.cs" />
+    <Compile Include="Interfaces\ITechDocWriter.cs" />
     <Compile Include="Models\Catalog.cs" />
     <Compile Include="Models\Matrix.cs" />
     <Compile Include="Models\Mozaic.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Models\Services\MatrixSeparateService.cs" />
     <Compile Include="Models\Services\MozaicSelectService.cs" />
     <Compile Include="Models\Services\TechDocGenerateService.cs" />
+    <Compile Include="Models\Services\TxtTechDocWriter.cs" />
     <Compile Include="Veiw\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>
