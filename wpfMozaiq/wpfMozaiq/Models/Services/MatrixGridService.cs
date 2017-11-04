@@ -24,15 +24,23 @@ namespace wpfMozaiq.Models.Services
 
         public int CalculateOptimalHeight()   //оптимальная высота изображения в блоках
         {
-            int height = (int)(Panno.DesiredHeight * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));//максимум блоков
-            double tmp = Panno.DesiredHeight * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap);
+            int height = (int)((Panno.DesiredHeight * 10)
+                / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));//максимум блоков
+
             int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
 
-            for (; (double)Panno.Image.Picture.Height / height - pixelHeight > 0.5;) //подбираем оптимальную высоту
-            {
+            double minValue = double.MaxValue;
+            int tempHeight = height;
 
-                pixelHeight = Panno.Image.Picture.Height / height;
-                height--;
+            for (; tempHeight > 0;) //подбираем оптимальную высоту
+            {
+                if ((double)Panno.Image.Picture.Height / tempHeight < minValue)
+                {
+                    height = tempHeight;
+                    minValue = Panno.Image.Picture.Height / tempHeight;
+                }
+
+                tempHeight--;
 
             }
             Panno.CountLines = height;
@@ -42,12 +50,22 @@ namespace wpfMozaiq.Models.Services
         public int CalculateOptimalWidth()    //оптимальная ширина изображения в блоках
         {
             int width = (int)(
-            Panno.DesiredWidth * 10 / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));
+            (Panno.DesiredWidth * 10)
+            / (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap));
             int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
-            for (; (double)Panno.Image.Picture.Width / width - pixelWidth > 0.5;)//подбираем оптимальную ширину
+            double minValue = double.MaxValue;
+            int tempWidth = width;
+
+            for (; tempWidth > 0;)//подбираем оптимальную ширину
             {
-                pixelWidth = Panno.Image.Picture.Width / width;
-                width--;
+                if ((double)Panno.Image.Picture.Width / tempWidth < minValue)
+                {
+                    width = tempWidth;
+                    minValue = Panno.Image.Picture.Width / tempWidth;
+                }
+
+
+                tempWidth--;
 
             }
             Panno.CountColumns = width;
@@ -103,11 +121,20 @@ namespace wpfMozaiq.Models.Services
 
         public void SetRealWidth(int width)
         {
-            Panno.RealWidth = width * (Panno.DesiredMozaicGap + Panno.Catalog.MozaicRealSize) / 10;
+            Panno.RealWidth =
+               (width * (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap)
+                - (width / Panno.MatrixColumns + 1) * Panno.DesiredMozaicGap) / 10;
+
+
         }
         public void SetRealHight(int height)
         {
-            Panno.RealHeight = height * (Panno.DesiredMozaicGap + Panno.Catalog.MozaicRealSize) / 10;
+            Panno.RealHeight =
+                 (height * (Panno.Catalog.MozaicRealSize + Panno.DesiredMozaicGap)
+                - (height / Panno.MatrixLines + 1) * Panno.DesiredMozaicGap) / 10;
         }
     }
+
+
+
 }

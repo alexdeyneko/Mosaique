@@ -19,9 +19,9 @@ namespace wpfMozaiq.Models
             double green = 0;
             double blue = 0;
 
-            for (int i = 0; i < Picture.Height; i++)
+            for (int i = 0; i < Picture.Width; i++)
             {
-                for (int j = 0; j < Picture.Width; j++)
+                for (int j = 0; j < Picture.Height; j++)
                 {
                     red += Picture.GetPixel(i, j).R;
                     green += Picture.GetPixel(i, j).G;
