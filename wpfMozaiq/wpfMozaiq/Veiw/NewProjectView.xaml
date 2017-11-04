@@ -9,10 +9,8 @@
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Параметры мозайки"
     Width="510"
-    Background="{StaticResource MaterialDesignPaper}"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
-    FontFamily="{StaticResource MaterialDesignFont}"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
     mc:Ignorable="d">

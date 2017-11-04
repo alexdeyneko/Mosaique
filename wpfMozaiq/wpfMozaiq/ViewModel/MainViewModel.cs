@@ -18,43 +18,22 @@ namespace wpfMozaiq.ViewModel
     {
 		public Catalog catalog;
 	    public OriginalImage originalImage;
+	    public ObservableCollection<Mozaic> MozaicsList { get; set; }
 
-
-	    public string namefilesource = "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1";
-
-		private string _filenameImage;
-	    public string FilenameImage
+	    public MainViewModel()
 	    {
-		    set
+
+		    Messenger.Default.Register<Catalog>(this, (newCatalog) =>
 		    {
-			    _filenameImage = "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1";
-			    RaisePropertyChanged(() => FilenameImage);
-
-		    }
-		    get { return "D:/Github/Mosaique/wpfMozaiq/wpfMozaiq/Catalog/Bisazza_10/LeGemme/10.02(4)-1"; }
-	    }
-
-		public ObservableCollection<Mozaic> MozaicsList { get; set; } 
-
-
-		public MainViewModel()
-		{
-			MozaicsList = new ObservableCollection<Mozaic>();
-
-
-			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
-		    {
+			    MozaicsList = new ObservableCollection<Mozaic>();
 			    catalog = newCatalog;
 			    ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
 
 			    foreach (var VARIABLE in temp)
 			    {
-					MozaicsList.Add(VARIABLE);
-				}
-
-			    ;
-				int i = 0;
-		    });
+				    MozaicsList.Add(VARIABLE);
+			    }
+			});
 
 		    Messenger.Default.Register<OriginalImage>(this, (newOriginalImage) =>
 		    {
@@ -63,11 +42,22 @@ namespace wpfMozaiq.ViewModel
 
 		    Messenger.Default.Register<NotificationMessage>(this, (message) =>
 		    {
+			    string msg = message.Notification;
+			    int i = 0;
+		    });
+	    }
 
-			});
-		}
-
-
+		private string _filenameImage;
+	    public string FilenameImage
+	    {
+		    set
+		    {
+			    _filenameImage = value;
+			    RaisePropertyChanged(() => FilenameImage);
+		    }
+		    get { return _filenameImage; }
+	    }
+		
         private ICommand _showNewProjectView;
         public ICommand ShowNewProjectView
         {
@@ -117,10 +107,8 @@ namespace wpfMozaiq.ViewModel
 				userGuideView.Show();
 		    }));
 	    }
-
-	    private void GenerateteListViewMosaic()
-	    {
-		    
-	    }
+		
 	}
+
+	
 }
