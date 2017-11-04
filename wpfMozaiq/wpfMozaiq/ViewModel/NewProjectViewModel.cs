@@ -20,12 +20,77 @@ namespace wpfMozaiq.ViewModel
 		private OriginalImage originalImage;
 		private MozaicPanel panno;
 
-		private double desiredWidth;
-		private int matrixLines;
-		private int matrixColumns;
-		private double desiredMozaicGap;
-		private int computerMozaicGap;
-		private int computerMatrixGap;
+		private double _desiredWidth;
+		public double DesiredWidth
+		{
+			set
+			{
+				_desiredWidth = value;
+				RaisePropertyChanged(() => DesiredWidth);
+
+			}
+			get { return _desiredWidth; }
+		}
+
+		private int _matrixLines;
+		public int MatrixLines
+		{
+			set
+			{
+				_matrixLines = value;
+				RaisePropertyChanged(() => MatrixLines);
+
+			}
+			get { return _matrixLines; }
+		}
+
+		private int _matrixColumns;
+		public int MatrixColumns
+		{
+			set
+			{
+				_matrixColumns = value;
+				RaisePropertyChanged(() => MatrixColumns);
+
+			}
+			get { return _matrixColumns; }
+		}
+
+		private double _desiredMozaicGap;
+		public double DesiredMozaicGap
+		{
+			set
+			{
+				_desiredMozaicGap = value;
+				RaisePropertyChanged(() => DesiredMozaicGap);
+
+			}
+			get { return _desiredMozaicGap; }
+		}
+
+		private int _computerMozaicGap;
+		public int ComputerMozaicGap
+		{
+			set
+			{
+				_computerMozaicGap = value;
+				RaisePropertyChanged(() => ComputerMozaicGap);
+
+			}
+			get { return _computerMozaicGap; }
+		}
+
+		private int _computerMatrixGap;
+		public int ComputerMatrixGap
+		{
+			set
+			{
+				_computerMatrixGap = value;
+				RaisePropertyChanged(() => ComputerMatrixGap);
+
+			}
+			get { return _computerMatrixGap; }
+		}
 
 		private string _filenameMosaicPack;
 		public string FilenameMosaicPack
@@ -51,6 +116,7 @@ namespace wpfMozaiq.ViewModel
 			get { return _filenameImage; }
 		}
 
+		
 		private ICommand _choiseFileMosaicPack;
 		public ICommand ChoiseFileMosaicPack
 		{
