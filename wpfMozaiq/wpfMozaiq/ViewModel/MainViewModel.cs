@@ -20,7 +20,7 @@ namespace wpfMozaiq.ViewModel
 	    public OriginalImage originalImage;
 	    public MozaicPanel panno;
 	    public ObservableCollection<Mozaic> MozaicsList { get; set; }
-
+	    private NewProjectView newProjectView;
 
 
 
@@ -29,18 +29,29 @@ namespace wpfMozaiq.ViewModel
 
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
+			    panno = newPanno;
+
 			    MozaicsList = new ObservableCollection<Mozaic>();
-			    catalog = newPanno.Catalog;
+			    catalog = panno.Catalog;
 			    ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
 
 			    foreach (var VARIABLE in temp)
 			    {
 				    MozaicsList.Add(VARIABLE);
 			    }
-			    int i = 0;
+			    
 		    });
 
-	    }
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    if (newProjectView != null && newMessage == "CloseWindowNewProjectViewModel")
+			    {
+				    newProjectView.Close();
+			    }
+
+			});
+
+		}
 
 		private string _filenameImage;
 	    public string FilenameImage
@@ -58,7 +69,7 @@ namespace wpfMozaiq.ViewModel
         {
             get => _showNewProjectView ?? (_showNewProjectView = new RelayCommand(() =>
             {
-                NewProjectView newProjectView= new NewProjectView();
+                newProjectView= new NewProjectView();
                 newProjectView.Show();
             }));
         }

@@ -11,6 +11,7 @@
     Height="300"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid />
 </controls:MetroWindow>

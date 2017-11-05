@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using GalaSoft.MvvmLight.Messaging;
 using MahApps.Metro.Controls;
 using wpfMozaiq.Models;
+using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
@@ -20,6 +21,7 @@ namespace wpfMozaiq.ViewModel
 		private Catalog catalog;
 		private OriginalImage originalImage;
 		private MozaicPanel panno;
+		private ChoiseCatalogDialogView catalogDialogView;
 
 		private ObservableCollection<int> _sizeArrInt100;
 		public ObservableCollection<int> SizeArrInt100
@@ -188,6 +190,21 @@ namespace wpfMozaiq.ViewModel
 
 		public NewProjectViewModel()
 		{
+			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
+			{
+				
+				this.catalog = newCatalog;
+				FilenameMosaicPack = this.catalog.Name + "_" + this.catalog.MozaicRealSize;
+			});
+
+			Messenger.Default.Register<string>(this, (newMessage) =>
+			{
+				if (catalogDialogView != null && newMessage == "CloseWindowChoiseCatalogDialogViewModel")
+				{
+					catalogDialogView.Close();
+				}
+			});
+
 			_sizeArrInt100 = new ObservableCollection<int>();
 			_sizeArrInt10= new ObservableCollection<int>();
 			_sizeArrInt1000 = new ObservableCollection<int>();
@@ -223,14 +240,18 @@ namespace wpfMozaiq.ViewModel
 		{
 			get => _choiseFileMosaicPack ?? (_choiseFileMosaicPack = new RelayCommand(() =>
 			{
-				FolderBrowserDialog FBD = new FolderBrowserDialog();
+				/* FolderBrowserDialog FBD = new FolderBrowserDialog();
 				FBD.ShowNewFolderButton = false;
 				if (FBD.ShowDialog() == DialogResult.OK)
 				{
 					FilenameMosaicPack = FBD.SelectedPath;
 					string[] split = FilenameMosaicPack.Split(new Char[] {'\\', '_'});
-					catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1]));
-				}
+					catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1])); 
+				}*/
+
+				catalogDialogView = new ChoiseCatalogDialogView();
+				catalogDialogView.Show();
+
 			}));
 		}
 
@@ -264,15 +285,16 @@ namespace wpfMozaiq.ViewModel
 			{
 				panno= new MozaicPanel(originalImage, catalog, SelectedWidth, MatrixLines, MatrixColumns, DesiredMozaicGap, ComputerMozaicGap, ComputerMatrixGap);
 				Messenger.Default.Send(panno);
-				Messenger.Default.Send(new NotificationMessage("gotovo"));
+				Messenger.Default.Send("CloseWindowNewProjectViewModel");
 			}));
 		}
 
 		private ICommand _cancelCommand;
 		public ICommand CancelCommand
 		{
-			get => _choiseFileImage ?? (_choiseFileImage = new RelayCommand(() =>
+			get => _cancelCommand ?? (_cancelCommand = new RelayCommand(() =>
 			{
+				Messenger.Default.Send("CloseWindowNewProjectViewModel");
 			}));
 		}
 

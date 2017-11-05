@@ -1,0 +1,60 @@
+﻿<controls:MetroWindow
+    x:Class="wpfMozaiq.Veiw.ChoiseCatalogDialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:wpfMozaiq.Veiw"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
+    Title="Выбор каталога"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModel:ChoiseCatalogDialogViewModel />
+    </Window.DataContext>
+    <DockPanel>
+
+        <StackPanel DockPanel.Dock="Top">
+
+            <ListBox
+                Width="300"
+                Height="auto"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                BorderBrush="{DynamicResource AccentColorBrush}"
+                BorderThickness="1"
+                ItemsSource="{Binding ArrCatalogs}"
+                SelectedItem="{Binding SelectedCatalog}" />
+
+
+        </StackPanel>
+
+
+        <StackPanel
+            HorizontalAlignment="Right"
+            DockPanel.Dock="Bottom"
+            Orientation="Horizontal">
+            <Button
+                Margin="5,15,5,5"
+                Padding="5"
+                Command="{Binding OkCommand}"
+                IsDefault="True">
+                OK
+            </Button>
+            <Button
+                Margin="5,15,5,5"
+                Padding="5"
+                Command="{Binding CancelCommand}"
+                IsCancel="True">
+                Cancel
+            </Button>
+        </StackPanel>
+
+    </DockPanel>
+
+</controls:MetroWindow>
+
+
+

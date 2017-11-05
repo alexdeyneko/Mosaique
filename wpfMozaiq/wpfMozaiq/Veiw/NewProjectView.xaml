@@ -5,6 +5,7 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Параметры мозайки"
@@ -13,6 +14,7 @@
     BorderThickness="1"
     ResizeMode="NoResize"
     SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <controls:MetroWindow.Resources>
@@ -205,6 +207,20 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Цвет" />
+
+        <ComboBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="110"
+            Height="35"
+            Margin="0,130,25,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Red"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1"
+            ItemsSource="{Binding ArrColors}" />
+        <!--
         <ListBox
             Grid.Row="0"
             Grid.Column="1"
@@ -215,7 +231,7 @@
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
-            ItemsSource="{Binding ArrColors}" />
+            ItemsSource="{Binding ArrColors}" />-->
 
 
         <!--  1-0  -->
@@ -341,7 +357,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Цвет" />
-        <ListBox
+        <ComboBox
             Grid.Row="1"
             Grid.Column="1"
             Width="102"
@@ -349,9 +365,11 @@
             Margin="0,40,25,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
+            materialDesign:HintAssist.Hint="Red"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding ArrColors}" />
+
 
         <!--  1-1 ЖЕЛАЕМЫЕ РАЗМЕРЫ  -->
         <Border
@@ -377,10 +395,11 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Ширина, см" />
+
         <ListBox
             Grid.Row="1"
             Grid.Column="1"
-            Width="58"
+            Width="60"
             Height="35"
             Margin="0,160,80,0"
             HorizontalAlignment="Center"
@@ -402,12 +421,13 @@
             Grid.Row="1"
             Grid.Column="1"
             Width="58"
-            Height="35"
-            Margin="80,160,0,0"
+            Height="25"
+            Margin="80,165,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsReadOnly="True"
             Text="{Binding SelectedHeight}"
             TextAlignment="Center" />
 
@@ -538,25 +558,18 @@
             <Button
                 Margin="5,15,5,5"
                 Padding="5"
-                Command="{Binding OkCommand}">
+                Command="{Binding OkCommand}"
+                IsDefault="True">
                 OK
             </Button>
-            <Button Margin="5,15,5,5" Padding="5">Cancel</Button>
+            <Button
+                Margin="5,15,5,5"
+                Padding="5"
+                Command="{Binding CancelCommand}"
+                IsCancel="True">
+                Cancel
+            </Button>
         </StackPanel>
-        <ListView
-            Grid.Row="3"
-            Grid.Column="1"
-            Width="100"
-            Height="100"
-            Margin="40,25,0,-73"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn />
-                </GridView>
-            </ListView.View>
-        </ListView>
 
 
     </Grid>
