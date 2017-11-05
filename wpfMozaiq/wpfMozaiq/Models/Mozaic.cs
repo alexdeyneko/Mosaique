@@ -12,7 +12,11 @@ namespace wpfMozaiq.Models
 
         public Mozaic(string name, string subCatalog, string pathToSubCatalog)
         {
-            Picture = new Bitmap(pathToSubCatalog + "\\" + subCatalog + "\\" + name);
+            if (subCatalog == "")
+            {
+                Picture = new Bitmap(pathToSubCatalog + "\\" + name);
+            }
+            else Picture = new Bitmap(pathToSubCatalog + "\\" + subCatalog + "\\" + name);
             Name = name;
             SubCatalog = subCatalog;
             CountInPanno = 0;
