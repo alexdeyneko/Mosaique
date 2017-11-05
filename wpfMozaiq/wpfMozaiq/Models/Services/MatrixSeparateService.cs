@@ -15,14 +15,23 @@ namespace wpfMozaiq.Models.Services
         }
         public void GenerateMatrixArray()
         {
+            int height = Panno.Grid.GetLength(1) / Panno.MatrixLines;
+            int width = Panno.Grid.GetLength(0) / Panno.MatrixColumns;
 
-            Panno.Matrixes = new Matrix[Panno.Grid.GetLength(0) / Panno.MatrixColumns + 1,
-
-                Panno.Grid.GetLength(1) / Panno.MatrixLines + 1];
-
-            for (int i = 0; i < Panno.Matrixes.GetLength(0); i++)
+            if (Panno.Grid.GetLength(1) % Panno.MatrixLines != 0)
             {
-                for (int j = 0; j < Panno.Matrixes.GetLength(1); j++)
+                height++;
+            }
+            if (Panno.Grid.GetLength(0) % Panno.MatrixColumns != 0)
+            {
+                width++;
+            }
+
+            Panno.Matrixes = new Matrix[width, height];
+
+            for (int i = 0; i < width; i++)
+            {
+                for (int j = 0; j < height; j++)
                 {
                     Panno.Matrixes[i, j] = new Matrix(Panno.MatrixColumns, Panno.MatrixLines);
                 }
@@ -47,6 +56,9 @@ namespace wpfMozaiq.Models.Services
 
 
             }
+
         }
+
+
     }
 }
