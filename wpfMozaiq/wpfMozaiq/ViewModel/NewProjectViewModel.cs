@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,16 +21,84 @@ namespace wpfMozaiq.ViewModel
 		private OriginalImage originalImage;
 		private MozaicPanel panno;
 
-		private double _desiredWidth;
-		public double DesiredWidth
+		private ObservableCollection<int> _sizeArrInt100;
+		public ObservableCollection<int> SizeArrInt100
 		{
 			set
 			{
-				_desiredWidth = value;
-				RaisePropertyChanged(() => DesiredWidth);
+				_sizeArrInt100 = value;
+			}
+			get { return _sizeArrInt100; }
+		}
+
+		private ObservableCollection<int> _sizeArrInt1000;
+		public ObservableCollection<int> SizeArrInt1000
+		{
+			set
+			{
+				_sizeArrInt1000 = value;
+			}
+			get { return _sizeArrInt1000; }
+		}
+
+		private ObservableCollection<int> _sizeArrInt10;
+		public ObservableCollection<int> SizeArrInt10
+		{
+			set
+			{
+				_sizeArrInt10 = value;
+			}
+			get { return _sizeArrInt10; }
+		}
+
+		private ObservableCollection<double> _sizeArrDouble10;
+		public ObservableCollection<double> SizeArrDouble10
+		{
+			set
+			{
+				_sizeArrDouble10 = value;
+			}
+			get { return _sizeArrDouble10; }
+		}
+
+		private ObservableCollection<string> _arrColors;
+		public ObservableCollection<string> ArrColors
+		{
+			set
+			{
+				_arrColors = value;
+			}
+			get { return _arrColors; }
+		}
+
+		private int _selectedWidth;
+		public int SelectedWidth
+		{
+			set
+			{
+				_selectedWidth = value;
+				RaisePropertyChanged(() => SelectedWidth);
+				if (_selectedWidth != null && originalImage != null)
+				{
+					SelectedHeight= (int)(originalImage.Picture.Height * SelectedWidth/ originalImage.Picture.Width);
+					int i = 0;
+				}
 
 			}
-			get { return _desiredWidth; }
+			get { return _selectedWidth; }
+		}
+
+		private int _selectedHeight;
+		public int SelectedHeight
+		{
+			set
+			{
+				_selectedHeight = value;
+				RaisePropertyChanged(() => SelectedHeight);
+				int i = 0;
+
+			}
+			get { return _selectedHeight; }
 		}
 
 		private int _matrixLines;
@@ -116,7 +185,39 @@ namespace wpfMozaiq.ViewModel
 			get { return _filenameImage; }
 		}
 
-		
+
+		public NewProjectViewModel()
+		{
+			_sizeArrInt100 = new ObservableCollection<int>();
+			_sizeArrInt10= new ObservableCollection<int>();
+			_sizeArrInt1000 = new ObservableCollection<int>();
+
+			for (int i = 1; i < 1001; i++)
+			{
+				if (i < 11)
+				{
+					_sizeArrInt10.Add(i);
+				}
+				if (i < 101)
+				{
+					_sizeArrInt100.Add(i);
+				}
+				_sizeArrInt1000.Add(i);
+			}
+
+			_sizeArrDouble10=new ObservableCollection<double>();
+			for (double i = 0.01; i < 10.1; i = i + 0.01)
+			{
+				_sizeArrDouble10.Add(i);
+			}
+
+			_arrColors = new ObservableCollection<string>();
+			_arrColors.Add("Red");
+			_arrColors.Add("Green");
+			_arrColors.Add("Blue");
+
+		}
+
 		private ICommand _choiseFileMosaicPack;
 		public ICommand ChoiseFileMosaicPack
 		{
@@ -161,11 +262,9 @@ namespace wpfMozaiq.ViewModel
 		{
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
 			{
-				Messenger.Default.Send(originalImage);
-				Messenger.Default.Send(catalog);
+				panno= new MozaicPanel(originalImage, catalog, SelectedWidth, MatrixLines, MatrixColumns, DesiredMozaicGap, ComputerMozaicGap, ComputerMatrixGap);
+				Messenger.Default.Send(panno);
 				Messenger.Default.Send(new NotificationMessage("gotovo"));
-				
-
 			}));
 		}
 

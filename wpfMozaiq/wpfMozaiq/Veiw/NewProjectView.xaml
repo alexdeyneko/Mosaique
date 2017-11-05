@@ -142,21 +142,6 @@
             IsReadOnly="True"
             Text="{Binding FilenameImage}"
             TextWrapping="NoWrap" />
-        <ListBox
-            Grid.Row="0"
-            Grid.Column="1"
-            Width="110"
-            Height="35"
-            Margin="0,130,25,0"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
-
 
 
         <!--  0-1  -->
@@ -209,11 +194,9 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-            <ListBoxItem Content="1" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt10}"
+            SelectedItem="{Binding ComputerMozaicGap}" />
         <Label
             Grid.Row="0"
             Grid.Column="1"
@@ -231,11 +214,8 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding ArrColors}" />
 
 
         <!--  1-0  -->
@@ -274,11 +254,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt100}"
+            SelectedItem="{Binding MatrixColumns}" />
         <Label
             Grid.Row="1"
             Grid.Column="0"
@@ -296,11 +274,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt100}"
+            SelectedItem="{Binding MatrixLines}" />
         <Label
             Grid.Row="1"
             Grid.Column="0"
@@ -311,17 +287,15 @@
         <ListBox
             Grid.Row="1"
             Grid.Column="0"
-            Width="58"
+            Width="65"
             Height="35"
-            Margin="0,155,35,0"
+            Margin="0,155,25,0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrDouble10}"
+            SelectedItem="{Binding DesiredMozaicGap}" />
 
         <!--  1-1 Зазор между плитками  -->
         <Border
@@ -357,11 +331,9 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt10}"
+            SelectedItem="{Binding ComputerMatrixGap}" />
         <Label
             Grid.Row="1"
             Grid.Column="1"
@@ -378,11 +350,8 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding ArrColors}" />
 
         <!--  1-1 ЖЕЛАЕМЫЕ РАЗМЕРЫ  -->
         <Border
@@ -417,11 +386,9 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt1000}"
+            SelectedItem="{Binding SelectedWidth}" />
 
         <Label
             Grid.Row="1"
@@ -430,6 +397,22 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Высота, см" />
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="58"
+            Height="35"
+            Margin="80,160,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            BorderThickness="1"
+            Text="{Binding SelectedHeight}"
+            TextAlignment="Center" />
+
+
+        <!--
         <ListBox
             Grid.Row="1"
             Grid.Column="1"
@@ -439,11 +422,10 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
-            BorderThickness="1">
-            <ListBoxItem Content="1" />
-            <ListBoxItem Content="2" />
-            <ListBoxItem Content="3" />
-        </ListBox>
+            BorderThickness="1"
+            ItemsSource="{Binding SizeArrInt1000}"
+            SelectedItem="{Binding SelectedHeight}"
+            />-->
 
 
         <!--  2-0  -->
@@ -561,6 +543,21 @@
             </Button>
             <Button Margin="5,15,5,5" Padding="5">Cancel</Button>
         </StackPanel>
+        <ListView
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="100"
+            Height="100"
+            Margin="40,25,0,-73"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
     </Grid>
 </controls:MetroWindow>

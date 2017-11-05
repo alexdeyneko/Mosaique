@@ -18,33 +18,28 @@ namespace wpfMozaiq.ViewModel
     {
 		public Catalog catalog;
 	    public OriginalImage originalImage;
+	    public MozaicPanel panno;
 	    public ObservableCollection<Mozaic> MozaicsList { get; set; }
 
-	    public MainViewModel()
+
+
+
+		public MainViewModel()
 	    {
 
-		    Messenger.Default.Register<Catalog>(this, (newCatalog) =>
+		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
 			    MozaicsList = new ObservableCollection<Mozaic>();
-			    catalog = newCatalog;
+			    catalog = newPanno.Catalog;
 			    ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
 
 			    foreach (var VARIABLE in temp)
 			    {
 				    MozaicsList.Add(VARIABLE);
 			    }
-			});
-
-		    Messenger.Default.Register<OriginalImage>(this, (newOriginalImage) =>
-		    {
-			    originalImage = newOriginalImage;
-			});
-
-		    Messenger.Default.Register<NotificationMessage>(this, (message) =>
-		    {
-			    string msg = message.Notification;
 			    int i = 0;
 		    });
+
 	    }
 
 		private string _filenameImage;
