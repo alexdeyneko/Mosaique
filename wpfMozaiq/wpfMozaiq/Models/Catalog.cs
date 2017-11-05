@@ -29,16 +29,22 @@ namespace wpfMozaiq.Models
             Mozaics = new List<Mozaic>();
             this.ImportCatalog();
         }
+
         public void EnableMozaic(string name, string subCatalog)
         {
             try
             {
                 Mozaic temp = new Mozaic(name, subCatalog, CatalogPath);
                 temp.CalculateAvrColors();
-                Mozaics.Add(temp);
+                if ((temp.Picture.Width == MozaicRealSize * 4) &&
+                    (temp.Picture.Height == MozaicRealSize * 4)
+                    )
+                    Mozaics.Add(temp);
+
             }
             catch { }
         }
+
         private void ImportCatalog()
         {
 
@@ -52,7 +58,10 @@ namespace wpfMozaiq.Models
                         this.EnableMozaic(Path.GetFileName(file), Path.GetFileName(directory));
                     }
 
-
+                }
+                foreach (var file in Directory.GetFiles(CatalogPath))
+                {
+                    this.EnableMozaic(Path.GetFileName(file), "");
                 }
             }
             catch { }
