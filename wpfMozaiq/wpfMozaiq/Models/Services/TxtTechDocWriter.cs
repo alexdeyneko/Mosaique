@@ -43,7 +43,7 @@ namespace wpfMozaiq.Models.Services
             using (var sw = new StreamWriter(FullPath, true))
             {
                 sw.WriteLine("Исходное изображение: {0}", Panno.Image.SourcePath);
-                sw.WriteLine("Каталог: {0}", Panno.Catalog.Name);
+               
                 sw.WriteLine("Размер ячеек, мм: {0}", Panno.Catalog.MozaicRealSize);
                 sw.WriteLine("Высота панно, см: {0}", Panno.RealHeight);
                 sw.WriteLine("Ширина панно, мм: {0}", Panno.RealWidth);
@@ -65,7 +65,7 @@ namespace wpfMozaiq.Models.Services
         {
             using (var sw = new StreamWriter(FullPath, true))
             {
-                sw.WriteLine("Каталог:");
+                sw.WriteLine("Каталог: {0}", Panno.Catalog.Name);
                 foreach (var item in Panno.Catalog.Mozaics)
                 {
                     if (item.RatingId != 0)
