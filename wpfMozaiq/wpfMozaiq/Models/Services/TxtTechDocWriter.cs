@@ -46,11 +46,11 @@ namespace wpfMozaiq.Models.Services
                
                 sw.WriteLine("Размер ячеек, мм: {0}", Panno.Catalog.MozaicRealSize);
                 sw.WriteLine("Высота панно, см: {0}", Panno.RealHeight);
-                sw.WriteLine("Ширина панно, мм: {0}", Panno.RealWidth);
+                sw.WriteLine("Ширина панно, см: {0}", Panno.RealWidth);
 
                 sw.WriteLine("Зазор между ячейками реальный, мм: {0}", Panno.DesiredMozaicGap);
-                sw.WriteLine("Зазор между ячейками компьютерный, мм: {0}", Panno.ComputerMozaicGap);
-                sw.WriteLine("Зазор между матрицами компьютерный, мм: {0}", Panno.ComputerMatrixGap);
+                sw.WriteLine("Зазор между ячейками компьютерный, пикс: {0}", Panno.ComputerMozaicGap);
+                sw.WriteLine("Зазор между матрицами компьютерный, пикс: {0}", Panno.ComputerMatrixGap);
                 sw.WriteLine("Высота матрицы, мозаик: {0}", Panno.MatrixLines);
                 sw.WriteLine("Ширина матрицы, мозаик: {0}", Panno.MatrixColumns);
 
@@ -84,8 +84,8 @@ namespace wpfMozaiq.Models.Services
             {
                 sw.WriteLine("Матрицы: {0} [{1},{2}]",
                     Panno.Matrixes.GetLength(0) * Panno.Matrixes.GetLength(1),
-                    Panno.MatrixLines,
-                    Panno.MatrixColumns);
+                    Panno.MatrixColumns,
+                    Panno.MatrixLines);
                 sw.WriteLine("");
 
                 for (int i = 0; i < Panno.Matrixes.GetLength(0); i++)
