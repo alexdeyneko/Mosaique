@@ -65,7 +65,7 @@ namespace wpfMozaiq.Models.Services
         {
             using (var sw = new StreamWriter(FullPath, true))
             {
-                sw.WriteLine("Каталог: {0}", Panno.Catalog.Name);
+                sw.WriteLine("Каталог: {0}_{1}", Panno.Catalog.Name,Panno.Catalog.MozaicRealSize);
                 foreach (var item in Panno.Catalog.Mozaics)
                 {
                     if (item.RatingId != 0)
