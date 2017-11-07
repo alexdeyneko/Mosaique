@@ -29,6 +29,12 @@ namespace wpfMozaiq.Models
             Mozaics = new List<Mozaic>();
             this.ImportCatalog();
         }
+        public Catalog(string name, int size, List<Mozaic> mozaics)
+        {
+            Name = name;
+            MozaicRealSize = size;
+            Mozaics = mozaics;
+        }
 
         public void EnableMozaic(string name, string subCatalog)
         {
