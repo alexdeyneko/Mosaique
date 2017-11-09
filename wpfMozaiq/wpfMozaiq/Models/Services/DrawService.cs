@@ -18,10 +18,10 @@ namespace wpfMozaiq.Models.Services
         {
 
             int width = Panno.Matrixes.GetLength(0) * (Panno.Matrixes[0, 0].mozaics.GetLength(0))
-                * (Panno.Catalog.Mozaics.First().Picture.Width + Panno.ComputerMatrixGap);
+                * (Panno.Catalog.Mozaics.First().GetSmall().Width + Panno.ComputerMatrixGap);
 
             int height = Panno.Matrixes.GetLength(1) * (Panno.Matrixes[0, 0].mozaics.GetLength(1))
-            * (Panno.Catalog.Mozaics.First().Picture.Height + Panno.ComputerMatrixGap);
+            * (Panno.Catalog.Mozaics.First().GetSmall().Height + Panno.ComputerMatrixGap);
 
             Bitmap newMap = new Bitmap(width, height);
 
@@ -48,9 +48,9 @@ namespace wpfMozaiq.Models.Services
             Bitmap image = new Bitmap(
 
                 matrix.mozaics.GetLength(0) *
-                (Panno.Catalog.Mozaics.First().Picture.Width + Panno.ComputerMozaicGap),
+                (Panno.Catalog.Mozaics.First().GetSmall().Width + Panno.ComputerMozaicGap),
 
-                matrix.mozaics.GetLength(1) * (Panno.Catalog.Mozaics.First().Picture.Height + Panno.ComputerMozaicGap)
+                matrix.mozaics.GetLength(1) * (Panno.Catalog.Mozaics.First().GetSmall().Height + Panno.ComputerMozaicGap)
 
                 );
 
@@ -76,11 +76,11 @@ namespace wpfMozaiq.Models.Services
         private Bitmap GetMozaicForId(int id)
         {
             if (id != 0)
-                return Panno.Catalog.Mozaics.Where(n => n.RatingId == id).First().Picture;
+                return Panno.Catalog.Mozaics.Where(n => n.RatingId == id).First().GetSmall();
             else
             {
-                Bitmap bmp = new Bitmap(Panno.Catalog.Mozaics.First().Picture.Width,
-                    Panno.Catalog.Mozaics.First().Picture.Height);
+                Bitmap bmp = new Bitmap(Panno.Catalog.Mozaics.First().GetSmall().Width,
+                    Panno.Catalog.Mozaics.First().GetSmall().Height);
                 Graphics g = Graphics.FromImage(bmp);
                 g.Clear(Color.White);
                 return bmp;
