@@ -45,8 +45,11 @@ namespace wpfMozaiq.Models.Services
                 sw.WriteLine("Исходное изображение: {0}", Panno.Image.SourcePath);
 
                 sw.WriteLine("Размер ячеек, мм: {0}", Panno.Catalog.MozaicRealSize);
-                sw.WriteLine("Высота панно, см: {0}", Panno.RealHeight);
-                sw.WriteLine("Ширина панно, см: {0}", Panno.RealWidth);
+                sw.WriteLine("Желаемая высота панно, см: {0}", Panno.DesiredHeight);
+                sw.WriteLine("Желаемая ширина панно, см: {0}", Panno.DesiredWidth);
+                sw.WriteLine("Реальная высота панно, см: {0}", Panno.RealHeight);
+                sw.WriteLine("Реальная ширина панно, см: {0}", Panno.RealWidth);
+
 
                 sw.WriteLine("Зазор между ячейками реальный, мм: {0}", Panno.DesiredMozaicGap);
                 sw.WriteLine("Зазор между ячейками компьютерный, пикс: {0}", Panno.ComputerMozaicGap);
