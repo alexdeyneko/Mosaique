@@ -30,5 +30,16 @@ namespace wpfMozaiq.Models
         public string SubCatalog { set; get; }
         public int RatingId { set; get; }
         public int CountInPanno { set; get; }
+        public Bitmap GetSmall()
+        {
+            Bitmap bmp = new Bitmap(Picture.Width / 10, Picture.Height / 10);
+
+            Graphics g = Graphics.FromImage(bmp);
+            g.DrawImage(Picture
+                       , 0, 0,
+                       bmp.Width, bmp.Height);
+
+            return bmp;
+        }
     }
 }
