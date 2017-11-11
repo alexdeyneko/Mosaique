@@ -80,10 +80,10 @@ namespace wpfMozaiq.ViewModel
 			{
 				_selectedWidth = value;
 				RaisePropertyChanged(() => SelectedWidth);
-				if (_selectedWidth != null && originalImage != null)
+
+				if (originalImage != null)
 				{
 					SelectedHeight= (int)(originalImage.Picture.Height * SelectedWidth/ originalImage.Picture.Width);
-					int i = 0;
 				}
 
 			}
@@ -97,7 +97,6 @@ namespace wpfMozaiq.ViewModel
 			{
 				_selectedHeight = value;
 				RaisePropertyChanged(() => SelectedHeight);
-				int i = 0;
 
 			}
 			get { return _selectedHeight; }
@@ -122,6 +121,7 @@ namespace wpfMozaiq.ViewModel
 			{
 				_matrixColumns = value;
 				RaisePropertyChanged(() => MatrixColumns);
+				int i = 0;
 
 			}
 			get { return _matrixColumns; }
@@ -182,7 +182,6 @@ namespace wpfMozaiq.ViewModel
 			{
 				_filenameImage = value;
 				RaisePropertyChanged(() => FilenameImage);
-
 			}
 			get { return _filenameImage; }
 		}
@@ -190,6 +189,7 @@ namespace wpfMozaiq.ViewModel
 
 		public NewProjectViewModel()
 		{
+			 
 			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
 			{
 				
@@ -223,15 +223,24 @@ namespace wpfMozaiq.ViewModel
 			}
 
 			_sizeArrDouble10=new ObservableCollection<double>();
-			for (double i = 0.01; i < 10.1; i = i + 0.01)
+			for (double i = 0.1; i < 10.1; i = i + 0.1)
 			{
-				_sizeArrDouble10.Add(i);
+				_sizeArrDouble10.Add(Math.Round(i, 2));
 			}
 
 			_arrColors = new ObservableCollection<string>();
 			_arrColors.Add("Red");
 			_arrColors.Add("Green");
 			_arrColors.Add("Blue");
+
+			MatrixLines = SizeArrInt100[14];
+			MatrixColumns = SizeArrInt100[14];
+
+			DesiredMozaicGap = SizeArrDouble10[14];
+			ComputerMozaicGap = SizeArrInt10[1];
+			ComputerMatrixGap = SizeArrInt10[1];
+
+			
 
 		}
 
@@ -240,15 +249,6 @@ namespace wpfMozaiq.ViewModel
 		{
 			get => _choiseFileMosaicPack ?? (_choiseFileMosaicPack = new RelayCommand(() =>
 			{
-				/* FolderBrowserDialog FBD = new FolderBrowserDialog();
-				FBD.ShowNewFolderButton = false;
-				if (FBD.ShowDialog() == DialogResult.OK)
-				{
-					FilenameMosaicPack = FBD.SelectedPath;
-					string[] split = FilenameMosaicPack.Split(new Char[] {'\\', '_'});
-					catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1])); 
-				}*/
-
 				catalogDialogView = new ChoiseCatalogDialogView();
 				catalogDialogView.Show();
 
@@ -274,6 +274,7 @@ namespace wpfMozaiq.ViewModel
 					// Open document
 					FilenameImage = dlg.FileName;
 					originalImage = new OriginalImage(FilenameImage);
+					SelectedWidth = SizeArrInt1000[49];
 				}
 			}));
 		}

@@ -85,6 +85,7 @@
                                          Width=13,
                                          Height=13}" />
         <TextBox
+            Name="NameCatalog"
             Grid.Row="0"
             Grid.Column="0"
             Width="191"
@@ -133,6 +134,7 @@
                                          Width=13,
                                          Height=13}" />
         <TextBox
+            Name="NameImage"
             Grid.Row="1"
             Grid.Column="0"
             Width="191"
@@ -186,7 +188,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ширина в пикселях" />
-        <ListBox
+
+        <ComboBox
             Grid.Row="0"
             Grid.Column="1"
             Width="55"
@@ -197,7 +200,15 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrInt10}"
-            SelectedItem="{Binding ComputerMozaicGap}" />
+            SelectedIndex="{Binding ComputerMozaicGap}"
+            SelectedItem="{Binding ComputerMozaicGap}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
         <Label
             Grid.Row="0"
             Grid.Column="1"
@@ -260,7 +271,8 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Столбцы" />
-        <ListBox
+
+        <ComboBox
             Grid.Row="1"
             Grid.Column="0"
             Width="58"
@@ -270,8 +282,17 @@
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrInt100}"
-            SelectedItem="{Binding MatrixColumns}" />
+            SelectedIndex="{Binding MatrixColumns}"
+            SelectedItem="{Binding MatrixColumns}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
@@ -280,7 +301,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Content="Строки" />
-        <ListBox
+        <ComboBox
             Grid.Row="1"
             Grid.Column="0"
             Width="58"
@@ -291,7 +312,15 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrInt100}"
-            SelectedItem="{Binding MatrixLines}" />
+            SelectedItem="{Binding MatrixLines}"
+            SelectedValue="{Binding MatrixLines}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
@@ -299,7 +328,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ширина зазора в мм" />
-        <ListBox
+
+        <ComboBox
             Grid.Row="1"
             Grid.Column="0"
             Width="65"
@@ -310,7 +340,14 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrDouble10}"
-            SelectedItem="{Binding DesiredMozaicGap}" />
+            SelectedIndex="{Binding DesiredMozaicGap}"
+            SelectedItem="{Binding DesiredMozaicGap}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
 
         <!--  1-1 Зазор между плитками  -->
         <Border
@@ -337,7 +374,8 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Ширина в пикселях" />
-        <ListBox
+
+        <ComboBox
             Grid.Row="1"
             Grid.Column="1"
             Width="58"
@@ -348,7 +386,15 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrInt10}"
-            SelectedItem="{Binding ComputerMatrixGap}" />
+            SelectedIndex="{Binding ComputerMatrixGap}"
+            SelectedItem="{Binding ComputerMatrixGap}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
         <Label
             Grid.Row="1"
             Grid.Column="1"
@@ -395,7 +441,7 @@
             VerticalAlignment="Top"
             Content="Ширина, см" />
 
-        <ListBox
+        <ComboBox
             Grid.Row="1"
             Grid.Column="1"
             Width="60"
@@ -406,7 +452,14 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrInt1000}"
-            SelectedItem="{Binding SelectedWidth}" />
+            SelectedIndex="{Binding SelectedWidth}"
+            SelectedItem="{Binding SelectedWidth}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
 
         <Label
             Grid.Row="1"
@@ -467,6 +520,24 @@
                 Padding="5"
                 Command="{Binding OkCommand}"
                 IsDefault="True">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text.Length, ElementName=NameCatalog, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Text.Length, ElementName=NameImage, UpdateSourceTrigger=PropertyChanged}" Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <Trigger Property="IsEnabled" Value="True">
+
+                                <Setter Property="Foreground" Value="#FFFFFFFF" />
+                                <Setter Property="FontStyle" Value="Normal" />
+                                <Setter Property="Background" Value="{DynamicResource AccentColorBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
                 OK
             </Button>
             <Button
