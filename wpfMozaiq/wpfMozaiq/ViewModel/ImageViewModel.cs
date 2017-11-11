@@ -68,8 +68,8 @@ namespace wpfMozaiq.ViewModel
 		{
 		    get => _pressPlus ?? (_pressPlus = new RelayCommand(() =>
 		    {
-			    ImageHeight += 25;
-			    ImageWidth += 25;
+			    ImageHeight += 125;
+			    ImageWidth += 125;
 			    int i = 0;
 
 		    }));
@@ -80,8 +80,8 @@ namespace wpfMozaiq.ViewModel
 		{
 		    get => _pressMinus ?? (_pressMinus = new RelayCommand(() =>
 			{
-				ImageHeight -= 25;
-				ImageWidth -= 25;
+				ImageHeight -= 125;
+				ImageWidth -= 125;
 				int i = 0;
 			}));
 	    }
