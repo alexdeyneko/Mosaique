@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -18,7 +21,7 @@ using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
 		public Catalog catalog;
 	    public OriginalImage originalImage;
@@ -26,8 +29,6 @@ namespace wpfMozaiq.ViewModel
 	    public ObservableCollection<Mozaic> MozaicsList { get; set; }
 
 	    private NewProjectView newProjectView;
-	    private ImageView imageView;
-
 
 		public MainViewModel()
 		{
@@ -49,12 +50,11 @@ namespace wpfMozaiq.ViewModel
 
 			});
 
-			ImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "tempImage.bmp";
-			
-
+			ImageHeight = 400;
+			ImageWidth = 400;
 		}
 
-	    private string _imagePath;
+		private string _imagePath;
 	    public string ImagePath
 	    {
 		    set
@@ -67,6 +67,48 @@ namespace wpfMozaiq.ViewModel
 			    return _imagePath;
 		    }
 		}
+		
+		private Bitmap _imageBitmap;
+	    public Bitmap ImageBitmap
+	    {
+		    set
+		    {
+			    _imageBitmap = value;
+			    RaisePropertyChanged(() => ImageBitmap);
+		    }
+		    get
+		    {
+			    return _imageBitmap;
+		    }
+	    }
+
+		private int _imageWidth;
+	    public int ImageWidth
+	    {
+		    set
+		    {
+			    _imageWidth = value;
+			    RaisePropertyChanged(() => ImageWidth);
+		    }
+		    get
+		    {
+			    return _imageWidth;
+		    }
+	    }
+
+	    private int _imageHeight;
+	    public int ImageHeight
+	    {
+		    set
+		    {
+			    _imageHeight = value;
+			    RaisePropertyChanged(() => ImageHeight);
+		    }
+		    get
+		    {
+			    return _imageHeight;
+		    }
+	    }
 
 
 		private string _filenameImage;
@@ -79,6 +121,7 @@ namespace wpfMozaiq.ViewModel
 		    }
 		    get { return _filenameImage; }
 	    }
+		
 		
         private ICommand _showNewProjectView;
         public ICommand ShowNewProjectView
@@ -131,8 +174,39 @@ namespace wpfMozaiq.ViewModel
 		    }));
 	    }
 
+		private ICommand _pressPlus;
+	    public ICommand PressPlus
+	    {
+		    get => _pressPlus ?? (_pressPlus = new RelayCommand(() =>
+		    {
+			    if (!String.IsNullOrEmpty(ImagePath))
+			    {
+				    if (File.Exists(ImagePath))
+				    {
+					    ImageHeight += 125;
+					    ImageWidth += 125;
+				    }
+			    }
 
-	    private void GenerateOutCatalogMozaic ()
+		    }));
+	    }
+
+	    private ICommand _pressMinus;
+	    public ICommand PressMinus
+	    {
+		    get => _pressMinus ?? (_pressMinus = new RelayCommand(() =>
+		    {
+				if (!String.IsNullOrEmpty(ImagePath)) { 
+					if (File.Exists(ImagePath))
+					{
+						ImageHeight -= 125;
+						ImageWidth -= 125;
+					}
+				}
+			}));
+	    }
+
+		private void GenerateOutCatalogMozaic ()
 	    {
 			MozaicsList = new ObservableCollection<Mozaic>();
 			ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
@@ -140,13 +214,11 @@ namespace wpfMozaiq.ViewModel
 			{
 				MozaicsList.Add(VARIABLE);
 			}
-		}
+	    }
 
 	    private void GenerateMozaicPanno()
 	    {
-		    imageView = null; 
-
-		    new MatrixGridService(panno).CreateImageGrid();
+			new MatrixGridService(panno).CreateImageGrid();
 			new MozaicSelectService(panno).GenerateForGrid();
 
 		    TechDocGenerateService tdgs = new TechDocGenerateService(panno);
@@ -155,15 +227,11 @@ namespace wpfMozaiq.ViewModel
 
 			new MatrixSeparateService(panno).GenerateMatrixArray();
 			
-			if  (File.Exists(ImagePath) == true)
-		    {
-				File.Delete(ImagePath);
-			}
-
-			new DrawService(panno).DrawPanno().Save(ImagePath);
-		    imageView = new ImageView();
-			imageView.Show();
+			ImageBitmap = new DrawService(panno).DrawPanno();
+			ImageBitmap.Save(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + new Random().Next() + ".bmp");
+		    ImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + new Random().Next() + ".bmp";
 		}
+		
+    }
 
-	}
 }

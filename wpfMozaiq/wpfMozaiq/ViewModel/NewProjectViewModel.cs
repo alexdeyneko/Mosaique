@@ -20,7 +20,7 @@ namespace wpfMozaiq.ViewModel
 	{
 		private Catalog catalog;
 		private OriginalImage originalImage;
-		private MozaicPanel panno;
+		public MozaicPanel panno;
 		private ChoiseCatalogDialogView catalogDialogView;
 
 		private ObservableCollection<int> _sizeArrInt100;

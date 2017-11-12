@@ -43,11 +43,17 @@
                 </Button>
 
                 <Separator />
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Увеличить масштаб">
+                <Button
+                    Command="{Binding PressPlus}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Увеличить масштаб">
                     <materialDesign:PackIcon Kind="Plus" />
                 </Button>
 
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Уменьшить масштаб">
+                <Button
+                    Command="{Binding PressMinus}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Уменьшить масштаб">
                     <materialDesign:PackIcon Kind="Minus" />
                 </Button>
                 <Separator />
@@ -80,19 +86,12 @@
                     ToolTip="Справка">
                     <materialDesign:PackIcon Kind="Help" />
                 </Button>
+
             </ToolBar>
 
 
         </ToolBarTray>
 
-
-        <!--  <StackPanel
-            Width="auto"
-            Height="auto"
-            Margin="0,0,0,0"
-            DockPanel.Dock="Left">
-            <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>-->
 
         <materialDesign:DrawerHost
             HorizontalAlignment="Right"
@@ -127,7 +126,6 @@
                                 <GridView.Columns>
                                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
                                     <GridViewColumn DisplayMemberBinding="{Binding SubCatalog}" Header="Подкаталог" />
-
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -141,7 +139,16 @@
 
         </materialDesign:DrawerHost>
 
+        <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
+            <StackPanel
+                Width="{Binding ImageWidth}"
+                Height="{Binding ImageHeight}"
+                Margin="0,0,0,0"
+                DockPanel.Dock="Right">
 
+                <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
 
 
 

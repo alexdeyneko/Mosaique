@@ -121,9 +121,6 @@
     <Compile Include="Veiw\ChoiseCatalogDialogView.xaml.cs">
       <DependentUpon>ChoiseCatalogDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Veiw\ImageView.xaml.cs">
-      <DependentUpon>ImageView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Veiw\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
     </Compile>
@@ -138,7 +135,6 @@
     </Compile>
     <Compile Include="ViewModel\CatalogViewModel.cs" />
     <Compile Include="ViewModel\ChoiseCatalogDialogViewModel.cs" />
-    <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NewProjectViewModel.cs" />
     <Compile Include="ViewModel\SourceImageViewModel.cs" />
@@ -149,10 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Veiw\ChoiseCatalogDialogView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Veiw\ImageView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
