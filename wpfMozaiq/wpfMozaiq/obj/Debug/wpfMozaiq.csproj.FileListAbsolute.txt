@@ -124,3 +124,5 @@ C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.dll
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\ChoiseCatalogDialogView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\ChoiseCatalogDialogView.baml

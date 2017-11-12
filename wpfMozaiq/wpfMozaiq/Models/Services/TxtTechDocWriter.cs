@@ -115,11 +115,10 @@ namespace wpfMozaiq.Models.Services
             {
                 for (int j = 0; j < matrix.mozaics.GetLength(0); j++)
                 {
-                    if (matrix.mozaics[j, i] != 0)
-                    {
+                   
                         sw.Write(matrix.mozaics[j, i]);
                         sw.Write("\t");
-                    }
+                    
 
                 }
                 sw.WriteLine("");

@@ -32,7 +32,7 @@ namespace wpfMozaiq.Models
         public int CountInPanno { set; get; }
         public Bitmap GetSmall()
         {
-            Bitmap bmp = new Bitmap(Picture.Width / 10, Picture.Height / 10);
+            Bitmap bmp = new Bitmap(Picture.Width / 5, Picture.Height / 5);
 
             Graphics g = Graphics.FromImage(bmp);
             g.DrawImage(Picture

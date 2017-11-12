@@ -77,9 +77,13 @@ namespace wpfMozaiq.Models.Services
             string imagePath =
             Regex.Match(header, @"Исходное изображение:\s*(\S*)").Groups[1].Value;
             double realHeight = Convert.ToDouble(
-                Regex.Match(header, @"Высота панно, см:\s*(\S*)").Groups[1].Value);
+                Regex.Match(header, @"Реальная высота панно, см:\s*(\S*)").Groups[1].Value);
             double realWidth = Convert.ToDouble(
-                Regex.Match(header, @"Ширина панно, см:\s*(\S*)").Groups[1].Value);
+                Regex.Match(header, @"Реальная ширина панно, см:\s*(\S*)").Groups[1].Value);
+            double desireWidth = Convert.ToDouble(
+                Regex.Match(header, @"Желаемая ширина панно, см:\s*(\S*)").Groups[1].Value);
+            double desirelHeight = Convert.ToDouble(
+                Regex.Match(header, @"Желаемая высота панно, см:\s*(\S*)").Groups[1].Value);
             int mozaicGap = Convert.ToInt32(
                 Regex.Match(header, @"Зазор между ячейками реальный, мм:\s*(\S*)").Groups[1].Value);
             int computerMozaicGap =
@@ -95,7 +99,8 @@ namespace wpfMozaiq.Models.Services
                Convert.ToInt32(
                Regex.Match(header, @"Ширина матрицы, мозаик:\s*(\S*)").Groups[1].Value);
 
-            return new MozaicPanel(
+            MozaicPanel current =
+            new MozaicPanel(
                 new OriginalImage(imagePath),
                 catalog,
                 realWidth,
@@ -104,56 +109,64 @@ namespace wpfMozaiq.Models.Services
                 mozaicGap,
                 computerMozaicGap,
                 computerMatrixGap);
+            current.DesiredHeight = desirelHeight;
+            current.DesiredWidth = desireWidth;
+            current.RealHeight = realHeight;
+            current.RealWidth = realWidth;
+            return current;
 
 
         }
 
         private MozaicPanel GetMatrixes(MozaicPanel panno, string line)
         {
-            /*
-             var tmp = line.Split('[');
 
-             panno.Matrixes = new Matrix[
-                 Convert.ToInt32(Regex.Match(tmp.Last(), @"(\d*),(\d*)").Groups[2].Value)+1,
-                 Convert.ToInt32(Regex.Match(tmp.Last(), @"(\d*),(\d*)").Groups[1].Value)+1
-                 ];
-             int matrixLines = Convert.ToInt32(Regex.Match(tmp[1], @"(\d*),(\d*)").Groups[2].Value);
-             int matrixColumns = Convert.ToInt32(Regex.Match(tmp[1], @"(\d*),(\d*)").Groups[1].Value);
+            var tmp = line.Split('[');
 
-             for(int i=2;i<tmp.Count();i++)
-             {
-                 int lines = Convert.ToInt32(Regex.Match(tmp[i], @"(\d*),(\d*)").Groups[2].Value);
+            panno.Matrixes = new Matrix[
+                Convert.ToInt32(Regex.Match(tmp.Last(), @"(\d*),(\d*)").Groups[2].Value) + 1,
+                Convert.ToInt32(Regex.Match(tmp.Last(), @"(\d*),(\d*)").Groups[1].Value) + 1
+                ];
+            int matrixLines = Convert.ToInt32(Regex.Match(tmp[1], @"(\d*),(\d*)").Groups[2].Value);
+            int matrixColumns = Convert.ToInt32(Regex.Match(tmp[1], @"(\d*),(\d*)").Groups[1].Value);
 
-                 int columns = Convert.ToInt32(Regex.Match(tmp[i], @"(\d*),(\d*)").Groups[1].Value);
+            for (int i = 2; i < tmp.Count(); i++)
+            {
+                int lines = Convert.ToInt32(Regex.Match(tmp[i], @"(\d*),(\d*)").Groups[2].Value);
 
-                 List<string> matrix = Regex.Matches(tmp[i], @"\d*").Cast<Match>()
-                 .Select(m => m.Value)
-                 .Where(n => n != "")
-                 .ToList()
-                 ;
-                  matrix.RemoveRange(0, 2);
+                int columns = Convert.ToInt32(Regex.Match(tmp[i], @"(\d*),(\d*)").Groups[1].Value);
 
-                 Matrix total = new Matrix(matrixColumns,matrixLines);
+                List<string> temp = Regex.Matches(tmp[i], @"\d*").Cast<Match>()
+                .Select(m => m.Value)
+                .Where(n => n != "")
+                .ToList();
+                ;
+                List<int> matrix = temp.Select(int.Parse).ToList();
+                matrix.RemoveRange(0, 2);
 
-                 for (int k=0;k<total.mozaics.GetLength(1);k++)
-                 {
-                     for (int j = 0; j < total.mozaics.GetLength(0); j++)
-                     {
-                         if (matrix.ElementAtOrDefault(k * matrixColumns + j) != null)
+                Matrix total = new Matrix(matrixColumns, matrixLines);
 
-                             total.mozaics[j, k] = Convert.ToInt32(matrix.ElementAt(k* matrixColumns + j));
-                         else
-                         {
-                             total.mozaics[k, j] = 0;
-                         }
+                for (int k = 0; k < matrixLines; k++)
+                    for (int j = 0; j < matrixColumns; j++)
+                    {
+                        if (matrix.Count.Equals(0))
+                        {
+                            total.mozaics[j, k] = 0;
+                        }
+                        else
+                        {
 
-                     }
+                            total.mozaics[j, k] = matrix.First();
+                            matrix.RemoveAt(0);
+                        }
 
-                 }
-                 panno.Matrixes[lines, columns] = total;
+                    }
 
-             }
-             */
+                panno.Matrixes[lines, columns] = total;
+
+
+            }
+
             return panno;
         }
 
