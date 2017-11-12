@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -30,8 +31,14 @@ namespace wpfMozaiq.ViewModel
 
 	    private NewProjectView newProjectView;
 
+	    private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
+		private string TECH_DOC_PATH= Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
+
+
 		public MainViewModel()
 		{
+			new TempFilesService().DeleteTempFilesInDirectory(TEMP_DIRECTORY);
+
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
 			    panno = newPanno;
@@ -49,9 +56,6 @@ namespace wpfMozaiq.ViewModel
 			    }
 
 			});
-
-			ImageHeight = 400;
-			ImageWidth = 400;
 		}
 
 		private string _imagePath;
@@ -159,8 +163,17 @@ namespace wpfMozaiq.ViewModel
 		{
 		    get => _showTechDocView ?? (_showTechDocView = new RelayCommand(() =>
 		    {
-				TechDocView techDocView = new TechDocView();
-				techDocView.Show();
+			    if (panno != null)
+			    {
+				    if (File.Exists(TECH_DOC_PATH))
+				    {
+					    File.Delete(TECH_DOC_PATH);
+				    }
+					new TxtTechDocWriter(panno, TECH_DOC_PATH).WriteDocumentation();
+				    TechDocView techDocView = new TechDocView();
+				    techDocView.Show();
+				}
+
 		    }));
 	    }
 
@@ -183,8 +196,8 @@ namespace wpfMozaiq.ViewModel
 			    {
 				    if (File.Exists(ImagePath))
 				    {
-					    ImageHeight += 125;
-					    ImageWidth += 125;
+					    ImageHeight += 100;
+					    ImageWidth += 100;
 				    }
 			    }
 
@@ -199,8 +212,8 @@ namespace wpfMozaiq.ViewModel
 				if (!String.IsNullOrEmpty(ImagePath)) { 
 					if (File.Exists(ImagePath))
 					{
-						ImageHeight -= 125;
-						ImageWidth -= 125;
+						ImageHeight -= 100;
+						ImageWidth -= 100;
 					}
 				}
 			}));
@@ -228,8 +241,21 @@ namespace wpfMozaiq.ViewModel
 			new MatrixSeparateService(panno).GenerateMatrixArray();
 			
 			ImageBitmap = new DrawService(panno).DrawPanno();
-			ImageBitmap.Save(Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + new Random().Next() + ".bmp");
-		    ImagePath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + new Random().Next() + ".bmp";
+		    string tempPath = TEMP_DIRECTORY + new Random().Next() + ".bmp";
+			ImageBitmap.Save(tempPath);
+
+		    ImageHeight = ImageBitmap.Height;
+		    ImageWidth = ImageBitmap.Width;
+
+		    while (true)
+		    {
+			    if (File.Exists(tempPath))
+			    {
+				    ImagePath = tempPath;
+					break;
+			    }
+		    }
+
 		}
 		
     }

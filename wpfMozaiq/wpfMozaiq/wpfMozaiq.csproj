@@ -114,6 +114,7 @@
     <Compile Include="Models\Services\MatrixSeparateService.cs" />
     <Compile Include="Models\Services\MozaicSelectService.cs" />
     <Compile Include="Models\Services\TechDocGenerateService.cs" />
+    <Compile Include="Models\Services\TempFilesService.cs" />
     <Compile Include="Models\Services\TxtTechDocWriter.cs" />
     <Compile Include="Veiw\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>

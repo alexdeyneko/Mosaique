@@ -95,17 +95,14 @@
 
         <materialDesign:DrawerHost
             HorizontalAlignment="Right"
-            VerticalAlignment="Center"
+            VerticalAlignment="Stretch"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2"
             DockPanel.Dock="Right">
 
             <materialDesign:DrawerHost.RightDrawerContent>
 
-                <StackPanel
-                    Width="250"
-                    Height="500"
-                    Margin="5">
+                <StackPanel Width="250" Margin="5">
                     <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
                     <Button
                         Margin="4"
@@ -116,11 +113,7 @@
                         Закрыть
                     </Button>
 
-                    <ListView
-                        Name="lstw"
-                        Margin="5"
-                        ItemsSource="{Binding MozaicsList}">
-
+                    <ListView Margin="5" ItemsSource="{Binding MozaicsList}">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>

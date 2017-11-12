@@ -298,8 +298,6 @@ namespace wpfMozaiq.ViewModel
 				Messenger.Default.Send("CloseWindowNewProjectViewModel");
 			}));
 		}
-
-
-
+		
 	}
 }
