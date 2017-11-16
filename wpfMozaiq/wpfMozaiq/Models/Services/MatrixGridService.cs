@@ -48,7 +48,7 @@ namespace wpfMozaiq.Models.Services
             int width = CalculateOptimalWidth();          //кол-во блоков в ширину
             int pixelHeight = Panno.Image.Picture.Height / height;//высота одного блока в пикселях
             int pixelWidth = Panno.Image.Picture.Width / width;//ширина одного блока в пикселях
-            Panno.Image.Resize(width * pixelWidth, height * pixelHeight);
+            Panno.Image.Resize(width, height);
 
             Panno.Grid = new Mozaic[width, height];
             SetRealHight(height);
@@ -59,20 +59,11 @@ namespace wpfMozaiq.Models.Services
                 for (int j = 0; j < height; j++)
                 {
                     Mozaic block = new Mozaic();
-                    Rectangle section = new Rectangle(i *
-                        pixelWidth, j * pixelHeight,
-                          pixelWidth,
-                       pixelHeight
-               );
-
-
-                    Bitmap bmp = new Bitmap(section.Width, section.Height);
-                    using (Graphics g = Graphics.FromImage(bmp))
-                    {
-                        g.DrawImage(Panno.Image.Picture, 0, 0, section, GraphicsUnit.Pixel);
-                    }
-
-
+                    Bitmap bmp = new Bitmap(1, 1);
+                    bmp.SetPixel
+                        (
+                        0, 0,
+                        Panno.Image.Picture.GetPixel(i, j));
                     block.Picture = bmp;
 
                     block.CalculateAvrColors();
