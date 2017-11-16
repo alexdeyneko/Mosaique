@@ -25,7 +25,7 @@ namespace wpfMozaiq.Models
             Image = image;
             Catalog = catalog;
             DesiredWidth = desiredWidth;
-            DesiredHeight = (int)(Image.Picture.Height * DesiredWidth / Image.Picture.Width);
+
             MatrixLines = matrixLines;
             MatrixColumns = matrixColumns;
             DesiredMozaicGap = desiredMozaicGap;
@@ -40,14 +40,23 @@ namespace wpfMozaiq.Models
         public int MatrixColumns { get; set; } //ширина матрицы, в мозаиках
         public double DesiredMozaicGap { set; get; } // ширина зазора между мозаиками в матрице, мм
 
+        private double desiredWidth;
+        private double desiresHeight;
+
         //желаемые размеры
-        public double DesiredWidth { set; get; }   //желаемая ширина, см
+        public double DesiredWidth
+        {
+            set
+            {
+                desiredWidth = value;
+                desiresHeight = (int)(Image.Picture.Height * value / Image.Picture.Width);
+            }
+            get { return desiredWidth; }   //желаемая ширина, см
+        }
         public double DesiredHeight
         {
-
-            set;
-            get;
-        } //желаем высота, см
+            get { return desiresHeight; }
+        }
 
 
         //компьютерное изображение

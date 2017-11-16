@@ -109,7 +109,7 @@ namespace wpfMozaiq.Models.Services
                 mozaicGap,
                 computerMozaicGap,
                 computerMatrixGap);
-            current.DesiredHeight = desirelHeight;
+           
             current.DesiredWidth = desireWidth;
             current.RealHeight = realHeight;
             current.RealWidth = realWidth;
