@@ -23,6 +23,9 @@ namespace wpfMozaiq.Models
         public Bitmap Picture { get; set; }
         public string SourcePath { get; set; }
 
-
+        public void Resize(int width, int height)
+        {
+            Picture = new Bitmap(Picture, width, height);
+        }
     }
 }
