@@ -24,8 +24,10 @@ namespace wpfMozaiq.Models.Services
                 for (int j = 0; j < Panno.Grid.GetLength(1); j++)
                 {
 
-                    mozaicGrid[i, j] = GenerateForOne(Panno.Catalog, Panno.Grid[i, j]);
-                    Panno.Catalog.Mozaics.Where(n => n == mozaicGrid[i, j]).First().CountInPanno++;
+                   mozaicGrid[i, j] = //Panno.Catalog.Mozaics.First();
+                        GenerateForOne(Panno.Catalog, Panno.Grid[i, j]);
+                    //Panno.Catalog.Mozaics.Where(n => n.Name == mozaicGrid[i, j].Name).First().CountInPanno++;
+                    mozaicGrid[i, j].CountInPanno++;
                 }
 
 
