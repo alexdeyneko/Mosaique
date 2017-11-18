@@ -12,11 +12,15 @@ namespace wpfMozaiq.Models
 
         public Mozaic(string name, string subCatalog, string pathToSubCatalog)
         {
-            if (subCatalog == "")
+
+            if (subCatalog != "")
             {
-                Picture = new Bitmap(pathToSubCatalog + "\\" + name);
+
+                FullPath = pathToSubCatalog + "\\" + subCatalog + "\\" + name;
             }
-            else Picture = new Bitmap(pathToSubCatalog + "\\" + subCatalog + "\\" + name);
+            else FullPath = pathToSubCatalog + "\\" + name;
+
+            Picture = new Bitmap(FullPath);
             Name = name;
             SubCatalog = subCatalog;
             CountInPanno = 0;
@@ -30,6 +34,7 @@ namespace wpfMozaiq.Models
         public string SubCatalog { set; get; }
         public int RatingId { set; get; }
         public int CountInPanno { set; get; }
+        public string FullPath { get; }
         public Bitmap GetSmall()
         {
             Bitmap bmp = new Bitmap(Picture.Width / 5, Picture.Height / 5);
