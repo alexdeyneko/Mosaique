@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:wpfMozaiq.Veiw"
+    xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Источник изображения"
     Width="300"
@@ -13,6 +13,21 @@
     BorderThickness="1"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid />
+    <Window.DataContext>
+        <viewModel:SourceImageViewModel />
+    </Window.DataContext>
+
+
+    <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
+        <StackPanel
+                Width="auto"
+                Height="auto"
+                Margin="0,0,0,0"
+                DockPanel.Dock="Right">
+
+            <Image Source="{Binding SourceImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        </StackPanel>
+    </ScrollViewer>
+
 </controls:MetroWindow>
 
