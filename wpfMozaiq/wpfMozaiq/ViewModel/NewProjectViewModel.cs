@@ -209,7 +209,9 @@ namespace wpfMozaiq.ViewModel
 			_sizeArrInt10= new ObservableCollection<int>();
 			_sizeArrInt1000 = new ObservableCollection<int>();
 
-			for (int i = 1; i < 1001; i++)
+            _sizeArrInt10.Add(0);
+
+            for (int i = 1; i < 1001; i++)
 			{
 				if (i < 11)
 				{
@@ -237,8 +239,8 @@ namespace wpfMozaiq.ViewModel
 			MatrixColumns = SizeArrInt100[14];
 
 			DesiredMozaicGap = SizeArrDouble10[14];
-			ComputerMozaicGap = SizeArrInt10[1];
-			ComputerMatrixGap = SizeArrInt10[1];
+			ComputerMozaicGap = SizeArrInt10[0];
+			ComputerMatrixGap = SizeArrInt10[0];
 
 			
 
