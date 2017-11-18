@@ -43,10 +43,10 @@ namespace wpfMozaiq.ViewModel
 		    {
 			    panno = newPanno;
 			    catalog = panno.Catalog;
-
-				GenerateOutCatalogMozaic();
+                			
 			    GenerateMozaicPanno();
-		    });
+                GenerateOutCatalogMozaic();
+            });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
 		    {
@@ -228,11 +228,12 @@ namespace wpfMozaiq.ViewModel
 		private void GenerateOutCatalogMozaic ()
 	    {
 			MozaicsList = new ObservableCollection<Mozaic>();
-			ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
-			foreach (var VARIABLE in temp)
+			//ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
+			foreach (var VARIABLE in catalog.Mozaics)
 			{
 				MozaicsList.Add(VARIABLE);
 			}
+            int i = 0;
 	    }
 
 	    private void GenerateMozaicPanno()
