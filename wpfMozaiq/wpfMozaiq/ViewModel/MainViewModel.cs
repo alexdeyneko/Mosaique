@@ -153,7 +153,13 @@ namespace wpfMozaiq.ViewModel
 		{
 		    get => _showSourceImageView ?? (_showSourceImageView = new RelayCommand(() =>
 		    {
-				SourceImageView sourceImageView= new SourceImageView();
+                SourceImageView sourceImageView = new SourceImageView();
+
+                if (panno != null)
+                {
+                    MessengerInstance.Send<NotificationMessage<string>>(new NotificationMessage<string>(panno.Image.SourcePath, "SourceImageViewModel"));
+                }
+                
 				sourceImageView.Show();
 		    }));
 	    }

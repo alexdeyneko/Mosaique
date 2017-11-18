@@ -16,7 +16,7 @@ using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
-	class NewProjectViewModel : ViewModelBase
+	public class NewProjectViewModel : ViewModelBase
 	{
 		private Catalog catalog;
 		private OriginalImage originalImage;
@@ -225,7 +225,7 @@ namespace wpfMozaiq.ViewModel
 			}
 
 			_sizeArrDouble10=new ObservableCollection<double>();
-			for (double i = 0.1; i < 10.1; i = i + 0.1)
+			for (double i = 0.0; i < 10.1; i = i + 0.1)
 			{
 				_sizeArrDouble10.Add(Math.Round(i, 2));
 			}
@@ -238,7 +238,7 @@ namespace wpfMozaiq.ViewModel
 			MatrixLines = SizeArrInt100[14];
 			MatrixColumns = SizeArrInt100[14];
 
-			DesiredMozaicGap = SizeArrDouble10[14];
+			DesiredMozaicGap = SizeArrDouble10[15];
 			ComputerMozaicGap = SizeArrInt10[0];
 			ComputerMatrixGap = SizeArrInt10[0];
 
