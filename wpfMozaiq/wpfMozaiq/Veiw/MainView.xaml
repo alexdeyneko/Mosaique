@@ -92,17 +92,17 @@
 
         </ToolBarTray>
 
-
+        
         <materialDesign:DrawerHost
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2"
             DockPanel.Dock="Right">
-
+            
             <materialDesign:DrawerHost.RightDrawerContent>
-
-                <StackPanel Width="250" Margin="5">
+                <ScrollViewer VerticalScrollBarVisibility="auto">
+                    <StackPanel Width="250" Margin="5">
                     <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
                     <Button
                         Margin="4"
@@ -118,12 +118,15 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
-                                    <GridViewColumn DisplayMemberBinding="{Binding SubCatalog}" Header="Подкаталог" />
-                                </GridView.Columns>
+                                        <GridViewColumn  Header="Изображение" >
+                                            
+                                        </GridViewColumn>
+                                    </GridView.Columns>
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </StackPanel>
+                </ScrollViewer>
             </materialDesign:DrawerHost.RightDrawerContent>
 
             <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}" CommandParameter="{x:Static Dock.Right}">
@@ -138,13 +141,9 @@
                 Height="{Binding ImageHeight}"
                 Margin="0,0,0,0"
                 DockPanel.Dock="Right">
-
                 <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </ScrollViewer>
-
-
-
     </DockPanel>
 
 

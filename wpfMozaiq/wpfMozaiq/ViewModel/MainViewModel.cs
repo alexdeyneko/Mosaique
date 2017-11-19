@@ -24,17 +24,15 @@ namespace wpfMozaiq.ViewModel
 {
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
-		public Catalog catalog;
+        private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
+        private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
+
+        public Catalog catalog;
 	    public OriginalImage originalImage;
-	    public MozaicPanel panno;
-	    public ObservableCollection<Mozaic> MozaicsList { get; set; }
-
-	    private NewProjectView newProjectView;
-
-	    private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
-		private string TECH_DOC_PATH= Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
-
-
+	    public MozaicPanel panno;	 
+     
+        private NewProjectView newProjectView;
+        
 		public MainViewModel()
 		{
 			new TempFilesService().DeleteTempFilesInDirectory(TEMP_DIRECTORY);
@@ -45,7 +43,7 @@ namespace wpfMozaiq.ViewModel
 			    catalog = panno.Catalog;
                 			
 			    GenerateMozaicPanno();
-                GenerateOutCatalogMozaic();
+                MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);               
             });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
@@ -54,11 +52,25 @@ namespace wpfMozaiq.ViewModel
 			    {
 				    newProjectView.Close();
 			    }
-
 			});
 		}
 
-		private string _imagePath;
+
+        private ObservableCollection<Mozaic> _mozaicsList;
+        public ObservableCollection<Mozaic> MozaicsList
+        {
+            set
+            {
+                _mozaicsList = value;
+                RaisePropertyChanged(() => MozaicsList);
+            }
+            get
+            {
+                return _mozaicsList;
+            }
+        }
+        
+        private string _imagePath;
 	    public string ImagePath
 	    {
 		    set
@@ -114,7 +126,6 @@ namespace wpfMozaiq.ViewModel
 		    }
 	    }
 
-
 		private string _filenameImage;
 	    public string FilenameImage
 	    {
@@ -124,8 +135,7 @@ namespace wpfMozaiq.ViewModel
 			    RaisePropertyChanged(() => FilenameImage);
 		    }
 		    get { return _filenameImage; }
-	    }
-		
+	    }		
 		
         private ICommand _showNewProjectView;
         public ICommand ShowNewProjectView
@@ -223,17 +233,6 @@ namespace wpfMozaiq.ViewModel
 					}
 				}
 			}));
-	    }
-
-		private void GenerateOutCatalogMozaic ()
-	    {
-			MozaicsList = new ObservableCollection<Mozaic>();
-			//ObservableCollection<Mozaic> temp = new ObservableCollection<Mozaic>(catalog.Mozaics);
-			foreach (var VARIABLE in catalog.Mozaics)
-			{
-				MozaicsList.Add(VARIABLE);
-			}
-            int i = 0;
 	    }
 
 	    private void GenerateMozaicPanno()
