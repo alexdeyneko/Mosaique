@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using wpfMozaiq.Models;
 using System.IO;
+using System.Collections.Generic;
 
 namespace wpfMozaiqTests
 {
@@ -9,41 +10,42 @@ namespace wpfMozaiqTests
     public class CatalogTests
     {
 
-        Catalog DefaultCatalog =new
-        Catalog("Bisazza", 10,
-        Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
-        .Replace("Tests", ""));
-        
+        private string PathToCatalog =
+            Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
+                .Replace("Tests", "");
 
         [TestMethod]
         public void CreateCorrectCatalog()
         {
-            Catalog newCatalog = new Catalog("Bisazza",20, 
-                Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
-                .Replace("Tests",""));
+            Catalog catalog = new Catalog("Bisazza",20, PathToCatalog);
 
-            Assert.AreNotEqual(newCatalog.Mozaics.Count, 0);
+            Assert.AreNotEqual(catalog.Mozaics.Count, 0);
         }
 
         [TestMethod]
         public void CreateIncorrectCatalog()
         {
-            Catalog newCatalog = new Catalog("Incorrect", 20, 
-                Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
-                .Replace("Tests", ""));
-
-            Assert.AreEqual(newCatalog.Mozaics.Count, 0);
+            Catalog catalog = new Catalog("Incorrect", 20, PathToCatalog);
+            
+            Assert.AreEqual(catalog.Mozaics.Count, 0);
         }
 
 
         [TestMethod]
         public void DisableMozaic()
         {
-            
-            int size = DefaultCatalog.Mozaics.Count;
+            string name = "10.02(4)-1.bmp";
+            string subCatalog = "";
 
-            DefaultCatalog.DisableMozaic("10.02(4)-1.bmp", "LeGemme");
-            int newSize = DefaultCatalog.Mozaics.Count;
+            Catalog catalog = new Catalog("", 10, new List<Mozaic>());
+            Mozaic mozaic = new Mozaic();
+            mozaic.Name = name;
+            mozaic.SubCatalog = subCatalog;
+            catalog.Mozaics.Add(mozaic);
+
+            int size = catalog.Mozaics.Count;
+            catalog.DisableMozaic(name,subCatalog);
+            int newSize = catalog.Mozaics.Count;
 
             Assert.AreEqual(size-1, newSize);
         }
@@ -52,11 +54,10 @@ namespace wpfMozaiqTests
         [TestMethod]
         public void EnableMozaic()
         {
+            Catalog catalog = new Catalog("", 10, new List<Mozaic>());
+            Mozaic mozaic = new Mozaic();
+            catalog.EnableMozaic(mozaic.Name, mozaic.SubCatalog);
 
-            DefaultCatalog.Mozaics.Clear();
-            DefaultCatalog.EnableMozaic("10.02(4)-1.bmp", "LeGemme");
-            
-            Assert.AreEqual(DefaultCatalog.Mozaics[0].Name, "10.02(4)-1.bmp");
         }
 
 
