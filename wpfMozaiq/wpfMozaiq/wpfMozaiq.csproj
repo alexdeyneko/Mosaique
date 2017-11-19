@@ -99,6 +99,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Interfaces\ICalculateAvrRGB.cs" />
+    <Compile Include="Interfaces\IChangeCatalog.cs" />
     <Compile Include="Interfaces\ICreateImageGrid.cs" />
     <Compile Include="Interfaces\ISelectMozaic.cs" />
     <Compile Include="Interfaces\ITechDocWriter.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Models\OriginalImage.cs" />
     <Compile Include="Models\PixelsBlock.cs" />
     <Compile Include="Models\RGB.cs" />
+    <Compile Include="Models\Services\CatalogChangeService.cs" />
     <Compile Include="Models\Services\DrawService.cs" />
     <Compile Include="Models\Services\ImportService.cs" />
     <Compile Include="Models\Services\MatrixGridService.cs" />

@@ -15,16 +15,17 @@ namespace wpfMozaiq.Models
         public string CatalogPath;
 
 
-        public Catalog(string name, int size)
+        public Catalog(string name, int size, string pathToCatalog)
         {
 
             Name = name;
             MozaicRealSize = size;
-            CatalogPath =
-
+            CatalogPath = pathToCatalog +"\\Catalog\\" + Name + "_" + MozaicRealSize;
+/*
                Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()))
             +
                 "\\Catalog\\" + Name + "_" + MozaicRealSize;
+*/
             MozaicRealSize = size;
             Mozaics = new List<Mozaic>();
             this.ImportCatalog();
@@ -70,7 +71,9 @@ namespace wpfMozaiq.Models
                     this.EnableMozaic(Path.GetFileName(file), "");
                 }
             }
-            catch { }
+            catch {
+
+            }
         }
         public void DisableMozaic(string name, string subCatalog)
         {

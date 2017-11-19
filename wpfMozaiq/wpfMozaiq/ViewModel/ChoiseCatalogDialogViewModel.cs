@@ -58,7 +58,9 @@ namespace wpfMozaiq.ViewModel
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
 			{
 				string[] split = SelectedCatalog.Split(new Char[] { '_' });
-				Catalog catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1]));
+				Catalog catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1])
+                    ,
+                    Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
 				Messenger.Default.Send(catalog);
 				Messenger.Default.Send("CloseWindowChoiseCatalogDialogViewModel");
 			}));
