@@ -84,7 +84,7 @@ namespace wpfMozaiq.Models.Services
                 Regex.Match(header, @"Желаемая ширина панно, см:\s*(\S*)").Groups[1].Value);
             double desirelHeight = Convert.ToDouble(
                 Regex.Match(header, @"Желаемая высота панно, см:\s*(\S*)").Groups[1].Value);
-            int mozaicGap = Convert.ToInt32(
+            double mozaicGap = Convert.ToDouble(
                 Regex.Match(header, @"Зазор между ячейками реальный, мм:\s*(\S*)").Groups[1].Value);
             int computerMozaicGap =
                 Convert.ToInt32(
