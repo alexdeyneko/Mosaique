@@ -121,8 +121,6 @@ namespace wpfMozaiq.ViewModel
 			{
 				_matrixColumns = value;
 				RaisePropertyChanged(() => MatrixColumns);
-				int i = 0;
-
 			}
 			get { return _matrixColumns; }
 		}

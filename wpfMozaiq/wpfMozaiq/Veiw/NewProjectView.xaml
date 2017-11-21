@@ -343,8 +343,8 @@
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
             ItemsSource="{Binding SizeArrDouble10}"
-            SelectedIndex="{Binding DesiredMozaicGap}"
-            SelectedItem="{Binding DesiredMozaicGap}">
+            SelectedItem="{Binding DesiredMozaicGap}"
+            SelectedValue="{Binding DesiredMozaicGap}">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />
@@ -391,7 +391,7 @@
             BorderThickness="1"
             ItemsSource="{Binding SizeArrInt10}"
             SelectedIndex="{Binding ComputerMozaicGap}"
-            SelectedItem="{Binding ComputerMozaicGap}>
+            SelectedItem="{Binding ComputerMozaicGap}">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />
