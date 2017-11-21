@@ -29,7 +29,7 @@
                     ToolTip="Новый">
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Открыть">
+                <Button Command="{Binding ImportProject}" ToolBar.OverflowMode="AsNeeded" ToolTip="Открыть">
                     <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
                 <Button  Command="{Binding SaveProject}" ToolBar.OverflowMode="AsNeeded" ToolTip="Сохранить">

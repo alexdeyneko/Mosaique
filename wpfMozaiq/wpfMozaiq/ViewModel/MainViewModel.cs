@@ -28,7 +28,7 @@ namespace wpfMozaiq.ViewModel
         private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
         private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
 
-        public Catalog catalog;
+        //public Catalog catalog;
 	    public OriginalImage originalImage;
 	    public MozaicPanel panno;	 
      
@@ -41,11 +41,11 @@ namespace wpfMozaiq.ViewModel
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
 			    panno = newPanno;
-			    catalog = panno.Catalog;
+			 
                 			
 			    GenerateMozaicPanno();
                 MozaicsList = new ObservableCollection<Mozaic>();   
-                foreach(Mozaic var in catalog.Mozaics)
+                foreach(Mozaic var in panno.Catalog.Mozaics)
                 {
                     if (var.CountInPanno != 0)
                     {
@@ -170,15 +170,15 @@ namespace wpfMozaiq.ViewModel
 	    public ICommand ShowSourceImageView
 		{
 		    get => _showSourceImageView ?? (_showSourceImageView = new RelayCommand(() =>
-		    {
-                SourceImageView sourceImageView = new SourceImageView();
+		    {              
 
                 if (panno != null)
                 {
+                    SourceImageView sourceImageView = new SourceImageView();
                     MessengerInstance.Send<NotificationMessage<string>>(new NotificationMessage<string>(panno.Image.SourcePath, "SourceImageViewModel"));
-                }
-                
-				sourceImageView.Show();
+                    sourceImageView.Show();
+                }                
+				
 		    }));
 	    }
 
@@ -262,6 +262,22 @@ namespace wpfMozaiq.ViewModel
             }));
         }
 
+        private ICommand _importProject;
+        public ICommand ImportProject
+        {
+            get => _importProject ?? (_importProject = new RelayCommand(() =>
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Mozaic project(*.mzq)|*.mzq";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    panno = new ImportService(openFileDialog.FileName).ImportPanno();
+                    GenereateInputImage();                }
+                
+            }));
+        }
+
         private void GenerateMozaicPanno()
 	    {
 			new MatrixGridService(panno).CreateImageGrid();
@@ -272,24 +288,27 @@ namespace wpfMozaiq.ViewModel
 		    tdgs.ReplaceMosaicNameToID();
 
 			new MatrixSeparateService(panno).GenerateMatrixArray();
-			
-			ImageBitmap = new DrawService(panno).DrawPanno();
-		    string tempPath = TEMP_DIRECTORY + new Random().Next() + ".bmp";
-			ImageBitmap.Save(tempPath);
+            GenereateInputImage();
+        }
 
-		    ImageHeight = ImageBitmap.Height;
-		    ImageWidth = ImageBitmap.Width;
+        private void GenereateInputImage()
+        {
+            ImageBitmap = new DrawService(panno).DrawPanno();
+            string tempPath = TEMP_DIRECTORY + new Random().Next() + ".bmp";
+            ImageBitmap.Save(tempPath);
 
-		    while (true)
-		    {
-			    if (File.Exists(tempPath))
-			    {
-				    ImagePath = tempPath;
-					break;
-			    }
-		    }
+            ImageHeight = ImageBitmap.Height;
+            ImageWidth = ImageBitmap.Width;
 
-		}
+            while (true)
+            {
+                if (File.Exists(tempPath))
+                {
+                    ImagePath = tempPath;
+                    break;
+                }
+            }
+        }
 		
     }
 
