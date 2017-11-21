@@ -42,7 +42,7 @@ namespace wpfMozaiq.ViewModel
 
 		public TechDocViewModel()
 	    {
-		    TechDocPath= Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
+		    TechDocPath= Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
 		    TechDocText = File.ReadAllText(TechDocPath);
 	    }
 	}

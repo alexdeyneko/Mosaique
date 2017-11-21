@@ -19,13 +19,14 @@ using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 using wpfMozaiq.Models.Services;
 using wpfMozaiq.Veiw;
+using System.Windows.Forms;
 
 namespace wpfMozaiq.ViewModel
 {
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
-        private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
+        private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
 
         public Catalog catalog;
 	    public OriginalImage originalImage;
@@ -43,7 +44,14 @@ namespace wpfMozaiq.ViewModel
 			    catalog = panno.Catalog;
                 			
 			    GenerateMozaicPanno();
-                MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);               
+                MozaicsList = new ObservableCollection<Mozaic>();   
+                foreach(Mozaic var in catalog.Mozaics)
+                {
+                    if (var.CountInPanno != 0)
+                    {
+                        MozaicsList.Add(var);
+                    }
+                }
             });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
@@ -235,7 +243,26 @@ namespace wpfMozaiq.ViewModel
 			}));
 	    }
 
-	    private void GenerateMozaicPanno()
+        private ICommand _saveProject;
+        public ICommand SaveProject
+        {
+            get => _saveProject ?? (_saveProject = new RelayCommand(() =>
+            {
+                if (panno != null)
+                {
+                    SaveFileDialog saveFileDialog= new SaveFileDialog();
+                    saveFileDialog.Filter = "Mozaic project(*.mzq)|*.mzq";
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        new TxtTechDocWriter(panno, saveFileDialog.FileName).WriteDocumentation();
+                    }
+
+                }
+                
+            }));
+        }
+
+        private void GenerateMozaicPanno()
 	    {
 			new MatrixGridService(panno).CreateImageGrid();
 			new MozaicSelectService(panno).GenerateForGrid();
