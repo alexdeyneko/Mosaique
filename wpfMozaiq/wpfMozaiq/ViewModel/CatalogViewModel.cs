@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
 {
-    public class CatalogViewModel : ViewModelBase
+    public class CatalogViewModel : ViewModelBase, INotifyPropertyChanged
     {
 	    private ChoiseCatalogDialogView choiseCatalogDialogView;
 	    private Catalog catalog;
@@ -23,11 +24,7 @@ namespace wpfMozaiq.ViewModel
 		    Messenger.Default.Register<Catalog>(this, (newCatalog) =>
 		    {
 			    this.catalog = newCatalog;
-			    MozaicsList = new ObservableCollection<Mozaic>();
-			    foreach (Mozaic var in  catalog.Mozaics)
-			    {
-					MozaicsList.Add(var);
-			    }
+			    MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);
 			});
 
 			Messenger.Default.Register<string>(this, (newMessage) =>
@@ -62,7 +59,24 @@ namespace wpfMozaiq.ViewModel
 		    {
 			    return _mozaicsList;
 		    }
+		}
+
+	    private Mozaic _selectedMozaic;
+		public Mozaic SelectedMozaic
+	    {
+		    set
+		    {
+			    _selectedMozaic = value;
+			    RaisePropertyChanged(() => SelectedMozaic);
+			    int i = 0;
+		    }
+		    get
+		    {
+			    return _selectedMozaic;
+		    }
 	    }
+
+
 
 		private ICommand _choiseFileMosaicPack;
 	    public ICommand ChoiseFileMosaicPack

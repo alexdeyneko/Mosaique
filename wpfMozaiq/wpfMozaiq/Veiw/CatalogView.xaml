@@ -60,8 +60,11 @@
         <Grid>
             <ListView
                 x:Name="ListView1"
+                Width="auto"
                 Margin="5"
-                ItemsSource="{Binding MozaicsList}">
+                ItemsSource="{Binding MozaicsList}"
+                SelectedItem="{Binding SelectedMozaic, Mode=TwoWay}"
+                SelectionMode="Single">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False">
                         <GridViewColumn
