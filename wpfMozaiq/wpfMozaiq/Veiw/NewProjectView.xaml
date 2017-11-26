@@ -192,7 +192,6 @@
         <ComboBox
             Grid.Row="0"
             Grid.Column="1"
-            IsEditable="True"
             Width="55"
             Height="35"
             Margin="0,90,25,0"
@@ -200,6 +199,7 @@
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrInt10}"
             SelectedIndex="{Binding ComputerMatrixGap}"
             SelectedItem="{Binding ComputerMatrixGap}">
@@ -308,11 +308,11 @@
             Width="58"
             Height="35"
             Margin="80,100,0,0"
-            IsEditable="True"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrInt100}"
             SelectedItem="{Binding MatrixLines}"
             SelectedValue="{Binding MatrixLines}">
@@ -338,10 +338,10 @@
             Height="35"
             Margin="0,155,25,0"
             HorizontalAlignment="Right"
-            IsEditable="True"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrDouble10}"
             SelectedItem="{Binding DesiredMozaicGap}"
             SelectedValue="{Binding DesiredMozaicGap}">
@@ -381,7 +381,6 @@
         <ComboBox
             Grid.Row="1"
             Grid.Column="1"
-            IsEditable="True"
             Width="58"
             Height="35"
             Margin="0,0,25,0"
@@ -389,6 +388,7 @@
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrInt10}"
             SelectedIndex="{Binding ComputerMozaicGap}"
             SelectedItem="{Binding ComputerMozaicGap}">
@@ -448,7 +448,6 @@
         <ComboBox
             Grid.Row="1"
             Grid.Column="1"
-            IsEditable="True"
             Width="60"
             Height="35"
             Margin="0,160,80,0"
@@ -456,6 +455,7 @@
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
+            IsEditable="True"
             ItemsSource="{Binding SizeArrInt1000}"
             SelectedIndex="{Binding SelectedWidth}"
             SelectedItem="{Binding SelectedWidth}">

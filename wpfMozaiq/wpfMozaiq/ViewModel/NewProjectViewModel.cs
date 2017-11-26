@@ -190,10 +190,11 @@ namespace wpfMozaiq.ViewModel
 			 
 			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
 			{
-				
 				this.catalog = newCatalog;
 				FilenameMosaicPack = this.catalog.Name + "_" + this.catalog.MozaicRealSize;
 			});
+
+
 
 			Messenger.Default.Register<string>(this, (newMessage) =>
 			{

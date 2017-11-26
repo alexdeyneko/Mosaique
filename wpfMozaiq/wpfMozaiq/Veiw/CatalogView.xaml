@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:wpfMozaiq.Veiw"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Каталог"
     Width="500"
     Height="300"
@@ -14,6 +15,9 @@
     BorderThickness="1"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <viewModel:CatalogViewModel />
+    </Window.DataContext>
 
     <DockPanel>
 
@@ -21,6 +25,12 @@
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
                 <Button ToolTip="Новый">
                     <materialDesign:PackIcon Kind="ContentPaste" />
+                </Button>
+                <Button
+                    Command="{Binding ChoiseFileMosaicPack}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Открыть">
+                    <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
                 <Separator />
                 <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Добавить">
@@ -33,7 +43,10 @@
                     <materialDesign:PackIcon Kind="TableEdit" />
                 </Button>
                 <Separator />
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Сбросить каталог">
+                <Button
+                    Command="{Binding CanselCatalog}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Сбросить каталог">
                     <materialDesign:PackIcon Kind="BlockHelper" />
                 </Button>
                 <Separator />
@@ -43,6 +56,40 @@
 
             </ToolBar>
         </ToolBarTray>
+
+        <Grid>
+            <ListView
+                x:Name="ListView1"
+                Margin="5"
+                ItemsSource="{Binding MozaicsList}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False">
+                        <GridViewColumn
+                            Width="auto"
+                            DisplayMemberBinding="{Binding Name}"
+                            Header="Name" />
+                        <GridViewColumn
+                            Width="auto"
+                            DisplayMemberBinding="{Binding SubCatalog}"
+                            Header="SubCatalog" />
+                        <GridViewColumn Width="auto" Header="Image">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image
+                                            x:Name="Image_GridViewColumnName"
+                                            Width="100"
+                                            Height="50"
+                                            Source="{Binding FullPath}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
 
     </DockPanel>
 

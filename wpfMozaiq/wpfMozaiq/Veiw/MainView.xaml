@@ -29,10 +29,16 @@
                     ToolTip="Новый">
                     <materialDesign:PackIcon Kind="ContentPaste" />
                 </Button>
-                <Button Command="{Binding ImportProject}" ToolBar.OverflowMode="AsNeeded" ToolTip="Открыть">
+                <Button
+                    Command="{Binding ImportProject}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Открыть">
                     <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
-                <Button  Command="{Binding SaveProject}" ToolBar.OverflowMode="AsNeeded" ToolTip="Сохранить">
+                <Button
+                    Command="{Binding SaveProject}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Сохранить">
                     <materialDesign:PackIcon Kind="ContentSave" />
                 </Button>
 
@@ -92,46 +98,59 @@
 
         </ToolBarTray>
 
-        
+
         <materialDesign:DrawerHost
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
             BorderThickness="2"
             DockPanel.Dock="Right">
-            
-            <materialDesign:DrawerHost.RightDrawerContent>
-                <ScrollViewer VerticalScrollBarVisibility="auto" >
-                    <StackPanel Width="auto"   Margin="5">
-                    <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
-                    <Button
-                        Margin="4"
-                        HorizontalAlignment="Center"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Right}"
-                        Style="{DynamicResource MaterialDesignFlatButton}">
-                        Закрыть
-                    </Button>
 
-                    <Grid>
-                        <ListView x:Name="ListView1" Margin="5"  ItemsSource="{Binding MozaicsList}">
-                            <ListView.View>
-                                <GridView AllowsColumnReorder="False">
-                                        <GridViewColumn Header="Name" Width="auto" DisplayMemberBinding="{Binding Name}" />
-                                        <GridViewColumn Header="Image"  Width="auto">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Image x:Name="Image_GridViewColumnName" Width="100" Height="50" Source="{Binding FullPath}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                        <GridViewColumn Header="Count" Width="auto" DisplayMemberBinding="{Binding CountInPanno}" />
+            <materialDesign:DrawerHost.RightDrawerContent>
+                <ScrollViewer VerticalScrollBarVisibility="auto">
+                    <StackPanel Width="auto" Margin="5">
+                        <TextBlock Margin="4" HorizontalAlignment="Center">Используемые мозайки</TextBlock>
+                        <Button
+                            Margin="4"
+                            HorizontalAlignment="Center"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Right}"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                            Закрыть
+                        </Button>
+
+                        <Grid>
+                            <ListView
+                                x:Name="ListView1"
+                                Margin="5"
+                                ItemsSource="{Binding MozaicsList}">
+                                <ListView.View>
+                                    <GridView AllowsColumnReorder="False">
+                                        <GridViewColumn
+                                            Width="auto"
+                                            DisplayMemberBinding="{Binding Name}"
+                                            Header="Name" />
+                                        <GridViewColumn Width="auto" Header="Image">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image
+                                                            x:Name="Image_GridViewColumnName"
+                                                            Width="100"
+                                                            Height="50"
+                                                            Source="{Binding FullPath}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn
+                                            Width="auto"
+                                            DisplayMemberBinding="{Binding CountInPanno}"
+                                            Header="Count" />
                                     </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
                     </StackPanel>
                 </ScrollViewer>
             </materialDesign:DrawerHost.RightDrawerContent>

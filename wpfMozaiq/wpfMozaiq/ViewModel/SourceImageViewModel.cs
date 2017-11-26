@@ -19,6 +19,7 @@ namespace wpfMozaiq.ViewModel
                     SourceImagePath = newImagePath.Content;
                 }
             });
+
         }
 
         private string _sourceImagePath;
