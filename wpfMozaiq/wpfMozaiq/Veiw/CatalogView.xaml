@@ -10,7 +10,7 @@
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Каталог"
     Width="500"
-    Height="300"
+    Height="500"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
     WindowStartupLocation="CenterScreen"
@@ -39,7 +39,10 @@
                 <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить">
                     <materialDesign:PackIcon Kind="MinusCircle" />
                 </Button>
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Редактировать">
+                <Button
+                    Command="{Binding ShowEditMozaicView}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Редактировать">
                     <materialDesign:PackIcon Kind="TableEdit" />
                 </Button>
                 <Separator />

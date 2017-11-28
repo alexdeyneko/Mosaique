@@ -32,5 +32,7 @@ namespace wpfMozaiq.ViewModel
             }
             get { return _sourceImagePath; }
         }
-    }
+
+
+	}
 }

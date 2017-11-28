@@ -8,6 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Выбор каталога"
+    BorderBrush="{DynamicResource AccentColorBrush}"
+    BorderThickness="1"
     SizeToContent="WidthAndHeight"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
@@ -21,6 +23,7 @@
             <ListBox
                 Width="300"
                 Height="auto"
+                Margin="5,5,5,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 BorderBrush="{DynamicResource AccentColorBrush}"

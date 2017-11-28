@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
+using wpfMozaiq.Models.Services;
 using wpfMozaiq.Veiw;
 
 namespace wpfMozaiq.ViewModel
@@ -18,6 +19,7 @@ namespace wpfMozaiq.ViewModel
     {
 	    private ChoiseCatalogDialogView choiseCatalogDialogView;
 	    private Catalog catalog;
+	    private CatalogChangeService catalogChangeService;
 
 		public CatalogViewModel()
 	    {
@@ -35,17 +37,6 @@ namespace wpfMozaiq.ViewModel
 			    }
 		    });
 		}
-
-		private string _nameCatalog;
-	    public string NameCatalog
-	    {
-		    set
-		    {
-			    _nameCatalog = value;
-			    RaisePropertyChanged(() => NameCatalog);
-		    }
-		    get { return _nameCatalog; }
-	    }
 
 	    private ObservableCollection<Mozaic> _mozaicsList;
 	    public ObservableCollection<Mozaic> MozaicsList
@@ -68,7 +59,6 @@ namespace wpfMozaiq.ViewModel
 		    {
 			    _selectedMozaic = value;
 			    RaisePropertyChanged(() => SelectedMozaic);
-			    int i = 0;
 		    }
 		    get
 		    {
@@ -101,6 +91,30 @@ namespace wpfMozaiq.ViewModel
 			    catalog = null;
 			    MozaicsList = null;
 		    }));
+	    }
+
+		//MessengerInstance.Send<NotificationMessage<string>>(new NotificationMessage<string>(panno.Image.SourcePath, "SourceImageViewModel"));
+
+
+	    private ICommand _showEditMozaicView;
+	    public ICommand ShowEditMozaicView
+		{
+		    get => _showEditMozaicView ?? (_showEditMozaicView = new RelayCommand(() =>
+		    {
+			    EditMozaicView editMozaicView = new EditMozaicView();
+			    MessengerInstance.Send<NotificationMessage<Mozaic>>(new NotificationMessage<Mozaic>(SelectedMozaic, "EditMozaicViewModel"));
+				editMozaicView.Show();
+		    }));
+	    }
+
+
+	    private ICommand _deleteMozaic;
+	    public ICommand DeleteMozaic
+	    {
+		    get => _deleteMozaic ?? (_deleteMozaic = new RelayCommand(() =>
+		    {
+			
+			}));
 	    }
 
 	}
