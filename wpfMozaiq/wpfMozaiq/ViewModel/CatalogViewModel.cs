@@ -12,12 +12,13 @@ using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 using wpfMozaiq.Models.Services;
 using wpfMozaiq.Veiw;
+using System.IO;
 
 namespace wpfMozaiq.ViewModel
 {
     public class CatalogViewModel : ViewModelBase, INotifyPropertyChanged
     {
-	    private ChoiseCatalogDialogView choiseCatalogDialogView;
+	    private ChoiseCatalogAndSubcatalogView choiseCatalogDialogView;
 	    private Catalog catalog;
 	    private CatalogChangeService catalogChangeService;
 
@@ -31,11 +32,51 @@ namespace wpfMozaiq.ViewModel
 
 			Messenger.Default.Register<string>(this, (newMessage) =>
 		    {
-			    if (choiseCatalogDialogView != null && newMessage == "CloseWindowChoiseCatalogDialogViewModel")
+			    if (choiseCatalogDialogView != null && newMessage == "CloseWindowChoiseCatalogAndSubcatalogViewModel")
 			    {
 				    choiseCatalogDialogView.Close();
 			    }
 		    });
+
+			Messenger.Default.Register<string>(this, (newMessage) =>
+			{
+				string[] split = newMessage.Split(new Char[] { '-' });
+				if (split[0]== "ChoiseCatalogAndSubcatalogViewModel")
+				{
+					string[] split2 = split[1].Split(new Char[] { '\\' });
+					//проверка на подкаталоги
+					if (split2.Count() == 1)
+					{
+						catalogChangeService= new CatalogChangeService(split2[0], "");
+					}
+					else catalogChangeService = new CatalogChangeService(split2[0], split2[1]);
+				
+
+					string[] split3 = split2[0].Split(new Char[] { '_' });
+					Catalog catalog = new Catalog(split3[split3.Length - 2], Convert.ToInt32(split3[split3.Length - 1])
+						,
+						Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
+
+					//проверка на подкаталоги
+					if (split2.Count() == 1)
+					{
+						MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);
+					}
+					else
+					{
+						MozaicsList = new ObservableCollection<Mozaic>();
+						foreach (Mozaic var in catalog.Mozaics)
+						{
+							if (var.SubCatalog == split2[1])
+							{
+								MozaicsList.Add(var);
+							}
+						}
+
+					}				
+
+				}
+			});
 		}
 
 	    private ObservableCollection<Mozaic> _mozaicsList;
@@ -75,9 +116,8 @@ namespace wpfMozaiq.ViewModel
 		    {
 			    if (choiseCatalogDialogView == null)
 			    {
-				    choiseCatalogDialogView = new ChoiseCatalogDialogView();
+				    choiseCatalogDialogView = new ChoiseCatalogAndSubcatalogView();
 			    }
-			    choiseCatalogDialogView = new ChoiseCatalogDialogView();
 			    choiseCatalogDialogView.Show();
 
 		    }));
@@ -113,7 +153,20 @@ namespace wpfMozaiq.ViewModel
 	    {
 		    get => _deleteMozaic ?? (_deleteMozaic = new RelayCommand(() =>
 		    {
-			
+				if (catalogChangeService != null)
+				{
+					Mozaic deletedMozaic = SelectedMozaic;				
+					MozaicsList.Remove(deletedMozaic);
+					
+
+ 
+					FileInfo fileImage = new FileInfo(deletedMozaic.FullPath);					
+					fileImage.Refresh();
+					//fileImage.Delete();
+
+					catalogChangeService.DeleteMozaic(deletedMozaic.Name);
+					
+				}
 			}));
 	    }
 

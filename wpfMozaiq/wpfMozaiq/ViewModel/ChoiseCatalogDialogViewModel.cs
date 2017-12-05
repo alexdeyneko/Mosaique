@@ -47,9 +47,6 @@ namespace wpfMozaiq.ViewModel
 				string[] split = VARIABLE.Split(new Char[] { '\\'});
 				ArrCatalogs.Add(split[split.Length - 1]);
 			}
-
-
-
 		}
 
 		private ICommand _okCommand;

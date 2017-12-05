@@ -122,6 +122,9 @@
     <Compile Include="Veiw\CatalogView.xaml.cs">
       <DependentUpon>CatalogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Veiw\ChoiseCatalogAndSubcatalogView.xaml.cs">
+      <DependentUpon>ChoiseCatalogAndSubcatalogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Veiw\ChoiseCatalogDialogView.xaml.cs">
       <DependentUpon>ChoiseCatalogDialogView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,7 @@
       <DependentUpon>UserGuideView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\CatalogViewModel.cs" />
+    <Compile Include="ViewModel\ChoiseCatalogAndSubcatalogViewModel.cs" />
     <Compile Include="ViewModel\ChoiseCatalogDialogViewModel.cs" />
     <Compile Include="ViewModel\EditMozaicViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -149,6 +153,10 @@
     <Compile Include="ViewModel\TechDocViewModel.cs" />
     <Compile Include="ViewModel\UserGuideViewModel.cs" />
     <Page Include="Veiw\CatalogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Veiw\ChoiseCatalogAndSubcatalogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
