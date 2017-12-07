@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 
 namespace wpfMozaiq.ViewModel
 {
-	public class ChoiseCatalogAndSubcatalogViewModel
+	public class ChoiseCatalogAndSubcatalogViewModel : ViewModelBase, INotifyPropertyChanged
 	{
 
 		private ObservableCollection<string> _arrCatalogsAndSubcatalog;

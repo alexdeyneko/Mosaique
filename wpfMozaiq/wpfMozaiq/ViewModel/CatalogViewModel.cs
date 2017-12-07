@@ -21,6 +21,11 @@ namespace wpfMozaiq.ViewModel
 	    private ChoiseCatalogAndSubcatalogView choiseCatalogDialogView;
 	    private Catalog catalog;
 	    private CatalogChangeService catalogChangeService;
+	    private MozaicDialogView mozaicDialogView;
+
+	    private Mozaic deletedMozaic;
+	    private int indexDeletedMozaic;
+
 
 		public CatalogViewModel()
 	    {
@@ -77,6 +82,41 @@ namespace wpfMozaiq.ViewModel
 
 				}
 			});
+
+		    MessengerInstance.Register<NotificationMessage<string>>(this, (message) =>
+		    {
+			    if (message.Notification == "MozaicDialogViewModel")
+			    {
+				    if (message.Content == "DeleteMozaic" && catalogChangeService!=null)
+				    {
+					   // MozaicsList.Remove(deletedMozaic);
+						MozaicsList.RemoveAt(indexDeletedMozaic);
+						//catalogChangeService.DeleteMozaic(deletedMozaic.Name);
+					}
+
+				}
+		    });
+
+		    MessengerInstance.Register<NotificationMessage<string>>(this, (message) =>
+		    {
+			    if (message.Notification == "MozaicDialogViewModel")
+			    {
+				    if (message.Content == "NoDeleteMozaic" && catalogChangeService != null)
+				    {
+					    MozaicsList[indexDeletedMozaic] = deletedMozaic;
+				    }
+
+			    }
+		    });
+
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    if (mozaicDialogView != null && newMessage == "CloseMozaicDialogViewModel")
+			    {
+				    mozaicDialogView.Close();
+			    }
+		    });
+
 		}
 
 	    private ObservableCollection<Mozaic> _mozaicsList;
@@ -114,10 +154,10 @@ namespace wpfMozaiq.ViewModel
 	    {
 		    get => _choiseFileMosaicPack ?? (_choiseFileMosaicPack = new RelayCommand(() =>
 		    {
-			    if (choiseCatalogDialogView == null)
-			    {
-				    choiseCatalogDialogView = new ChoiseCatalogAndSubcatalogView();
-			    }
+
+				choiseCatalogDialogView = new ChoiseCatalogAndSubcatalogView();
+
+
 			    choiseCatalogDialogView.Show();
 
 		    }));
@@ -153,19 +193,19 @@ namespace wpfMozaiq.ViewModel
 	    {
 		    get => _deleteMozaic ?? (_deleteMozaic = new RelayCommand(() =>
 		    {
-				if (catalogChangeService != null)
+				if (catalogChangeService != null && SelectedMozaic!=null)
 				{
-					Mozaic deletedMozaic = SelectedMozaic;				
-					MozaicsList.Remove(deletedMozaic);
+					indexDeletedMozaic = MozaicsList.IndexOf(SelectedMozaic);
+					deletedMozaic = SelectedMozaic;
 					
+					//SelectedMozaic.FullPath = null;
+					//MozaicsList[indexDeletedMozaic] = SelectedMozaic;
+					int i = 0;
 
- 
-					FileInfo fileImage = new FileInfo(deletedMozaic.FullPath);					
-					fileImage.Refresh();
-					//fileImage.Delete();
+					MozaicsList[indexDeletedMozaic]=null;
 
-					catalogChangeService.DeleteMozaic(deletedMozaic.Name);
-					
+					mozaicDialogView = new MozaicDialogView();
+					mozaicDialogView.Show();
 				}
 			}));
 	    }
