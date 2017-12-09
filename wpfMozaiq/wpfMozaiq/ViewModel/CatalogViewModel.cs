@@ -116,9 +116,29 @@ namespace wpfMozaiq.ViewModel
 		    Messenger.Default.Register<string>(this, (newMessage) =>
 		    {
 			    string[] split = newMessage.Split(new Char[] { '-' });
+			    if (split[0] == "ChoiseDeleteCatalogAndSubcatalogViewModel")
+			    {
+				    string[] split2 = split[1].Split(new Char[] { '\\' });
+				    if (split2.Length == 2)
+				    {
+					    catalogChangeService = new CatalogChangeService(split2[0], split2[1]);
+				    }
+				    else
+				    {
+						catalogChangeService = new CatalogChangeService(split2[0], "");
+					}
+
+				    catalogChangeService.DeleteCatalog();
+
+			    }
+		    });
+
+			Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    string[] split = newMessage.Split(new Char[] { '-' });
 			    if (split[0] == "CreateCatalogViewModel")
 			    {
-				    catalogChangeService = new CatalogChangeService(split[1]+"_"+ split[2], "");
+				    catalogChangeService = new CatalogChangeService(split[1], "");
 				    catalogChangeService.AddCatalog();
 
 			    }
@@ -197,8 +217,6 @@ namespace wpfMozaiq.ViewModel
 		    {
 
 				choiseCatalogDialogView = new ChoiseCatalogAndSubcatalogView();
-
-
 			    choiseCatalogDialogView.Show();
 
 		    }));
@@ -285,6 +303,25 @@ namespace wpfMozaiq.ViewModel
 			    createCatalogView = new CreateCatalogView();
 			    createCatalogView.Show();
 		    }));
+	    }
+
+	    private ICommand _deleteCatalog;
+	    public ICommand DeleteCatalog
+	    {
+		    get => _deleteCatalog ?? (_deleteCatalog = new RelayCommand(() =>
+		    {
+			    if (catalogChangeService != null)
+			    {
+				    catalogChangeService = null;
+				    catalog = null;
+				    MozaicsList = null;
+
+			    }
+
+			    choiseCatalogDialogView = new ChoiseCatalogAndSubcatalogView();
+			    Messenger.Default.Send("ChoiseCatalogAndSubcatalogView" + "-" +"DeleteCatalog");
+				choiseCatalogDialogView.Show();
+			}));
 	    }
 
 

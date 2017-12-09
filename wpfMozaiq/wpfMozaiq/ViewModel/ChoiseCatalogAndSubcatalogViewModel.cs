@@ -11,11 +11,13 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
+using wpfMozaiq.Models.Services;
 
 namespace wpfMozaiq.ViewModel
 {
 	public class ChoiseCatalogAndSubcatalogViewModel : ViewModelBase, INotifyPropertyChanged
 	{
+		private bool isDeletedCatalog;
 
 		private ObservableCollection<string> _arrCatalogsAndSubcatalog;
 		public ObservableCollection<string> ArrCatalogsAndSubcatalog
@@ -40,6 +42,21 @@ namespace wpfMozaiq.ViewModel
 
 		public ChoiseCatalogAndSubcatalogViewModel()
 		{
+			isDeletedCatalog = false;
+
+
+			Messenger.Default.Register<string>(this, (newMessage) =>
+			{
+				string[] split = newMessage.Split(new Char[] { '-' });
+				if (split[0] == "ChoiseCatalogAndSubcatalogView")
+				{
+					if (split[1] == "DeleteCatalog")
+					{
+						isDeletedCatalog = true;
+					}
+				}
+			});
+
 			ArrCatalogsAndSubcatalog = new ObservableCollection<string>();
 			string CatalogPath = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Catalog\\";
 			List<string> dirs = Directory.GetDirectories(CatalogPath).ToList();
@@ -70,7 +87,16 @@ namespace wpfMozaiq.ViewModel
 		{
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
 			{
-				Messenger.Default.Send("ChoiseCatalogAndSubcatalogViewModel" + "-" + SelectedCatalog);
+				if (isDeletedCatalog)
+				{
+					Messenger.Default.Send("ChoiseDeleteCatalogAndSubcatalogViewModel" + "-" + SelectedCatalog);
+				}
+				else
+				{
+					Messenger.Default.Send("ChoiseCatalogAndSubcatalogViewModel" + "-" + SelectedCatalog);
+				}
+				
+
 				Messenger.Default.Send("CloseWindowChoiseCatalogAndSubcatalogViewModel");
 			}));
 
@@ -82,6 +108,7 @@ namespace wpfMozaiq.ViewModel
 			get => _cancelCommand ?? (_cancelCommand = new RelayCommand(() =>
 			{
 				Messenger.Default.Send("CloseWindowChoiseCatalogAndSubcatalogViewModel");
+
 			}));
 		}
 

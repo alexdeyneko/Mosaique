@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Каталог"
-    Width="500"
+    Width="550"
     Height="500"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
@@ -28,6 +28,10 @@
                 </Button>
                 <Button Command="{Binding CreateSubCatalog}" ToolTip="Новый Подкаталог">
                     <materialDesign:PackIcon Kind="ContentCopy" />
+                </Button>
+
+                <Button Command="{Binding DeleteCatalog}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить каталог">
+                    <materialDesign:PackIcon Kind="Delete" />
                 </Button>
                 <Button
                     Command="{Binding ChoiseFileMosaicPack}"
@@ -49,10 +53,7 @@
                     ToolTip="Сбросить каталог">
                     <materialDesign:PackIcon Kind="BlockHelper" />
                 </Button>
-                <Separator />
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить каталог">
-                    <materialDesign:PackIcon Kind="Delete" />
-                </Button>
+
 
             </ToolBar>
         </ToolBarTray>

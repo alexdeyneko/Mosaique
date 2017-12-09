@@ -53,7 +53,7 @@ namespace wpfMozaiq.Models.Services
         }
         public void DeleteCatalog()
         {
-            Directory.Delete(_pathToMozaic);
+            Directory.Delete(_pathToMozaic, true);
         }
     }
 }
