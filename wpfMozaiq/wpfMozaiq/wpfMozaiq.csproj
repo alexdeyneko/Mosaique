@@ -128,6 +128,12 @@
     <Compile Include="Veiw\ChoiseCatalogDialogView.xaml.cs">
       <DependentUpon>ChoiseCatalogDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Veiw\CreateCatalogOrSubcatalog.xaml.cs">
+      <DependentUpon>CreateCatalogOrSubcatalog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Veiw\CreateCatalogView.xaml.cs">
+      <DependentUpon>CreateCatalogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Veiw\MozaicDialogView.xaml.cs">
       <DependentUpon>MozaicDialogView.xaml</DependentUpon>
     </Compile>
@@ -149,6 +155,8 @@
     <Compile Include="ViewModel\CatalogViewModel.cs" />
     <Compile Include="ViewModel\ChoiseCatalogAndSubcatalogViewModel.cs" />
     <Compile Include="ViewModel\ChoiseCatalogDialogViewModel.cs" />
+    <Compile Include="ViewModel\CreateCatalogOrSubcatalogViewModel.cs" />
+    <Compile Include="ViewModel\CreateCatalogViewModel.cs" />
     <Compile Include="ViewModel\MozaicDialogViewModel.cs" />
     <Compile Include="ViewModel\EditMozaicViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -167,6 +175,14 @@
     <Page Include="Veiw\ChoiseCatalogDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Veiw\CreateCatalogOrSubcatalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Veiw\CreateCatalogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Veiw\MozaicDialogView.xaml">
       <SubType>Designer</SubType>

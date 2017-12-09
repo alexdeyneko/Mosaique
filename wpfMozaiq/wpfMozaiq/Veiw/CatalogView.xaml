@@ -23,8 +23,11 @@
 
         <ToolBarTray Width="auto" DockPanel.Dock="Top">
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
-                <Button ToolTip="Новый">
+                <Button Command="{Binding CreateCatalog}" ToolTip="Новый Каталог">
                     <materialDesign:PackIcon Kind="ContentPaste" />
+                </Button>
+                <Button Command="{Binding CreateSubCatalog}" ToolTip="Новый Подкаталог">
+                    <materialDesign:PackIcon Kind="ContentCopy" />
                 </Button>
                 <Button
                     Command="{Binding ChoiseFileMosaicPack}"
@@ -38,12 +41,6 @@
                 </Button>
                 <Button Command="{Binding DeleteMozaic}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить">
                     <materialDesign:PackIcon Kind="MinusCircle" />
-                </Button>
-                <Button
-                    Command="{Binding ShowEditMozaicView}"
-                    ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Редактировать">
-                    <materialDesign:PackIcon Kind="TableEdit" />
                 </Button>
                 <Separator />
                 <Button

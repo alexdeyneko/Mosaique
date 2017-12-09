@@ -22,8 +22,11 @@ namespace wpfMozaiq.ViewModel
 	    private Catalog catalog;
 	    private CatalogChangeService catalogChangeService;
 	    private MozaicDialogView mozaicDialogView;
+	    private CreateCatalogOrSubcatalog createCatalogOrSubcatalogView;
+	    private CreateCatalogView createCatalogView;
 
-	    private Mozaic deletedMozaic;
+
+		private Mozaic deletedMozaic;
 	    private int indexDeletedMozaic;
 
 
@@ -40,6 +43,22 @@ namespace wpfMozaiq.ViewModel
 			    if (choiseCatalogDialogView != null && newMessage == "CloseWindowChoiseCatalogAndSubcatalogViewModel")
 			    {
 				    choiseCatalogDialogView.Close();
+			    }
+		    });
+
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    if (createCatalogOrSubcatalogView != null && newMessage == "CloseWindowCreateCatalogOrSubcatalogViewModel")
+			    {
+				    createCatalogOrSubcatalogView.Close();
+			    }
+		    });
+
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    if (createCatalogView != null && newMessage == "CloseWindowCreateCatalogViewModel")
+			    {
+				    createCatalogView.Close();
 			    }
 		    });
 
@@ -83,7 +102,29 @@ namespace wpfMozaiq.ViewModel
 				}
 			});
 
-		    MessengerInstance.Register<NotificationMessage<string>>(this, (message) =>
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    string[] split = newMessage.Split(new Char[] { '-' });
+			    if (split[0] == "CreateCatalogOrSubcatalogViewModel")
+			    {
+				    catalogChangeService = new CatalogChangeService(split[1], split[2]);
+					catalogChangeService.AddCatalog();
+
+				}
+		    });
+
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    string[] split = newMessage.Split(new Char[] { '-' });
+			    if (split[0] == "CreateCatalogViewModel")
+			    {
+				    catalogChangeService = new CatalogChangeService(split[1]+"_"+ split[2], "");
+				    catalogChangeService.AddCatalog();
+
+			    }
+		    });
+
+			MessengerInstance.Register<NotificationMessage<string>>(this, (message) =>
 		    {
 			    if (message.Notification == "MozaicDialogViewModel")
 			    {
@@ -209,6 +250,43 @@ namespace wpfMozaiq.ViewModel
 				}
 			}));
 	    }
+
+	    private ICommand _createSubCatalog;
+	    public ICommand CreateSubCatalog
+		{
+		    get => _createSubCatalog ?? (_createSubCatalog = new RelayCommand(() =>
+		    {
+			    if (catalogChangeService != null)
+			    {
+				    catalogChangeService = null;
+				    catalog = null;
+				    MozaicsList = null;
+
+				}
+
+			    createCatalogOrSubcatalogView = new CreateCatalogOrSubcatalog();
+			    createCatalogOrSubcatalogView.Show();
+			}));
+	    }
+
+	    private ICommand _createCatalog;
+	    public ICommand CreateCatalog
+	    {
+		    get => _createCatalog ?? (_createCatalog = new RelayCommand(() =>
+		    {
+			    if (catalogChangeService != null)
+			    {
+				    catalogChangeService = null;
+				    catalog = null;
+				    MozaicsList = null;
+
+			    }
+
+			    createCatalogView = new CreateCatalogView();
+			    createCatalogView.Show();
+		    }));
+	    }
+
 
 	}
 }
