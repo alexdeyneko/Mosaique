@@ -40,11 +40,14 @@
                     <materialDesign:PackIcon Kind="OpenInApp" />
                 </Button>
                 <Separator />
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Добавить">
+                <Button   Command="{Binding AddMozaic}" ToolBar.OverflowMode="AsNeeded" ToolTip="Добавить">
                     <materialDesign:PackIcon Kind="PlusCircle" />
                 </Button>
                 <Button Command="{Binding DeleteMozaic}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить">
                     <materialDesign:PackIcon Kind="MinusCircle" />
+                </Button>
+                <Button Command="{Binding RefreshMozaicList}" ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
+                    <materialDesign:PackIcon Kind="Refresh" />
                 </Button>
                 <Separator />
                 <Button

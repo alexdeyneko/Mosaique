@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +25,24 @@ namespace wpfMozaiq.ViewModel
 	    private MozaicDialogView mozaicDialogView;
 	    private CreateCatalogOrSubcatalog createCatalogOrSubcatalogView;
 	    private CreateCatalogView createCatalogView;
+	    private EditMozaicView addMozaicView;
 
+	    private string currentCatalog;
+	    private string currentSubcatalog;
+	    private int currentSize;
+	    private string currentDirectory;
 
 		private Mozaic deletedMozaic;
 	    private int indexDeletedMozaic;
 
 
 		public CatalogViewModel()
-	    {
-		    Messenger.Default.Register<Catalog>(this, (newCatalog) =>
+		{
+			currentCatalog = "";
+			currentSubcatalog = "";
+			currentDirectory = "";
+
+			Messenger.Default.Register<Catalog>(this, (newCatalog) =>
 		    {
 			    this.catalog = newCatalog;
 			    MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);
@@ -62,6 +72,14 @@ namespace wpfMozaiq.ViewModel
 			    }
 		    });
 
+		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    if (addMozaicView != null && newMessage == "CloseWindowEditMozaicViewModel")
+			    {
+				    addMozaicView.Close();
+			    }
+		    });
+
 			Messenger.Default.Register<string>(this, (newMessage) =>
 			{
 				string[] split = newMessage.Split(new Char[] { '-' });
@@ -77,9 +95,14 @@ namespace wpfMozaiq.ViewModel
 				
 
 					string[] split3 = split2[0].Split(new Char[] { '_' });
-					Catalog catalog = new Catalog(split3[split3.Length - 2], Convert.ToInt32(split3[split3.Length - 1])
+					catalog = new Catalog(split3[split3.Length - 2], Convert.ToInt32(split3[split3.Length - 1])
 						,
 						Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
+
+					currentSubcatalog = split2[1];
+					currentCatalog = split3[split3.Length - 2];
+					currentSize = Convert.ToInt32(split3[split3.Length - 1]);
+					currentDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory()));
 
 					//проверка на подкаталоги
 					if (split2.Count() == 1)
@@ -114,6 +137,18 @@ namespace wpfMozaiq.ViewModel
 		    });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
+		    {
+			    string[] split = newMessage.Split(new Char[] { '&' });
+			    if (split[0] == "EditMozaicViewModelAddMozaic")
+			    {
+				    if (catalogChangeService != null)
+				    {
+						catalogChangeService.AddMozaic(new Bitmap(split[1]), split[2]+".bmp");
+					}
+			    }
+		    });
+
+			Messenger.Default.Register<string>(this, (newMessage) =>
 		    {
 			    string[] split = newMessage.Split(new Char[] { '-' });
 			    if (split[0] == "ChoiseDeleteCatalogAndSubcatalogViewModel")
@@ -322,6 +357,49 @@ namespace wpfMozaiq.ViewModel
 			    Messenger.Default.Send("ChoiseCatalogAndSubcatalogView" + "-" +"DeleteCatalog");
 				choiseCatalogDialogView.Show();
 			}));
+	    }
+
+	    private ICommand _addMozaic;
+	    public ICommand AddMozaic
+	    {
+		    get => _addMozaic ?? (_addMozaic = new RelayCommand(() =>
+		    {
+			    if (catalogChangeService != null )
+			    {
+				    addMozaicView = new EditMozaicView();
+				    addMozaicView.Show();
+			    }
+		    }));
+	    }
+
+	    private ICommand _refreshMozaicList;
+	    public ICommand RefreshMozaicList
+		{
+		    get => _refreshMozaicList ?? (_refreshMozaicList = new RelayCommand(() =>
+		    {
+			    if (catalogChangeService != null)
+			    {
+					catalog = new Catalog(currentCatalog, currentSize, currentDirectory);
+					MozaicsList = null;
+				    //проверка на подкаталоги
+				    if (currentSubcatalog =="")
+				    {
+					    MozaicsList = new ObservableCollection<Mozaic>(catalog.Mozaics);
+				    }
+				    else
+				    {
+					    MozaicsList = new ObservableCollection<Mozaic>();
+					    foreach (Mozaic var in catalog.Mozaics)
+					    {
+						    if (var.SubCatalog == currentSubcatalog)
+						    {
+							    MozaicsList.Add(var);
+						    }
+					    }
+
+				    }
+				}
+		    }));
 	    }
 
 

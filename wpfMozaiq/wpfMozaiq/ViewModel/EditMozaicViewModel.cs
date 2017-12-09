@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 
@@ -14,72 +16,20 @@ namespace wpfMozaiq.ViewModel
 	{
 		public EditMozaicViewModel()
 		{
-			MessengerInstance.Register<NotificationMessage<Mozaic>>(this, (newSelectedMozaic) =>
-			{
-				if (newSelectedMozaic.Notification == "EditMozaicViewModel")
-				{
-					EditedMozaic = newSelectedMozaic.Content;
-					ImagePathMozaic = EditedMozaic.FullPath;
-					EditImagePath = EditedMozaic.FullPath;
-					EditSubcatalog = EditedMozaic.SubCatalog;
-					EditNameMozaic = EditedMozaic.Name;
-					int i = 0;
-				}
-			});
-
+			
 		}
 
-		private Mozaic _editedMozaic;
-		public Mozaic EditedMozaic
+
+		private string _filenameImage;
+		public string FilenameImage
 		{
 			set
 			{
-				_editedMozaic = value;
-				RaisePropertyChanged(() => EditedMozaic);
+				_filenameImage = value;
+				RaisePropertyChanged(() => FilenameImage);
 			}
-			get
-			{
-				return _editedMozaic;
-			}
+			get { return _filenameImage; }
 		}
-
-		private string _imagePathMozaic;
-		public string ImagePathMozaic
-		{
-			set
-			{
-				_imagePathMozaic = value;
-				RaisePropertyChanged(() => ImagePathMozaic);
-			}
-			get
-			{
-				return _imagePathMozaic;
-			}
-		}
-
-		private string _editImagePath;
-		public string EditImagePath
-		{
-			set
-			{
-				_editImagePath = value;
-				RaisePropertyChanged(() => EditImagePath);
-			}
-			get { return _editImagePath; }
-		}
-
-
-		private string _editSubcatalog;
-		public string EditSubcatalog
-		{
-			set
-			{
-				_editSubcatalog = value;
-				RaisePropertyChanged(() => EditSubcatalog);
-			}
-			get { return _editSubcatalog; }
-		}
-
 
 		private string _editNameMozaic;
 		public string EditNameMozaic
@@ -90,6 +40,50 @@ namespace wpfMozaiq.ViewModel
 				RaisePropertyChanged(() => EditNameMozaic);
 			}
 			get { return _editNameMozaic; }
+		}
+
+		private ICommand _okCommand;
+		public ICommand OkCommand
+		{
+			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
+			{
+				Messenger.Default.Send("EditMozaicViewModelAddMozaic" + "&" + FilenameImage + "&" + EditNameMozaic);
+				Messenger.Default.Send("CloseWindowEditMozaicViewModel");
+			}));
+
+		}
+
+		private ICommand _cancelCommand;
+		public ICommand CancelCommand
+		{
+			get => _cancelCommand ?? (_cancelCommand = new RelayCommand(() =>
+			{
+				Messenger.Default.Send("CloseWindowEditMozaicViewModel");
+
+			}));
+		}
+
+		private ICommand _choiseFileImage;
+		public ICommand ChoiseFileImage
+		{
+			get => _choiseFileImage ?? (_choiseFileImage = new RelayCommand(() =>
+			{
+				Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+				dlg.FileName = "Image"; // Default file name
+				dlg.DefaultExt = ".bmp"; // Default file extension
+				dlg.Filter = "Файлы рисунков (*.bmp)|*.bmp;"; // Filter files by extension
+
+				// Show open file dialog box
+				Nullable<bool> result = dlg.ShowDialog();
+
+				// Process open file dialog box results
+				if (result == true)
+				{
+					// Open document
+					FilenameImage = dlg.FileName;
+				}
+
+			}));
 		}
 
 	}
