@@ -340,17 +340,17 @@ namespace wpfMozaiq.ViewModel
 
         private void GenerateMozaicPanno()
 	    {
-			try { new MatrixGridService(panno).CreateImageGrid(); } catch( Exception e) { VisibilityProgressBar = "Hidden"; }
-		    try { new MozaicSelectService(panno).GenerateForGrid(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
+			try { new MatrixGridService(panno).CreateImageGrid(); } catch( Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
+		    try { new MozaicSelectService(panno).GenerateForGrid(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
 		    try
 		    {
 			    TechDocGenerateService tdgs = new TechDocGenerateService(panno);
 				tdgs.GenerateMostUsedMozaics();
 			    tdgs.ReplaceMosaicNameToID();
-			} catch (Exception e) { VisibilityProgressBar = "Hidden"; }
+			} catch (Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
 
-			try { new MatrixSeparateService(panno).GenerateMatrixArray(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
-		    try { GenereateInputImage(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
+			try { new MatrixSeparateService(panno).GenerateMatrixArray(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
+		    try { GenereateInputImage(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
 
 		}
 
@@ -382,6 +382,7 @@ namespace wpfMozaiq.ViewModel
 		        }
 	        }
 	        MozaicsListForRemoving = new ObservableCollection<Mozaic>();
+			
 		}
 
  
