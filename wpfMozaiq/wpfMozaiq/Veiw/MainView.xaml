@@ -162,7 +162,14 @@
 
         </materialDesign:DrawerHost>
 
-        <ScrollViewer  Visibility="{Binding VisibilityImage}" HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
+      
+        <ScrollViewer  
+            Margin="0,00,0,0"
+            DockPanel.Dock="top"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            HorizontalScrollBarVisibility="auto" 
+            VerticalScrollBarVisibility="auto">
             <StackPanel
                 Width="{Binding ImageWidth}"
                 Height="{Binding ImageHeight}"
@@ -174,12 +181,16 @@
         </ScrollViewer>
 
         <ProgressBar
-            Margin="12,185,12,221"
-            
+            DockPanel.Dock="right"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Visibility="{Binding VisibilityProgressBar}"
-            Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Height="55" Width="71"/>
+            Style="{StaticResource MaterialDesignCircularProgressBar}" 
+            IsIndeterminate="True" 
+            Height="70" 
+            Width="70"
+           />
+
 
 
     </DockPanel>

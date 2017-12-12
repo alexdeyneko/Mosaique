@@ -44,24 +44,13 @@ namespace wpfMozaiq.ViewModel
 
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
-			    VisibilityImage = "Hidden";
+			    ImageHeight = 0;
+			    ImageWidth = 0;
 				VisibilityProgressBar = "Visible";
 				panno = newPanno;
-				
  
 				Thread myThread = new Thread(GenerateMozaicPanno); //
 			    myThread.Start();
-
-				MozaicsList = new ObservableCollection<Mozaic>();   
-                foreach(Mozaic var in panno.Catalog.Mozaics)
-                {
-                    if (var.CountInPanno != 0)
-                    {
-                        MozaicsList.Add(var);
-                    }
-                }
-				MozaicsListForRemoving = new ObservableCollection<Mozaic>();
-
             });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
@@ -145,20 +134,6 @@ namespace wpfMozaiq.ViewModel
 		    get
 		    {
 			    return _visibilityProgressBar;
-		    }
-	    }
-
-	    private string _visibilityImage;
-	    public string VisibilityImage
-	    {
-		    set
-		    {
-			    _visibilityImage = value;
-			    RaisePropertyChanged(() => VisibilityImage);
-		    }
-		    get
-		    {
-			    return _visibilityImage;
 		    }
 	    }
 
@@ -350,15 +325,17 @@ namespace wpfMozaiq.ViewModel
 
         private void GenerateMozaicPanno()
 	    {
- 
-			new MatrixGridService(panno).CreateImageGrid();
-			new MozaicSelectService(panno).GenerateForGrid();
-			TechDocGenerateService tdgs = new TechDocGenerateService(panno);
-			tdgs.GenerateMostUsedMozaics();
-			tdgs.ReplaceMosaicNameToID();
-			new MatrixSeparateService(panno).GenerateMatrixArray();
-			GenereateInputImage();
+			try { new MatrixGridService(panno).CreateImageGrid(); } catch( Exception e) { VisibilityProgressBar = "Hidden"; }
+		    try { new MozaicSelectService(panno).GenerateForGrid(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
+		    try
+		    {
+			    TechDocGenerateService tdgs = new TechDocGenerateService(panno);
+				tdgs.GenerateMostUsedMozaics();
+			    tdgs.ReplaceMosaicNameToID();
+			} catch (Exception e) { VisibilityProgressBar = "Hidden"; }
 
+			try { new MatrixSeparateService(panno).GenerateMatrixArray(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
+		    try { GenereateInputImage(); } catch (Exception e) { VisibilityProgressBar = "Hidden"; }
 
 		}
 
@@ -376,12 +353,20 @@ namespace wpfMozaiq.ViewModel
                 if (File.Exists(tempPath))
                 {
 	                VisibilityProgressBar = "Hidden";
-	                VisibilityImage = "Visible";
 					ImagePath = tempPath;
                     break;
                 }
             }
-        }
+	        MozaicsList = new ObservableCollection<Mozaic>();
+	        foreach (Mozaic var in panno.Catalog.Mozaics)
+	        {
+		        if (var.CountInPanno != 0)
+		        {
+			        MozaicsList.Add(var);
+		        }
+	        }
+	        MozaicsListForRemoving = new ObservableCollection<Mozaic>();
+		}
 
  
 		
