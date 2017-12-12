@@ -27,24 +27,32 @@ namespace wpfMozaiq.ViewModel
     {
         private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
         private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
+	    private string PATH_DEFAULT_IMAGE = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+	                                        "\\Catalog\\" + "default.bmp";
 
-        //public Catalog catalog;
-	    public OriginalImage originalImage;
+		//public Catalog catalog;
+		public OriginalImage originalImage;
 	    public MozaicPanel panno;	 
      
         private NewProjectView newProjectView;
-        
+
 		public MainViewModel()
 		{
+			VisibilityProgressBar = "Hidden";
+
 			new TempFilesService().DeleteTempFilesInDirectory(TEMP_DIRECTORY);
 
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
-			    panno = newPanno;
-			 
-                			
-			    GenerateMozaicPanno();
-                MozaicsList = new ObservableCollection<Mozaic>();   
+			    VisibilityImage = "Hidden";
+				VisibilityProgressBar = "Visible";
+				panno = newPanno;
+				
+ 
+				Thread myThread = new Thread(GenerateMozaicPanno); //
+			    myThread.Start();
+
+				MozaicsList = new ObservableCollection<Mozaic>();   
                 foreach(Mozaic var in panno.Catalog.Mozaics)
                 {
                     if (var.CountInPanno != 0)
@@ -52,6 +60,8 @@ namespace wpfMozaiq.ViewModel
                         MozaicsList.Add(var);
                     }
                 }
+				MozaicsListForRemoving = new ObservableCollection<Mozaic>();
+
             });
 
 		    Messenger.Default.Register<string>(this, (newMessage) =>
@@ -64,7 +74,7 @@ namespace wpfMozaiq.ViewModel
 		}
 
 
-        private ObservableCollection<Mozaic> _mozaicsList;
+		private ObservableCollection<Mozaic> _mozaicsList;
         public ObservableCollection<Mozaic> MozaicsList
         {
             set
@@ -77,8 +87,40 @@ namespace wpfMozaiq.ViewModel
                 return _mozaicsList;
             }
         }
-        
-        private string _imagePath;
+
+	    private ObservableCollection<Mozaic> _mozaicsListForRemoving;
+	    public ObservableCollection<Mozaic> MozaicsListForRemoving
+		{
+		    set
+		    {
+			    _mozaicsListForRemoving = value;
+			    RaisePropertyChanged(() => MozaicsListForRemoving);
+		    }
+		    get
+		    {
+			    return _mozaicsListForRemoving;
+		    }
+	    }
+
+		private Mozaic _selectedMozaic;
+	    public Mozaic SelectedMozaic
+	    {
+		    set
+		    {
+			    _selectedMozaic = value;
+			    SelectedMozaic.FullPath = PATH_DEFAULT_IMAGE;
+			    RaisePropertyChanged(() => SelectedMozaic);
+
+
+			   int i = 0;
+		    }
+		    get
+		    {
+			    return _selectedMozaic;
+		    }
+	    }
+		
+		private string _imagePath;
 	    public string ImagePath
 	    {
 		    set
@@ -91,7 +133,35 @@ namespace wpfMozaiq.ViewModel
 			    return _imagePath;
 		    }
 		}
-		
+
+	    private string _visibilityProgressBar;
+	    public string VisibilityProgressBar
+		{
+		    set
+		    {
+			    _visibilityProgressBar = value;
+			    RaisePropertyChanged(() => VisibilityProgressBar);
+		    }
+		    get
+		    {
+			    return _visibilityProgressBar;
+		    }
+	    }
+
+	    private string _visibilityImage;
+	    public string VisibilityImage
+	    {
+		    set
+		    {
+			    _visibilityImage = value;
+			    RaisePropertyChanged(() => VisibilityImage);
+		    }
+		    get
+		    {
+			    return _visibilityImage;
+		    }
+	    }
+
 		private Bitmap _imageBitmap;
 	    public Bitmap ImageBitmap
 	    {
@@ -280,16 +350,17 @@ namespace wpfMozaiq.ViewModel
 
         private void GenerateMozaicPanno()
 	    {
+ 
 			new MatrixGridService(panno).CreateImageGrid();
 			new MozaicSelectService(panno).GenerateForGrid();
-
-		    TechDocGenerateService tdgs = new TechDocGenerateService(panno);
-		    tdgs.GenerateMostUsedMozaics();
-		    tdgs.ReplaceMosaicNameToID();
-
+			TechDocGenerateService tdgs = new TechDocGenerateService(panno);
+			tdgs.GenerateMostUsedMozaics();
+			tdgs.ReplaceMosaicNameToID();
 			new MatrixSeparateService(panno).GenerateMatrixArray();
-            GenereateInputImage();
-        }
+			GenereateInputImage();
+
+
+		}
 
         private void GenereateInputImage()
         {
@@ -304,11 +375,15 @@ namespace wpfMozaiq.ViewModel
             {
                 if (File.Exists(tempPath))
                 {
-                    ImagePath = tempPath;
+	                VisibilityProgressBar = "Hidden";
+	                VisibilityImage = "Visible";
+					ImagePath = tempPath;
                     break;
                 }
             }
         }
+
+ 
 		
     }
 

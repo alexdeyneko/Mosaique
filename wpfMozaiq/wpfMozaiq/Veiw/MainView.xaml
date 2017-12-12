@@ -123,7 +123,8 @@
                             <ListView
                                 x:Name="ListView1"
                                 Margin="5"
-                                ItemsSource="{Binding MozaicsList}">
+                                ItemsSource="{Binding MozaicsList}"
+                                SelectedItem="{Binding SelectedMozaic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ListView.View>
                                     <GridView AllowsColumnReorder="False">
                                         <GridViewColumn
@@ -138,7 +139,7 @@
                                                             x:Name="Image_GridViewColumnName"
                                                             Width="100"
                                                             Height="50"
-                                                            Source="{Binding FullPath}" />
+                                                            Source="{Binding FullPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -161,15 +162,26 @@
 
         </materialDesign:DrawerHost>
 
-        <ScrollViewer HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
+        <ScrollViewer  Visibility="{Binding VisibilityImage}" HorizontalScrollBarVisibility="auto" VerticalScrollBarVisibility="auto">
             <StackPanel
                 Width="{Binding ImageWidth}"
                 Height="{Binding ImageHeight}"
                 Margin="0,0,0,0"
+                HorizontalAlignment="Center"
                 DockPanel.Dock="Right">
                 <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
             </StackPanel>
         </ScrollViewer>
+
+        <ProgressBar
+            Margin="12,185,12,221"
+            
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Visibility="{Binding VisibilityProgressBar}"
+            Style="{StaticResource MaterialDesignCircularProgressBar}" IsIndeterminate="True" Height="55" Width="71"/>
+
+
     </DockPanel>
 
 

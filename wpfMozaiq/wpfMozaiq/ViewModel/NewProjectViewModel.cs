@@ -286,8 +286,9 @@ namespace wpfMozaiq.ViewModel
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
 			{
 				panno= new MozaicPanel(originalImage, catalog, SelectedWidth, MatrixLines, MatrixColumns, DesiredMozaicGap, ComputerMozaicGap, ComputerMatrixGap);
-				Messenger.Default.Send(panno);
 				Messenger.Default.Send("CloseWindowNewProjectViewModel");
+				Messenger.Default.Send(panno);
+			
 			}));
 		}
 
