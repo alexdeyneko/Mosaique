@@ -58,8 +58,8 @@ namespace wpfMozaiq.ViewModel
 				Catalog catalog = new Catalog(split[split.Length - 2], Convert.ToInt32(split[split.Length - 1])
                     ,
                     Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())));
-				Messenger.Default.Send(catalog);
 				Messenger.Default.Send("CloseWindowChoiseCatalogDialogViewModel");
+				Messenger.Default.Send(catalog);
 			}));
 
 		}

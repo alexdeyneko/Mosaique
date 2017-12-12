@@ -8,8 +8,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
     Title="Мозаика"
-    Width="750"
-    Height="550"
+    Width="700"
+    Height="600"
     BorderBrush="{DynamicResource AccentColorBrush}"
     BorderThickness="1"
     WindowStartupLocation="CenterScreen"
@@ -22,66 +22,66 @@
 
         <ToolBarTray Width="auto" DockPanel.Dock="Top">
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
-
                 <Button
                     Command="{Binding ShowNewProjectView}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Новый">
-                    <materialDesign:PackIcon Kind="ContentPaste" />
+                    ToolTip="Новый"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="ContentPaste" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Новый</TextBlock>
+                    </StackPanel>
                 </Button>
                 <Button
                     Command="{Binding ImportProject}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Открыть">
-                    <materialDesign:PackIcon Kind="OpenInApp" />
+                    ToolTip="Открыть"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="OpenInApp" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Открыть</TextBlock>
+                    </StackPanel>
                 </Button>
                 <Button
                     Command="{Binding SaveProject}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Сохранить">
-                    <materialDesign:PackIcon Kind="ContentSave" />
+                    ToolTip="Сохранить"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="ContentSave" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Сохранить</TextBlock>
+                    </StackPanel>
                 </Button>
+                
 
                 <Separator />
 
-                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
-                    <materialDesign:PackIcon Kind="Refresh" />
-                </Button>
-
-                <Separator />
-                <Button
-                    Command="{Binding PressPlus}"
-                    ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Увеличить масштаб">
-                    <materialDesign:PackIcon Kind="Plus" />
-                </Button>
-
-                <Button
-                    Command="{Binding PressMinus}"
-                    ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Уменьшить масштаб">
-                    <materialDesign:PackIcon Kind="Minus" />
-                </Button>
-                <Separator />
                 <Button
                     Command="{Binding ShowCatalogView}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Каталог">
-                    <materialDesign:PackIcon Kind="Palette" />
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Palette" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Каталог</TextBlock>
+                    </StackPanel>
                 </Button>
 
                 <Button
                     Command="{Binding ShowTechDocView}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Техническое задание">
-                    <materialDesign:PackIcon Kind="Grid" />
+                    ToolTip="Техническое задание"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Grid" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Тех.</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">задание</TextBlock>
+                    </StackPanel>
                 </Button>
 
                 <Button
                     Command="{Binding ShowSourceImageView}"
                     ToolBar.OverflowMode="AsNeeded"
-                    ToolTip="Источник">
-                    <materialDesign:PackIcon Kind="Image" />
+                    ToolTip="Источник"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Image" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Источник</TextBlock>
+                    </StackPanel>
                 </Button>
 
                 <Separator />
@@ -90,12 +90,46 @@
                     Command="{Binding ShowUserGuideView}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Справка">
-                    <materialDesign:PackIcon Kind="Help" />
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Help" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Помощь</TextBlock>
+                    </StackPanel>
                 </Button>
 
             </ToolBar>
+        </ToolBarTray>
 
-
+        <ToolBarTray 
+            Visibility="{Binding VisibilityToolBar}"
+            Width="90" 
+            Height="260"
+            DockPanel.Dock="Left"
+            Orientation="Vertical" >
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <Button ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Refresh" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Обновить</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                    Command="{Binding PressPlus}"
+                    ToolBar.OverflowMode="AsNeeded"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Plus" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Увеличить</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                    Command="{Binding PressMinus}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Уменьшить масштаб">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Minus" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Уменьшить</TextBlock>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
         </ToolBarTray>
 
 
@@ -190,6 +224,7 @@
             Height="70" 
             Width="70"
            />
+
 
 
 

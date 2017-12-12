@@ -39,6 +39,7 @@ namespace wpfMozaiq.ViewModel
 		public MainViewModel()
 		{
 			VisibilityProgressBar = "Hidden";
+			VisibilityToolBar= "Hidden";
 
 			new TempFilesService().DeleteTempFilesInDirectory(TEMP_DIRECTORY);
 
@@ -134,6 +135,20 @@ namespace wpfMozaiq.ViewModel
 		    get
 		    {
 			    return _visibilityProgressBar;
+		    }
+	    }
+
+	    private string _visibilityToolBar;
+	    public string VisibilityToolBar
+		{
+		    set
+		    {
+			    _visibilityToolBar = value;
+			    RaisePropertyChanged(() => VisibilityToolBar);
+		    }
+		    get
+		    {
+			    return _visibilityToolBar;
 		    }
 	    }
 
@@ -353,6 +368,7 @@ namespace wpfMozaiq.ViewModel
                 if (File.Exists(tempPath))
                 {
 	                VisibilityProgressBar = "Hidden";
+	                VisibilityToolBar = "Visible";
 					ImagePath = tempPath;
                     break;
                 }
