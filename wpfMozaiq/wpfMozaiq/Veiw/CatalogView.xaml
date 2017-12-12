@@ -23,41 +23,88 @@
 
         <ToolBarTray Width="auto" DockPanel.Dock="Top">
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
-                <Button Command="{Binding CreateCatalog}" ToolTip="Новый Каталог">
-                    <materialDesign:PackIcon Kind="ContentPaste" />
-                </Button>
-                <Button Command="{Binding CreateSubCatalog}" ToolTip="Новый Подкаталог">
-                    <materialDesign:PackIcon Kind="ContentCopy" />
-                </Button>
-
-                <Button Command="{Binding DeleteCatalog}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить каталог">
-                    <materialDesign:PackIcon Kind="Delete" />
-                </Button>
                 <Button
                     Command="{Binding ChoiseFileMosaicPack}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Открыть">
-                    <materialDesign:PackIcon Kind="OpenInApp" />
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="OpenInApp" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Открыть</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">каталог</TextBlock>
+                    </StackPanel>
                 </Button>
-                <Separator />
-                <Button   Command="{Binding AddMozaic}" ToolBar.OverflowMode="AsNeeded" ToolTip="Добавить">
-                    <materialDesign:PackIcon Kind="PlusCircle" />
+                <Button Command="{Binding CreateCatalog}" ToolTip="Новый Каталог">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="ContentPaste" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Создать</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">Каталог</TextBlock>
+                    </StackPanel>
                 </Button>
-                <Button Command="{Binding DeleteMozaic}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить">
-                    <materialDesign:PackIcon Kind="MinusCircle" />
+                <Button Command="{Binding CreateSubCatalog}" ToolTip="Новый Подкаталог"> 
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="ContentCopy" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Создать</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">Подкаталог</TextBlock>
+                    </StackPanel>
                 </Button>
-                <Button Command="{Binding RefreshMozaicList}" ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
-                    <materialDesign:PackIcon Kind="Refresh" />
+
+                <Button Command="{Binding DeleteCatalog}" ToolBar.OverflowMode="AsNeeded" ToolTip="Удалить каталог">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Delete"  HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Удалить</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">каталог</TextBlock>
+                    </StackPanel>
                 </Button>
+
+
                 <Separator />
                 <Button
                     Command="{Binding CanselCatalog}"
                     ToolBar.OverflowMode="AsNeeded"
                     ToolTip="Сбросить каталог">
-                    <materialDesign:PackIcon Kind="BlockHelper" />
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="BlockHelper"  HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Сбросить</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">каталог</TextBlock>
+                    </StackPanel>
                 </Button>
+            </ToolBar>
+        </ToolBarTray>
 
 
+        <ToolBarTray 
+            Width="90" 
+            Height="290"
+            DockPanel.Dock="Left"
+            Orientation="Vertical" >
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}">
+                <Button
+                    Command="{Binding RefreshMozaicList}"
+                    ToolBar.OverflowMode="AsNeeded" ToolTip="Обновить">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="Refresh" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Обновить</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                    Command="{Binding AddMozaic}"
+                    ToolBar.OverflowMode="AsNeeded">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="PlusCircle" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Добавить</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">мозайку</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button
+                    Command="{Binding DeleteMozaic}"
+                    ToolBar.OverflowMode="AsNeeded"
+                    ToolTip="Уменьшить масштаб">
+                    <StackPanel Orientation="Vertical">
+                        <materialDesign:PackIcon Kind="MinusCircle" HorizontalAlignment="Center" />
+                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">Удалить</TextBlock>
+                        <TextBlock Margin="0,0,0,0" HorizontalAlignment="Center">мозайку</TextBlock>
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
 

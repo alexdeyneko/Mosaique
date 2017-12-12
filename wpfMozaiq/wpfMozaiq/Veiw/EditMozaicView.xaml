@@ -8,7 +8,8 @@
     xmlns:local="clr-namespace:wpfMozaiq.Veiw"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="clr-namespace:wpfMozaiq.ViewModel"
-    Title="Изменение мозайки в каталоге"
+    Title="Добавление мозайки в каталог"
+    WindowStartupLocation="CenterScreen"
     Width="454"
     Height="226"
     mc:Ignorable="d">

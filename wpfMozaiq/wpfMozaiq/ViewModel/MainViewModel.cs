@@ -384,8 +384,6 @@ namespace wpfMozaiq.ViewModel
 	        MozaicsListForRemoving = new ObservableCollection<Mozaic>();
 			
 		}
-
- 
 		
     }
 
