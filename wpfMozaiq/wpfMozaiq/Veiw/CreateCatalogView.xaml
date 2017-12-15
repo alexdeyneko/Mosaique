@@ -19,7 +19,7 @@
     </Window.DataContext>
 
     <StackPanel>
-        <Label  HorizontalAlignment="Center" Content="Введите название подкаталога"/>
+        <Label  HorizontalAlignment="Center" Content="Введите название каталога"/>
         <TextBox
             Name="NameCatalog"
             Width="191"
