@@ -42,7 +42,7 @@ namespace wpfMozaiq.ViewModel
 		{
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
 			{
-				Messenger.Default.Send("CreateCatalogViewModel" + "-" + NameCatalog+ "-"+ SizeMozaicInCatalog);
+				Messenger.Default.Send("CreateCatalogViewModel" + "-" + NameCatalog + "_" + SizeMozaicInCatalog);
 				Messenger.Default.Send("CloseWindowCreateCatalogViewModel");
 			}));
 
