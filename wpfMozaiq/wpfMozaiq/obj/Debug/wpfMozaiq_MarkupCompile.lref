@@ -1,10 +1,15 @@
 ﻿
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\CatalogView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\MainView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\NewProjectView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\SourceImageView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\TechDocView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\UserGuideView.xaml;;
-FC:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\ChoiseCatalogDialogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\CatalogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\ChoiseCatalogAndSubcatalogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\ChoiseCatalogDialogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\CreateCatalogOrSubcatalog.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\CreateCatalogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\MozaicDialogView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\EditMozaicView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\MainView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\NewProjectView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\SourceImageView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\TechDocView.xaml;;
+FD:\Github\Mosaique\wpfMozaiq\wpfMozaiq\Veiw\UserGuideView.xaml;;
 
