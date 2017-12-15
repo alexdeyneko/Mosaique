@@ -4,13 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using GalaSoft.MvvmLight;
 
 namespace wpfMozaiq.ViewModel
 {
     public class TechDocViewModel : ViewModelBase
     {
-	    private string _techDocPath;
+	    String line;
+
+		private string _techDocPath;
 	    public string TechDocPath
 		{
 		    set
@@ -38,12 +41,27 @@ namespace wpfMozaiq.ViewModel
 		    }
 	    }
 
+	    private string[] _line;
+	    public string[] Line
+		{
+		    set
+		    {
+			    _line = value;
+			    RaisePropertyChanged(() => Line);
+		    }
+		    get
+		    {
+			    return _line;
+		    }
+	    }
+
 
 
 		public TechDocViewModel()
 	    {
 		    TechDocPath= Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
-		    TechDocText = File.ReadAllText(TechDocPath);
+			TechDocText = File.ReadAllText(TechDocPath);
+		    //string[] Line = File.ReadAllLines(TechDocPath);
 	    }
 	}
 }

@@ -98,7 +98,8 @@ namespace wpfMozaiq.ViewModel
 		    set
 		    {
 			    _selectedMozaic = value;
-			    SelectedMozaic.FullPath = PATH_DEFAULT_IMAGE;
+				//Mozaic deletedMozaic = SelectedMozaic.
+			    //SelectedMozaic.FullPath = PATH_DEFAULT_IMAGE;
 			    RaisePropertyChanged(() => SelectedMozaic);
 
 
@@ -332,8 +333,11 @@ namespace wpfMozaiq.ViewModel
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    panno = new ImportService(openFileDialog.FileName).ImportPanno();
-                    GenereateInputImage();                }
+					VisibilityProgressBar = "Visible";
+					panno = new ImportService(openFileDialog.FileName).ImportPanno();
+	                Thread myThread = new Thread(GenereateInputImage); //
+	                myThread.Start();         
+                }
                 
             }));
         }
@@ -356,6 +360,7 @@ namespace wpfMozaiq.ViewModel
 
         private void GenereateInputImage()
         {
+			
             ImageBitmap = new DrawService(panno).DrawPanno();
             string tempPath = TEMP_DIRECTORY + new Random().Next() + ".bmp";
             ImageBitmap.Save(tempPath);

@@ -134,6 +134,7 @@
 
 
         <materialDesign:DrawerHost
+            Visibility="{Binding VisibilityToolBar}"
             HorizontalAlignment="Right"
             VerticalAlignment="Stretch"
             BorderBrush="{DynamicResource MaterialDesignDivider}"
