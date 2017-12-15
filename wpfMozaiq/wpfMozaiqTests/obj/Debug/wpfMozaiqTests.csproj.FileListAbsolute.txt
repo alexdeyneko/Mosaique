@@ -56,3 +56,6 @@ D:\Github\Mosaique\wpfMozaiq\wpfMozaiqTests\obj\Debug\wpfMozaiqTests.csprojResol
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiqTests\obj\Debug\wpfMozaiqTests.csproj.CoreCompileInputs.cache
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiqTests\obj\Debug\wpfMozaiqTests.dll
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiqTests\obj\Debug\wpfMozaiqTests.pdb
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiqTests\bin\Debug\MahApps.Metro.IconPacks.dll
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiqTests\bin\Debug\MahApps.Metro.IconPacks.pdb
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiqTests\bin\Debug\MahApps.Metro.IconPacks.xml

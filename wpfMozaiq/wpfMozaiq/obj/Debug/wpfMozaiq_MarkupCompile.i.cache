@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\
 wpfMozaiq
 none
 false
 DEBUG;TRACE
-D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\App.xaml
 12-17777818
 
-53597065819
-77665862865
+53-77061027
+74143571356
 Veiw\CatalogView.xaml;Veiw\ChoiseCatalogAndSubcatalogView.xaml;Veiw\ChoiseCatalogDialogView.xaml;Veiw\CreateCatalogOrSubcatalog.xaml;Veiw\CreateCatalogView.xaml;Veiw\MozaicDialogView.xaml;Veiw\EditMozaicView.xaml;Veiw\MainView.xaml;Veiw\NewProjectView.xaml;Veiw\SourceImageView.xaml;Veiw\TechDocView.xaml;Veiw\UserGuideView.xaml;
 
-False
+True
 

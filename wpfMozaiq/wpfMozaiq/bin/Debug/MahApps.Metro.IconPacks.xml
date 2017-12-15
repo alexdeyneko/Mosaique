@@ -294,29 +294,6 @@
             <see><cref>https://github.com/primer/octicons/blob/master/LICENSE</cref></see>.
             </remarks>
         </member>
-        <member name="T:MahApps.Metro.IconPacks.PackIconSimpleIcons">
-            <summary>
-            All SVG icons for popular brands, maintained by Dan Leech <see><cref>https://twitter.com/bathtype</cref></see>.
-            Contributions, corrections and requests can be made on GitHub <see><cref>https://github.com/danleech/simple-icons</cref></see>.
-            </summary>
-        </member>
-        <member name="T:MahApps.Metro.IconPacks.PackIconSimpleIconsDataFactory">
-            ******************************************
-            This code is auto generated. Do not amend.
-            ******************************************
-        </member>
-        <member name="T:MahApps.Metro.IconPacks.PackIconSimpleIconsKind">
-            ******************************************
-            This code is auto generated. Do not amend.
-            ******************************************
-            <summary>
-            List of available icons for use with <see cref="T:MahApps.Metro.IconPacks.PackIconSimpleIcons" />.
-            </summary>
-            <remarks>
-            All SVG icons for popular brands, maintained by Dan Leech <see><cref>https://twitter.com/bathtype</cref></see>.
-            Contributions, corrections and requests can be made on GitHub <see><cref>https://github.com/danleech/simple-icons</cref></see>.
-            </remarks>
-        </member>
         <member name="T:MahApps.Metro.IconPacks.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

@@ -150,3 +150,13 @@ D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogOrSubcatalog.
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogView.g.cs
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogView.baml
 D:\Github\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\wpfMozaiq.csprojResolveAssemblyReference.cache
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\ChoiseCatalogAndSubcatalogView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogOrSubcatalog.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\MozaicDialogView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\EditMozaicView.g.cs
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\ChoiseCatalogAndSubcatalogView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogOrSubcatalog.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\CreateCatalogView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\MozaicDialogView.baml
+C:\Users\Алексей\Documents\GitHub\Mosaique\wpfMozaiq\wpfMozaiq\obj\Debug\Veiw\EditMozaicView.baml
