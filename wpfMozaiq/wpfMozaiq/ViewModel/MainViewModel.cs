@@ -32,14 +32,16 @@ namespace wpfMozaiq.ViewModel
 
 		//public Catalog catalog;
 		public OriginalImage originalImage;
-	    public MozaicPanel panno;	 
-     
+	    public MozaicPanel panno;	         
+    
         private NewProjectView newProjectView;
+        private MozaicDialogView mozaicDialogView;
 
 		public MainViewModel()
 		{
 			VisibilityProgressBar = "Hidden";
 			VisibilityToolBar= "Hidden";
+           
 
             //создание папки temp
             if  (!(Directory.Exists(TEMP_DIRECTORY)))
@@ -69,10 +71,32 @@ namespace wpfMozaiq.ViewModel
 				    newProjectView.Close();
 			    }
 			});
-		}
+
+            Messenger.Default.Register<string>(this, (newMessage) =>
+            {
+                if (mozaicDialogView != null && newMessage == "CloseMozaicDialogViewModel")
+                {
+                    mozaicDialogView.Close();
+                }
+            });
+
+            MessengerInstance.Register<NotificationMessage<string>>(this, (message) =>
+            {
+                if (message.Notification == "MozaicDialogViewModel")
+                {
+                    if (message.Content == "DeleteMozaic" && SelectedMozaic != null)
+                    {
+                        panno.Catalog.DisableMozaic(SelectedMozaic.Name, SelectedMozaic.SubCatalog);
+                        MozaicsList.Remove(SelectedMozaic);
+                    }
+
+                }
+            });
+        }
 
 
-		private ObservableCollection<Mozaic> _mozaicsList;
+
+        private ObservableCollection<Mozaic> _mozaicsList;
         public ObservableCollection<Mozaic> MozaicsList
         {
             set
@@ -84,42 +108,30 @@ namespace wpfMozaiq.ViewModel
             {
                 return _mozaicsList;
             }
+        } 
+
+        private Mozaic _selectedMozaic;
+        public Mozaic SelectedMozaic
+        {
+            set
+            {
+                _selectedMozaic = value;
+                if (_selectedMozaic != null)
+                {
+                    RaisePropertyChanged(() => SelectedMozaic);
+                    mozaicDialogView = new MozaicDialogView();                   
+                    mozaicDialogView.Show();
+                    int i = 0;
+                }
+            }
+            get
+            {
+                return _selectedMozaic;
+            }
         }
 
-	    private ObservableCollection<Mozaic> _mozaicsListForRemoving;
-	    public ObservableCollection<Mozaic> MozaicsListForRemoving
-		{
-		    set
-		    {
-			    _mozaicsListForRemoving = value;
-			    RaisePropertyChanged(() => MozaicsListForRemoving);
-		    }
-		    get
-		    {
-			    return _mozaicsListForRemoving;
-		    }
-	    }
 
-		private Mozaic _selectedMozaic;
-	    public Mozaic SelectedMozaic
-	    {
-		    set
-		    {
-			    _selectedMozaic = value;
-				//Mozaic deletedMozaic = SelectedMozaic.
-			    //SelectedMozaic.FullPath = PATH_DEFAULT_IMAGE;
-			    RaisePropertyChanged(() => SelectedMozaic);
-
-
-			   int i = 0;
-		    }
-		    get
-		    {
-			    return _selectedMozaic;
-		    }
-	    }
-		
-		private string _imagePath;
+        private string _imagePath;
 	    public string ImagePath
 	    {
 		    set
@@ -350,6 +362,20 @@ namespace wpfMozaiq.ViewModel
             }));
         }
 
+        private ICommand _refreshPanno;
+        public ICommand RefreshPanno
+        {
+            get => _refreshPanno ?? (_refreshPanno = new RelayCommand(() =>
+            {
+                ImageHeight = 0;
+                ImageWidth = 0;
+                VisibilityProgressBar = "Visible";
+
+                Thread myThread = new Thread(GenerateMozaicPanno); //
+                myThread.Start();
+            }));
+        }
+
         private void GenerateMozaicPanno()
 	    {
 			try { new MatrixGridService(panno).CreateImageGrid(); } catch( Exception e) { VisibilityProgressBar = "Hidden"; System.Windows.MessageBox.Show(e.ToString(), "Ошибка"); }
@@ -394,7 +420,7 @@ namespace wpfMozaiq.ViewModel
 			        MozaicsList.Add(var);
 		        }
 	        }
-	        MozaicsListForRemoving = new ObservableCollection<Mozaic>();
+	        
 			
 		}
 		

@@ -14,12 +14,15 @@ namespace wpfMozaiq.ViewModel
 {
 	public class MozaicDialogViewModel : ViewModelBase, INotifyPropertyChanged
 	{
-		public MozaicDialogViewModel()
-		{
-			
-		}
+ 
 
-		private ICommand _okCommand;
+        public MozaicDialogViewModel()
+		{
+            
+
+        }
+
+        private ICommand _okCommand;
 		public ICommand OkCommand
 		{
 			get => _okCommand ?? (_okCommand = new RelayCommand(() =>
