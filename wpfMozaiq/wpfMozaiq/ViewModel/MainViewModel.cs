@@ -37,10 +37,14 @@ namespace wpfMozaiq.ViewModel
         private NewProjectView newProjectView;
         private MozaicDialogView mozaicDialogView;
 
+        //
+        private int f;
+
 		public MainViewModel()
 		{
 			VisibilityProgressBar = "Hidden";
 			VisibilityToolBar= "Hidden";
+            f = 0;
            
 
             //создание папки temp
@@ -86,8 +90,10 @@ namespace wpfMozaiq.ViewModel
                 {
                     if (message.Content == "DeleteMozaic" && SelectedMozaic != null)
                     {
+                        f = 1;
                         panno.Catalog.DisableMozaic(SelectedMozaic.Name, SelectedMozaic.SubCatalog);
                         MozaicsList.Remove(SelectedMozaic);
+                       
                     }
 
                 }
@@ -118,10 +124,18 @@ namespace wpfMozaiq.ViewModel
                 _selectedMozaic = value;
                 if (_selectedMozaic != null && MozaicsList.IndexOf(_selectedMozaic)!=0)
                 {
-                    RaisePropertyChanged(() => SelectedMozaic);
-                    mozaicDialogView = new MozaicDialogView();                   
-                    mozaicDialogView.Show();
-                    int i = 0;
+                    if (f ==0)
+                    {
+                        RaisePropertyChanged(() => SelectedMozaic);
+                        mozaicDialogView = new MozaicDialogView();
+                        mozaicDialogView.Show();
+                    }
+                    else
+                    {
+                        f = 0;
+                    }
+
+ 
                 }
             }
             get
