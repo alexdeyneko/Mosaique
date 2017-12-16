@@ -41,8 +41,15 @@ namespace wpfMozaiq.ViewModel
 			VisibilityProgressBar = "Hidden";
 			VisibilityToolBar= "Hidden";
 
+            //создание папки temp
+            if  (!(Directory.Exists(TEMP_DIRECTORY)))
+            {
+                Directory.CreateDirectory(TEMP_DIRECTORY);
+            }
+            //удаление файлов в папке temp
 			new TempFilesService().DeleteTempFilesInDirectory(TEMP_DIRECTORY);
 
+            //получение всех параметров панно и его генерация
 		    Messenger.Default.Register<MozaicPanel>(this, (newPanno) =>
 		    {
 			    ImageHeight = 0;
@@ -54,7 +61,8 @@ namespace wpfMozaiq.ViewModel
 			    myThread.Start();
             });
 
-		    Messenger.Default.Register<string>(this, (newMessage) =>
+            //закрытие окна NewProjectView
+            Messenger.Default.Register<string>(this, (newMessage) =>
 		    {
 			    if (newProjectView != null && newMessage == "CloseWindowNewProjectViewModel")
 			    {
