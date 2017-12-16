@@ -161,6 +161,7 @@
                                 x:Name="ListView1"
                                 Margin="5"
                                 ItemsSource="{Binding MozaicsList}"
+                                SelectedIndex="-1"
                                 SelectionMode="Single"  
                                 SelectedItem="{Binding SelectedMozaic, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True"  >
                                 

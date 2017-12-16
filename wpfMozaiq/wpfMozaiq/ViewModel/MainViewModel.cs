@@ -116,7 +116,7 @@ namespace wpfMozaiq.ViewModel
             set
             {
                 _selectedMozaic = value;
-                if (_selectedMozaic != null)
+                if (_selectedMozaic != null && MozaicsList.IndexOf(_selectedMozaic)!=0)
                 {
                     RaisePropertyChanged(() => SelectedMozaic);
                     mozaicDialogView = new MozaicDialogView();                   
