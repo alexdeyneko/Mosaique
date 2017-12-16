@@ -206,12 +206,15 @@
             HorizontalScrollBarVisibility="auto" 
             VerticalScrollBarVisibility="auto">
             <StackPanel
-                Width="{Binding ImageWidth}"
-                Height="{Binding ImageHeight}"
                 Margin="0,0,0,0"
                 HorizontalAlignment="Center"
                 DockPanel.Dock="Right">
-                <Image Source="{Binding ImagePath, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <Image                 
+                    Width="{Binding ImageWidth}"
+                    Height="{Binding ImageHeight}" 
+                    Source="{Binding ImagePath, 
+                    UpdateSourceTrigger=PropertyChanged, 
+                    Mode=TwoWay}" />
             </StackPanel>
         </ScrollViewer>
 
