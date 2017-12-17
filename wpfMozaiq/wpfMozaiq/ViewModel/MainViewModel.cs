@@ -19,15 +19,17 @@ using GalaSoft.MvvmLight.Messaging;
 using wpfMozaiq.Models;
 using wpfMozaiq.Models.Services;
 using wpfMozaiq.Veiw;
-using System.Windows.Forms;
+using System.Windows.Forms; 
+using System.Diagnostics;
 
 namespace wpfMozaiq.ViewModel
 {
     public class MainViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private string TEMP_DIRECTORY = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\";
-        private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".mzq";
-	    private string PATH_DEFAULT_IMAGE = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
+        private string TECH_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Temp\\" + "techDoc" + ".txt";
+        private string USER_DOC_PATH = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) + "\\Руководство_пользователя_ПО_Мозаика.docx";
+        private string PATH_DEFAULT_IMAGE = Path.GetDirectoryName(Path.GetDirectoryName(Directory.GetCurrentDirectory())) +
 	                                        "\\Catalog\\" + "default.bmp";
 
 		//public Catalog catalog;
@@ -289,9 +291,10 @@ namespace wpfMozaiq.ViewModel
 					    File.Delete(TECH_DOC_PATH);
 				    }
 					new TxtTechDocWriter(panno, TECH_DOC_PATH).WriteDocumentation();
-				    TechDocView techDocView = new TechDocView();
-				    techDocView.Show();
-				}
+				    //TechDocView techDocView = new TechDocView();
+				    //techDocView.Show();
+                    ExecuteCommand(TECH_DOC_PATH);
+                }
 
 		    }));
 	    }
@@ -301,9 +304,10 @@ namespace wpfMozaiq.ViewModel
 		{
 		    get => _showUserGuideView ?? (_showUserGuideView = new RelayCommand(() =>
 		    {
-				UserGuideView userGuideView = new UserGuideView();
-				userGuideView.Show();
-		    }));
+				//UserGuideView userGuideView = new UserGuideView();
+				//userGuideView.Show();
+                ExecuteCommand(USER_DOC_PATH);
+            }));
 	    }
 
 		private ICommand _pressPlus;
@@ -434,10 +438,39 @@ namespace wpfMozaiq.ViewModel
 			        MozaicsList.Add(var);
 		        }
 	        }
-	        
-			
+	        			
 		}
-		
+
+        static void ExecuteCommand(string command)
+        {
+            int exitCode;
+            ProcessStartInfo processInfo;
+            Process process;
+
+            processInfo = new ProcessStartInfo("cmd.exe", "/c " + command);
+            processInfo.CreateNoWindow = true;
+            processInfo.UseShellExecute = false;
+            // *** Redirect the output ***
+            processInfo.RedirectStandardError = true;
+            processInfo.RedirectStandardOutput = true;
+
+            process = Process.Start(processInfo);
+            process.WaitForExit();
+
+            // *** Read the streams ***
+            // Warning: This approach can lead to deadlocks, see Edit #2
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+
+            exitCode = process.ExitCode;
+
+            Console.WriteLine("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
+            Console.WriteLine("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
+            Console.WriteLine("ExitCode: " + exitCode.ToString(), "ExecuteCommand");
+            process.Close();
+        }
+
+
     }
 
 }
