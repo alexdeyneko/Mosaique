@@ -332,7 +332,7 @@
         <Border
             Grid.Row="1"
             Grid.Column="1"
-            Margin="15,-35,15,110"
+            Margin="15,-30,15,110"
             Padding="8"
             BorderBrush="{DynamicResource AccentColorBrush}"
             BorderThickness="1"
@@ -340,7 +340,7 @@
         <Label
             Grid.Row="1"
             Grid.Column="1"
-            Margin="15,-30,0,0"
+            Margin="15,-25,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Зазор между плитками"
@@ -434,8 +434,8 @@
             Grid.Row="1"
             Grid.Column="1"
             Width="58"
-            Height="25"
-            Margin="80,165,0,0"
+            Height="35"
+            Margin="80,160,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource AccentColorBrush}"

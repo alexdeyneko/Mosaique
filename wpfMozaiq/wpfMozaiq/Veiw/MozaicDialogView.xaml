@@ -17,24 +17,23 @@
 
     <StackPanel>
         <TextBlock FontSize="18">Действительно удалить выбранную мозайку?</TextBlock>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <StackPanel
+            Margin="5,10,5,5"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
             <Button
-                Grid.Column="0" Margin="10"
+                Margin="5"
+                Padding="5"
                 Command="{Binding OkCommand}"
-                IsDefault="True">
-                OK
-            </Button>
+                Content="OK"
+                IsDefault="True" />
             <Button
-                Grid.Column="1" Margin="10"
+                Margin="5,5,5,5"
+                Padding="5"
                 Command="{Binding CancelCommand}"
-                IsCancel="True">
-                Cancel
-            </Button>
-        </Grid>
+                Content="Cancel"
+                IsCancel="True" />
+        </StackPanel>
     </StackPanel>
 
 </controls:MetroWindow>
